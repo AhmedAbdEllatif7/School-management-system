@@ -31,7 +31,7 @@ One of the powerful features of this School Management System is "Multi-Auth." I
 With Multi-Auth, each user role has its own authentication mechanism, ensuring secure access to the appropriate features and information. This enhances the overall user experience and streamlines communication between stakeholders in the school community.
 
 
-- **Student Management:** Maintain student records, including personal details, attendance, academic performance, and disciplinary history. Generate student reports and progress cards.
+- **Student Management:** Maintain student records, including personal details, attendance, academic performance, and disciplinary history. Generate student reports and progress cards. 
 
 - **Teacher Management:** Manage teacher profiles, qualifications, schedules, and performance evaluations. Assign teachers to classes and subjects.
 
