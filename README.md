@@ -14,6 +14,9 @@ The School Management System is a comprehensive web application designed to stre
 
 ## Features
 
+- **Multilingual Support:** The system offers multiple language options, allowing users to switch between languages (e.g., English, Arabic). All interface elements, labels, and content are presented in the selected language, providing a localized experience for users.
+
+
 - **Student Management:** Maintain student records, including personal details, attendance, academic performance, and disciplinary history. Generate student reports and progress cards.
 
 - **Teacher Management:** Manage teacher profiles, qualifications, schedules, and performance evaluations. Assign teachers to classes and subjects.
