@@ -16,8 +16,7 @@ The School Management System is a comprehensive web application designed to stre
 
 - **Multilingual Support:** The system offers multiple language options, allowing users to switch between languages (e.g., English, Arabic). All interface elements, labels, and content are presented in the selected language, providing a localized experience for users.
 
-
-# Multi-Auth for Admin, Student, Teacher, and Parent
+- **Multi-Auth for Admin, Student, Teacher, and Parent:**
 
 One of the powerful features of this School Management System is "Multi-Auth." It allows the application to handle multiple user authentication systems simultaneously for different user roles:
 
