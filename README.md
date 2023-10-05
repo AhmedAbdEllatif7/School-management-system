@@ -1,66 +1,54 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+# School Management System
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+The School Management System is a comprehensive web application designed to streamline and enhance various administrative and academic processes within educational institutions. This open-source project aims to provide an efficient and user-friendly platform for managing schools, colleges, or universities, making it easier for administrators, teachers, parents, and students to collaborate effectively.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Multilingual Support:** The system offers multiple language options, allowing users to switch between languages (e.g., English, Arabic). All interface elements, labels, and content are presented in the selected language, providing a localized experience for users.
 
-## Learning Laravel
+- **Multi-Auth for Admin, Student, Teacher, and Parent:**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+One of the powerful features of this School Management System is "Multi-Auth." It allows the application to handle multiple user authentication systems simultaneously for different user roles:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+- **Admin**: School administrators have access to the admin dashboard, where they can manage users, courses, and generate reports.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Student**: Students can log in to access their academic records, exam schedules, and school announcements.
 
-## Laravel Sponsors
+- **Teacher**: Teachers can log in to view their teaching schedules, manage grades, and communicate with parents.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- **Parent**: Parents can log in to monitor their child's academic progress, view exam results, and communicate with teachers.
 
-### Premium Partners
+With Multi-Auth, each user role has its own authentication mechanism, ensuring secure access to the appropriate features and information. This enhances the overall user experience and streamlines communication between stakeholders in the school community.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
+- **Student Management:** Maintain student records, including personal details, attendance, academic performance, and disciplinary history. Generate student reports and progress cards. 
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Teacher Management:** Manage teacher profiles, qualifications, schedules, and performance evaluations. Assign teachers to classes and subjects.
 
-## Code of Conduct
+- **Course and Curriculum Management:** Organize courses and subjects. Create and manage academic curriculum, lesson plans, and course materials.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **Attendance Management:** Record and track student attendance. Generate attendance reports for teachers, parents, and administrators.
 
-## Security Vulnerabilities
+- **Grading and Exam Management:** Manage exam schedules, conduct exams, and evaluate student performance. Automatically calculate grades and publish results.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **Parent Portal:** Provide parents with access to their child's attendance, grades, and academic progress. Facilitate communication between parents and teachers.
 
-## License
+- **Fee and Finance Management:** Manage fee collection, track payments, and generate financial reports. Handle expenses and budgeting for the institution.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **Library Management:** Maintain a catalog of library books, track borrowing and returns, and manage book availability.
+
+- **Timetable Management:** Create and manage class schedules, teacher timetables, and exam timetables.
+
+## Technology Stack
+
+- Back-end: PHP (Laravel framework)
+- Database: MySQL
+
+## Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/AhmedAbdEllatif7/School-system-management.git
