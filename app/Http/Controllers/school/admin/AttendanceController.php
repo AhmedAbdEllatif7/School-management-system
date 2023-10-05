@@ -1,17 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\school;
+namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
-use App\Models\Classroom;
-use App\Models\Section;
-use App\Models\Student;
 use App\Repository\AttendanceRepositoryInterface;
-use App\Repository\FeesInvoicesRepositoryInterface;
-use Cassandra\Exception\ValidationException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class AttendanceController extends Controller
 {

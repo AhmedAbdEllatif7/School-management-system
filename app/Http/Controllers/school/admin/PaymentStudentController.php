@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\school;
+namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Payment_student;
 use App\Repository\PaymentStudentRepositoryInterface;
 use Illuminate\Http\Request;
 

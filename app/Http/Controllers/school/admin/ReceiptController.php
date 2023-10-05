@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\school;
+namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Receipt;
 use App\Repository\ReceiptStudentRepositoryInterface;
-use App\Repository\StudentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ReceiptController extends Controller

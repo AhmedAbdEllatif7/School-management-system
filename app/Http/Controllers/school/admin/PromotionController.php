@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\school;
+namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Promotion;
-use App\Models\Student;
 use App\Repository\PromotionRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class PromotionController extends Controller
 {

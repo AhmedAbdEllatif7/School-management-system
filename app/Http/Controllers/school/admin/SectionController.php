@@ -1,13 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\school;
+namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSection;
-use App\Models\Classroom;
-use App\Models\Grade;
 use App\Models\Section;
-use App\Models\Teacher;
 use App\Repository\SectionRepositoryInterface;
 use Illuminate\Http\Request;
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\school\AjaxController;
+use App\Http\Controllers\school\admin\AjaxController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 

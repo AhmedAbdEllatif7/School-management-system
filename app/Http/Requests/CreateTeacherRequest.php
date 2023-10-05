@@ -12,7 +12,9 @@ class CreateTeacherRequest extends FormRequest
     }
 
     public function rules()
-    { $teacherId = $this->id;
+    { 
+        
+        $teacherId = $this->id;
         return [
             'Email' => 'required|email|unique:teachers,email,'.$teacherId,
             'Password' => 'required|min:6',

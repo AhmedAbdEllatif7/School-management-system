@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\school;
+namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFeesRequest;
 use App\Models\Fees;
-use App\Models\Grade;
 use App\Repository\FeesRepositoryInterface;
 use Illuminate\Http\Request;
 

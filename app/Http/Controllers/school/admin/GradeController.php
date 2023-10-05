@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\school;
+namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Response;
 use App\Http\Requests\StoreGrade;
-use App\Models\Grade;
 use App\Repository\GradeRepositoryInterface;
 use Illuminate\Http\Request;
-use SebastianBergmann\Diff\Exception;
 
 class GradeController extends Controller
 {

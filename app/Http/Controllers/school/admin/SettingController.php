@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\school;
+namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Repository\SettingsRepositoryInterface;
-use Hamcrest\Core\SetTest;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller

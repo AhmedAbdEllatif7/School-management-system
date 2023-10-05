@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\school\AttendanceController;
-use App\Http\Controllers\school\SectionController;
-use App\Http\Controllers\school\SettingController;
+use App\Http\Controllers\school\admin\AttendanceController;
+use App\Http\Controllers\school\admin\SectionController;
 use App\Http\Controllers\school\student\StudentController;
 use App\Http\Controllers\school\teacher\ProfileController;
 use App\Http\Controllers\school\teacher\QuestionsController;

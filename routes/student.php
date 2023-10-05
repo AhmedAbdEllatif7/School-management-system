@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\school\ExamController;
+use App\Http\Controllers\school\admin\ExamController;
 use App\Http\Controllers\school\student\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;

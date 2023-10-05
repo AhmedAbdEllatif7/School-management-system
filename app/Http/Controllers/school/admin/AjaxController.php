@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\school;
+namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classroom;
 use App\Models\Section;
-use Illuminate\Http\Request;
 
 class AjaxController extends Controller
 {

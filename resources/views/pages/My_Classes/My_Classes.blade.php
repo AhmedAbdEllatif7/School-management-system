@@ -71,7 +71,8 @@
                     </button>
 
 
-                    <br><br>      <div class="container mt-1">
+                    <br><br>      
+                    <div class="container mt-1">
                             <div class="row justify-content-start">
                                 <div class="col-md-3">
                                     <form action="{{route('filter_classes')}}" method="get" class="border rounded p-2">
@@ -94,12 +95,9 @@
                             </div>
                         </div>
                         <br>
-
                     <div class="table-responsive">
-
                         <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50"
-                               style="text-align: center">
-
+                            style="text-align: center">
                             <thead>
                             <tr>
                                 <th><input name="select_all" id="example-select-all" type="checkbox" onclick="CheckAll('box1', this)" /></th>
@@ -110,7 +108,6 @@
                             </tr>
                             </thead>
                             <tbody>
-
                             @if (isset($search))
 
                                     <?php $List_Classes = $search; ?>
@@ -278,7 +275,7 @@
 
         <!-- add_modal_class -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -301,7 +298,7 @@
 
                                                 <div class="col">
                                                     <label for="Name"
-                                                           class="mr-sm-2">{{ trans('My_Classes_trans.Name_class') }}
+                                                        class="mr-sm-2">{{ trans('My_Classes_trans.Name_class') }}
                                                         :</label>
                                                     <input class="form-control" type="text" name="name_ar" />
                                                 </div>

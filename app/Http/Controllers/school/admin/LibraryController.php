@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\school;
+namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Library;
 use App\Repository\LibraryRepositoryInterface;
 use Illuminate\Http\Request;
 

@@ -1,17 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\school;
+namespace App\Http\Controllers\school\admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreClassroom;
 use App\Models\Classroom;
-use App\Http\Controllers\Controller;
-use App\Models\Grade;
-use App\Repository\ClassroomRepository;
 use App\Repository\ClassroomRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class ClassroomController extends Controller
 {
