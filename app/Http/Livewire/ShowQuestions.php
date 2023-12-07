@@ -19,6 +19,7 @@ class ShowQuestions extends Component
 
     public function nextQuestion($question_id, $score, $answer, $right_answer)
     {
+        //student degree
         $stuDegree = Degree::where('student_id', $this->student_id)
             ->where('quiz_id', $this->quizze_id)
             ->first();

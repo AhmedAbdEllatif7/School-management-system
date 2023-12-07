@@ -9,13 +9,14 @@ interface GradeRepositoryInterface
 
     public function store($request);
 
+    public function uniqueStoreValidation($List_Grade);
+
+    public function uniqueUpdateValidation($request);
 
     public function update($request);
 
     public function delete($request);
 
-    public function deleteSelected($request);
-
-    public function deleteAllGrade($request);
+    public function deleteSelectedGrade($request);
 
 }

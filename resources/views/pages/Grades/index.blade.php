@@ -69,11 +69,11 @@
         <div class="card card-statistics h-100">
             <div class="card-body">
 
-                <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                     {{ trans('grade_trans.add_Grade') }}
                 </button>
 
-                <button type="button" class="button x-small" id="btn_delete_all">
+                <button type="button" class="btn btn-danger" id="btn_delete_all">
                     {{ trans('grade_trans.delete selected items') }}
                 </button>
 
@@ -265,7 +265,7 @@
 
                                                 <div class="col">
                                                     <label for="Name"
-                                                           class="mr-sm-2">{{ trans('grade_trans.grade_name_ar') }}
+                                                        class="mr-sm-2">{{ trans('grade_trans.grade_name_ar') }}
                                                         :</label>
                                                     <input class="form-control" type="text" name="name_ar" />
                                                 </div>
@@ -273,7 +273,7 @@
 
                                                 <div class="col">
                                                     <label for="Name"
-                                                           class="mr-sm-2">{{ trans('grade_trans.grade_name_en') }}
+                                                        class="mr-sm-2">{{ trans('grade_trans.grade_name_en') }}
                                                         :</label>
                                                     <input class="form-control" type="text" name="name_en" />
                                                 </div>
@@ -281,17 +281,17 @@
 
                                                 <div class="col">
                                                     <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('grade_trans.Notes') }}
+                                                        class="mr-sm-2">{{ trans('grade_trans.Notes') }}
                                                         :</label>
                                                     <input class="form-control" type="text" name="notes" />
                                                 </div>
 
                                                 <div class="col">
                                                     <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('My_Classes_trans.Processes') }}
+                                                        class="mr-sm-2">{{ trans('My_Classes_trans.Processes') }}
                                                         :</label>
                                                     <input class="btn btn-danger btn-block" data-repeater-delete
-                                                           type="button" value="{{ trans('My_Classes_trans.delete_row') }}" />
+                                                        type="button" value="{{ trans('My_Classes_trans.delete_row') }}" />
                                                 </div>
                                             </div>
                                         </div>

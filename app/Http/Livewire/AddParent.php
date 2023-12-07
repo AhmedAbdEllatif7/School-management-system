@@ -94,7 +94,6 @@ class AddParent extends Component
     //secondStepSubmit
     public function secondStepSubmit()
     {
-
         $this->validate([
             'Name_Mother' => 'required',
             'Name_Mother_en' => 'required',
@@ -170,6 +169,7 @@ class AddParent extends Component
     }
 
 
+    
     public function edit($id)
     {
         $this->show_table = false;
@@ -204,12 +204,15 @@ class AddParent extends Component
         $this->Religion_Mother_id =$My_Parent->Religion_Mother_id;
     }
 
+
+
     //firstStepSubmit
     public function firstStepSubmit_edit()
     {
         $this->updateMode = true;
         $this->currentStep = 2;
     }
+
 
     //secondStepSubmit_edit
     public function secondStepSubmit_edit()
@@ -218,6 +221,8 @@ class AddParent extends Component
         $this->currentStep = 3;
 
     }
+
+
 
     public function submitForm_edit(){
 

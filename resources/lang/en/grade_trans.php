@@ -26,13 +26,15 @@ return [
     'Grade added successfully.'                                   => 'Grade added successfully.',
     'Select'                                                      => 'Select',
     'Sorry this name is already existed'               =>'Sorry this name is already existed',
-    'Please enter the name in english' =>   'Please enter the name in english',
-    'Please enter the name in arabic' => 'Please enter the name in arabic',
+    'missing_name_en' =>   'Please enter the name in english',
+    'missing_name_ar' => 'Please enter the name in arabic',
     'delete selected items' => 'Delete selected items',
     'selected_deleted_successfully' => 'The selected items are deleted successfully',
 
     'grade_name_ar' => 'Grade name in arabic',
     'grade_name_en' => 'Grade name in english',
+
+    'Failed to delete selected grades.' => 'Failed to delete selected grades.',
 
 
 

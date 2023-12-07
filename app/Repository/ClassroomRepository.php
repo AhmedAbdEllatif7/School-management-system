@@ -51,7 +51,7 @@ class ClassroomRepository implements ClassroomRepositoryInterface{
 
     public function update($request)
     {
-        $validated = $request->validated();
+//        $validated = $request->validated();
 
         $classroom = Classroom::findOrFail($request->id);
         $classroom ->update([

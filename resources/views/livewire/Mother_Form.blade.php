@@ -106,7 +106,7 @@
                 <div class="form-group">
                     <label for="exampleFormControlTextarea1">{{trans('Parent_trans.Address_Mother')}}</label>
                     <textarea class="form-control" wire:model="Address_Mother" id="exampleFormControlTextarea1"
-                              rows="4"></textarea>
+                            rows="4"></textarea>
                     @error('Address_Mother')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror

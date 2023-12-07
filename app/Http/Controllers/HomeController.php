@@ -16,23 +16,17 @@ class HomeController extends Controller
     }
 
 
-public function studentDashboard()
+    public function studentDashboard()
     {
         return view('pages.Students.dashboard');
     }
 
 
 
-    public function dashboard()
-        {
-            return view('dashboard');
-        }
+    public function adminDashboard()
+    {
+        return view('adminDashboard');
+    }
 
 
-
-
-//    public function test(Request $request)
-//    {
-//        return $request;
-//    }
 }

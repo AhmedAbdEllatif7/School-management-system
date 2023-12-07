@@ -61,8 +61,8 @@ Route::group(['namespace' => 'Auth'], function () {
     ], function(){
 
 
-        //Dashboard
-        Route::get('dashboard',[HomeController::class , 'dashboard'])->name('/dashboard');
+        //Admin Dashboard
+        Route::get('admin/dashboard',[HomeController::class , 'adminDashboard'])->name('admin.dashboard');
 
 
 
@@ -70,7 +70,7 @@ Route::group(['namespace' => 'Auth'], function () {
         ###################################### Grade ###########################
         Route::controller(GradeController::class)->group(function () {
             Route::resource('grades',GradeController::class);
-            Route::post('delete_all_grade' ,  'deleteAllGrade')->name('delete_all_grade');
+            Route::post('delete_all_grade' ,  'deleteSelectedGrade')->name('delete_all_grade');
         });
 
 
@@ -195,7 +195,7 @@ Route::group(['namespace' => 'Auth'], function () {
 
 
 
-         ###################################### Attendance ########################
+        ###################################### Attendance ########################
         Route::controller(AttendanceController::class)->group(function () {
                 Route::resource('attendance',AttendanceController::class);
                 Route::post('edit_student_presence/{id}' , 'editStudentPresence')->name('editStudentPresence');

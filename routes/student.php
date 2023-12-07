@@ -17,6 +17,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
+
 //==============================Translate all pages============================
 Route::group(
     [

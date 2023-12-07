@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\Teacher;
 use Cassandra\Exception\ValidationException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException as ValidationValidationException;
 
 class AttendanceRepository implements AttendanceRepositoryInterface
 {
@@ -142,7 +143,7 @@ class AttendanceRepository implements AttendanceRepositoryInterface
                     ->where('student_id', $request->student_id)->get();
                 return view('pages.Teachers.students.attendance_report', compact('Students', 'students'));
             }
-        } catch (ValidationException $e) {
+        } catch (ValidationValidationException $e) {
             // Handle validation errors here
             return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {

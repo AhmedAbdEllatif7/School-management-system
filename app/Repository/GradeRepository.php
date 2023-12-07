@@ -10,90 +10,141 @@ class GradeRepository implements GradeRepositoryInterface
     public function index()
     {
         $grades = Grade::all();
-        return view('pages.Grades.grade',compact('grades'));
+        return view('pages.Grades.index',compact('grades'));
     }
+
+
+
+
 
     public function store($request)
     {
-        $List_Grades = $request->List_Grades;
-
-        try {
-            $validated = $request->validated();
-
-            foreach ($List_Grades as $List_Grade) {
-
-                if(Grade::where('name->en',$List_Grade['name_en'])->orWhere('name->ar',$List_Grade['name_en'])->exists() )
-                {
-                    return redirect()->back()->withErrors(trans('grade_trans.Sorry this name is already existed'));
-                }
-                $Grade = new Grade();
-
-                $Grade->name = ['en' => $List_Grade['name_en'], 'ar' => $List_Grade['name_ar']];
-
-                $Grade->notes = $List_Grade['notes'];
-
-                $Grade->save();
-
-            }
+        $listGrades = $request->List_Grades;
+        $success = $this->storeGrades($listGrades);
+    
+        if ($success) {
             return redirect()->back()->with('add', trans('grade_trans.Grade added successfully.'));
-
+        } else {
+            return redirect()->back()->withErrors(['error' => 'Some grades were not added or already exist.']);
         }
-
-        catch (\Exception $e){
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
-
     }
+    
+    public function storeGrades($grades)
+    {
+        $success = true; // Track if all grades were successfully added
+    
+        foreach ($grades as $gradeData) {
+            if ($this->uniqueStoreValidation($gradeData)) {
+                $this->createGrade($gradeData);
+            } else {
+                $success = false; // If any grade fails validation, set success to false
+            }
+        }
+        
+        return $success; // Return success status after looping through all grades
+    }
+    
+
+
+    public function createGrade($data)
+    {
+        $grade = new Grade();
+        if ($grade) {
+            $grade->name = ['en' => $data['name_en'], 'ar' => $data['name_ar']];
+            $grade->notes = $data['notes'];
+            $grade->save();
+        }
+    }
+
+
+
+    public function uniqueStoreValidation($listGrade)
+    {
+        return !Grade::where('name->en', $listGrade['name_en'])
+            ->orWhere('name->ar', $listGrade['name_ar'])
+            ->exists();
+    }
+
+
+
 
 
     public function update($request)
     {
+        try {
+            $this->uniqueUpdateValidation($request);
+            $grade = Grade::findOrFail($request->id);
+            $this->updateGrade($grade, $request);
+            return redirect()->back()->with('update', trans('grade_trans.Grade update successfully.'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    private function updateGrade($grade, $requestData)
+    {
+        $grade->update([
+            'name' => ['ar' => $requestData->name_ar, 'en' => $requestData->name_en],
+            'notes' => $requestData->notes,
+        ]);
+    }
+
+    public function uniqueUpdateValidation($request)
+    {
         $existingGrade = Grade::where(function ($query) use ($request) {
-            $query->where('name->en', $request->name_en)
-                ->orWhere('name->ar', $request->name_ar);
-        })
+                $query->where('name->en', $request->name_en)
+                    ->orWhere('name->ar', $request->name_ar);
+            })
             ->where('id', '!=', $request->id)
             ->exists();
 
         if ($existingGrade) {
             return redirect()->back()->withErrors(trans('grade_trans.Sorry this name is already existed'));
         }
-        try {
-            $validated = $request->validated();
-            $grade = Grade::findOrFail($request->id);
-            $grade->update([
-                'name' => ['ar' => $request->name_ar, 'en' =>$request->name_en],
-                'notes' => $request->notes,
-            ]);
-            return redirect()->back()->with('update', trans('grade_trans.Grade update successfully.'));
-
-        }
-        catch (\Exception $e)
-        {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
     }
+
+
+
+
+
+
+
 
     public function delete($request)
     {
-        $grade = Grade::findOrFail($request->id);
-        $grade->delete();
-
-        return redirect()->back()->with('delete', trans('grade_trans.Grade deleted successfully.'));
-
+        try {
+            $grade = Grade::findOrFail($request->id);
+            if ($grade) {
+                $grade->delete();
+                return redirect()->back()->with('delete', trans('grade_trans.Grade deleted successfully.'));
+            }
+            return redirect()->back()->withErrors(trans('grade_trans.Failed to delete grade.'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
+    
 
-    public function deleteSelected($request)
+
+
+
+
+
+
+        
+    public function deleteSelectedGrade($request)
     {
-        $selectedIds = $request->input('selected', []);
-        Grade::whereIn('id', $selectedIds)->delete();
-        return redirect()->back()->with('delete', trans('Selected grades have been deleted.'));    }
-
-    public function deleteAllGrade($request)
-    {
-        $delete_all_id = explode(",", $request->delete_all_id);
-
-        Grade::whereIn('id', $delete_all_id)->Delete();
-        return redirect()->back()->with(['delete_selected' => trans('grade_trans.selected_deleted_successfully')]);
+        try {
+            $delete_all_id = explode(",", $request->delete_all_id);
+    
+            $deleted = Grade::whereIn('id', $delete_all_id)->delete();
+            if ($deleted) {
+                return redirect()->back()->with(['delete_selected' => trans('grade_trans.selected_deleted_successfully')]);
+            }
+            return redirect()->back()->withErrors(trans('grade_trans.Failed to delete selected grades.'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
+    
 }
