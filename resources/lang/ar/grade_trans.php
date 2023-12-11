@@ -24,7 +24,7 @@ return [
     'Grade update successfully.' => 'تم تعديل المرحلة بنجاح',
     'Grade added successfully.' => 'تم إضافة المرحلة بنجاح',
     'Select' => 'تحديد',
-    'Sorry this name is already existed' =>'عفوا هذا الأسم موجود بالفعل',
+    'grade_already_exists' =>'عفوا هذا الأسم موجود بالفعل',
     'missing_name_en' => 'من فضلك ادخل اسم المرحلة بالإنجليزية',
     'missing_name_ar' => 'من فضلك ادخل اسم المرحلة بالعربية ',
     'delete selected items' => 'حذف العناصر المحددة',

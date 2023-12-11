@@ -24,56 +24,29 @@ class GradeController extends Controller
     }
 
 
-    public function create()
-    {
-
-    }
-
-
     public function store(GradeRequest $request)
     {
         return $this->grade->store($request);
     }
 
-    public function show($id)
-    {
-
-    }
-
-
-    public function edit(Request $request)
-    {
-        return "cc";
-    }
 
 
     public function update(GradeRequest $request)
     {
         return $this->grade->update($request);
-
     }
-
 
 
     public function destroy(Request $request)
     {
         return $this->grade->delete($request);
-
     }
 
 
 
-    // public function deleteSelected(Request $request)
-    // {
-    //     return $this->grade->deleteSelected($request);
-
-    // }
-
-
-    public function deleteSelectedGrade(Request $request)
+    public function deleteSelectedGrades(Request $request)
     {
-        return $this->grade->deleteSelectedGrade($request);
-
+        return $this->grade->deleteSelectedGrades($request);
     }
 
 

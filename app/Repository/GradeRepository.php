@@ -10,7 +10,7 @@ class GradeRepository implements GradeRepositoryInterface
     public function index()
     {
         $grades = Grade::all();
-        return view('pages.Grades.index',compact('grades'));
+        return view('pages.grades.index',compact('grades'));
     }
 
 
@@ -19,13 +19,13 @@ class GradeRepository implements GradeRepositoryInterface
 
     public function store($request)
     {
-        $listGrades = $request->List_Grades;
+        $listGrades = $request->listOfGrades;
         $success = $this->storeGrades($listGrades);
     
         if ($success) {
             return redirect()->back()->with('add', trans('grade_trans.Grade added successfully.'));
         } else {
-            return redirect()->back()->withErrors(['error' => 'Some grades were not added or already exist.']);
+            return redirect()->back()->withErrors(['error' => trans('grade_trans.grade_already_exists')]);
         }
     }
     
@@ -72,14 +72,24 @@ class GradeRepository implements GradeRepositoryInterface
     public function update($request)
     {
         try {
-            $this->uniqueUpdateValidation($request);
+
+            if ($this->uniqueUpdateValidation($request))
+            {
+                return redirect()->back()->withErrors(trans('grade_trans.grade_already_exists'));
+            }
+            
+            else {
             $grade = Grade::findOrFail($request->id);
             $this->updateGrade($grade, $request);
+
             return redirect()->back()->with('update', trans('grade_trans.Grade update successfully.'));
+            }
+            
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
 
     private function updateGrade($grade, $requestData)
     {
@@ -88,6 +98,7 @@ class GradeRepository implements GradeRepositoryInterface
             'notes' => $requestData->notes,
         ]);
     }
+
 
     public function uniqueUpdateValidation($request)
     {
@@ -99,7 +110,7 @@ class GradeRepository implements GradeRepositoryInterface
             ->exists();
 
         if ($existingGrade) {
-            return redirect()->back()->withErrors(trans('grade_trans.Sorry this name is already existed'));
+            return $existingGrade;
         }
     }
 
@@ -131,8 +142,8 @@ class GradeRepository implements GradeRepositoryInterface
 
 
 
-        
-    public function deleteSelectedGrade($request)
+
+    public function deleteSelectedGrades($request)
     {
         try {
             $delete_all_id = explode(",", $request->delete_all_id);
@@ -146,5 +157,6 @@ class GradeRepository implements GradeRepositoryInterface
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
     
 }

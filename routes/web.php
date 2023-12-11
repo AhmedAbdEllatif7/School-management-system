@@ -68,18 +68,20 @@ Route::group(['namespace' => 'Auth'], function () {
 
 
         ###################################### Grade ###########################
+        Route::resource('grades',GradeController::class);
+        
         Route::controller(GradeController::class)->group(function () {
-            Route::resource('grades',GradeController::class);
-            Route::post('delete_all_grade' ,  'deleteSelectedGrade')->name('delete_all_grade');
+            Route::delete('delete-selected-grades' ,  'deleteSelectedGrades')->name('delete.selected.grades');
         });
 
 
 
         ###################################### Classroom ###########################
+        Route::resource('classrooms',ClassroomController::class);
+
         Route::controller(ClassroomController::class)->group(function () {
-            Route::resource('classrooms',ClassroomController::class);
-            Route::post('deleteAllClassrooms' ,  'deleteAll')->name('deleteAllClassrooms');
-            Route::get('filter_classes' ,  'filterClasses')->name('filter_classes');
+            Route::delete('delete-selected-classrooms' ,  'deleteSelectedClassrooms')->name('delete.selected.classrooms');
+            Route::get('filter-classes' ,  'filterClasses')->name('filter.classes');
         });
 
 

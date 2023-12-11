@@ -9,7 +9,7 @@ interface GradeRepositoryInterface
 
     public function store($request);
 
-    public function uniqueStoreValidation($List_Grade);
+    public function uniqueStoreValidation($listGrades);
 
     public function uniqueUpdateValidation($request);
 
@@ -17,6 +17,6 @@ interface GradeRepositoryInterface
 
     public function delete($request);
 
-    public function deleteSelectedGrade($request);
+    public function deleteSelectedGrades($request);
 
 }

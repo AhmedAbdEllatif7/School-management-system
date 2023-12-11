@@ -79,7 +79,7 @@
 
                 <div class="table-responsive">
                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50"
-                           style="text-align: center">
+                            style="text-align: center">
                         <thead>
                         <tr>
                             <th><input name="select_all" id="example-select-all" type="checkbox" onclick="CheckAll('box1', this)" /></th>
@@ -112,7 +112,7 @@
 
                             <!-- edit_modal_Grade -->
                             <div class="modal fade" id="edit{{ $grade->id }}" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -133,22 +133,18 @@
                                                 <div class="row">
                                                     <div class="col">
                                                         <label for="Name"
-                                                               class="mr-sm-2">{{ trans('grade_trans.stage_name_ar') }}
+                                                                class="mr-sm-2">{{ trans('grade_trans.stage_name_ar') }}
                                                             :</label>
-                                                        <input id="Name" type="text" name="name_ar"
-                                                               class="form-control"
-                                                               value="{{ $grade->getTranslation('name', 'ar') }}"
-                                                               required>
-                                                        <input id="id" type="hidden" name="id" class="form-control"
-                                                               value="{{ $grade->id }}">
-                                                    </div>
+                                                            <input id="Name" type="text" name="name_ar" class="form-control" value="{{ $grade->getTranslation('name', 'ar') }}" required>
+                                                            <input id="id" type="hidden" name="id" class="form-control" value="{{ $grade->id }}">
+                                                    </div> 
                                                     <div class="col">
                                                         <label for="Name_en"
-                                                               class="mr-sm-2">{{ trans('grade_trans.stage_name_en') }}
+                                                                class="mr-sm-2">{{ trans('grade_trans.stage_name_en') }}
                                                             :</label>
                                                         <input type="text" class="form-control"
-                                                               value="{{ $grade->getTranslation('name', 'en') }}"
-                                                               name="name_en" required>
+                                                                value="{{ $grade->getTranslation('name', 'en') }}"
+                                                                name="name_en" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -156,8 +152,9 @@
                                                         for="exampleFormControlTextarea1">{{ trans('grade_trans.Notes') }}
                                                         :</label>
                                                     <textarea class="form-control" name="notes"
-                                                              id="exampleFormControlTextarea1"
-                                                              rows="3">{{ $grade->notes }}</textarea>
+                                                            id="exampleFormControlTextarea1"
+                                                            rows="3">{{ $grade->notes }}
+                                                    </textarea>
                                                 </div>
                                                 <br><br>
 
@@ -247,7 +244,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
-                            {{ trans('My_Classes_trans.add_class') }}
+                            {{ trans('grade_trans.add_grade') }}
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -259,7 +256,7 @@
                             @csrf
                             <div class="card-body">
                                 <div class="repeater">
-                                    <div data-repeater-list="List_Grades">
+                                    <div data-repeater-list="listOfGrades">
                                         <div data-repeater-item>
                                             <div class="row">
 
@@ -288,17 +285,17 @@
 
                                                 <div class="col">
                                                     <label for="Name_en"
-                                                        class="mr-sm-2">{{ trans('My_Classes_trans.Processes') }}
+                                                        class="mr-sm-2">{{ trans('classes_trans.Processes') }}
                                                         :</label>
                                                     <input class="btn btn-danger btn-block" data-repeater-delete
-                                                        type="button" value="{{ trans('My_Classes_trans.delete_row') }}" />
+                                                        type="button" value="{{ trans('classes_trans.delete_row') }}" />
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row mt-20">
                                         <div class="col-12">
-                                            <input class="button" data-repeater-create type="button" value="{{ trans('My_Classes_trans.add_row') }}"/>
+                                            <input class="button" data-repeater-create type="button" value="{{ trans('classes_trans.add_row') }}"/>
                                         </div>
 
                                     </div>
@@ -331,24 +328,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
-                    {{ trans('My_Classes_trans.delete_class') }}
+                    {{ trans('classes_trans.delete_class') }}
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
-            <form action="{{route('delete_all_grade')}}" method="POST">
+            <form action="{{route('delete.selected.grades')}}" method="POST">
+                @method('DELETE')
                 {{ csrf_field() }}
                 <div class="modal-body">
-                    {{ trans('My_Classes_trans.Warning_class') }}
+                    {{ trans('classes_trans.Warning_class') }}
                     <input class="text" type="hidden" id="delete_all_id" name="delete_all_id" value=''>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary"
-                            data-dismiss="modal">{{ trans('My_Classes_trans.Close') }}</button>
-                    <button type="submit" class="btn btn-danger">{{ trans('My_Classes_trans.submit') }}</button>
+                            data-dismiss="modal">{{ trans('classes_trans.Close') }}</button>
+                    <button type="submit" class="btn btn-danger">{{ trans('classes_trans.submit') }}</button>
                 </div>
             </form>
         </div>

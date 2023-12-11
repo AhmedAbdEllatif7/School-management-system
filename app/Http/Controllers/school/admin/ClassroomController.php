@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreClassroom;
-use App\Models\Classroom;
+use App\Http\Requests\ClassroomRequest;
 use App\Repository\ClassroomRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -12,10 +11,13 @@ class ClassroomController extends Controller
 {
 
     protected $classroom;
+
     public function __construct(ClassroomRepositoryInterface $classroom)
     {
         $this->classroom = $classroom;
     }
+
+
 
     public function index()
     {
@@ -23,55 +25,38 @@ class ClassroomController extends Controller
     }
 
 
-    public function create()
-    {
-        //
-    }
 
-    public function store(StoreClassroom $request)
+    public function store(ClassroomRequest $request)
     {
         return $this->classroom->store($request);
-
     }
 
 
 
-    public function show(Classroom $classroom)
-    {
-        //
-    }
-
-
-    public function edit(Classroom $classroom)
-    {
-
-    }
-
-    public function update(StoreClassroom $request)
+    public function update(ClassroomRequest $request)
     {
         return $this->classroom->update($request);
-
-
     }
+
+
 
     public function destroy(Request $request)
     {
         return $this->classroom->destroy($request);
-
     }
 
 
-    public function deleteAll(Request $request)
+
+    public function deleteSelectedClassrooms(Request $request)
     {
-        return $this->classroom->deleteAll($request);
-
+        return $this->classroom->deleteSelectedClassrooms($request);
     }
+
 
 
     public function  filterClasses(Request $request)
     {
         return $this->classroom->filterClasses($request);
-
     }
 
 

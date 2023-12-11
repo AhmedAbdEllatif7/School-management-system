@@ -5,90 +5,192 @@ namespace App\Repository;
 use App\Models\Classroom;
 use App\Models\Grade;
 
-class ClassroomRepository implements ClassroomRepositoryInterface{
+class ClassroomRepository implements ClassroomRepositoryInterface {
 
+    
     public function index()
     {
-        $My_Classes = Classroom::all();
-        $Grades = Grade::all();
-        return view('pages.My_Classes.My_Classes',compact(['My_Classes','Grades']));
+        $classes = Classroom::all();
+        $grades = Grade::all();
+        return view('pages.classes.index',compact(['classes','grades']));
     }
+
+
+
+
+
 
     public function store($request)
     {
-        $listClasses = $request->List_Classes;
-        $nameExists = false; // Flag to track duplicate names
-
         try {
-            $validated = $request->validated();
+            $listClasses = $request->listOfClasses;
 
-            foreach ($listClasses as $class) {
-                if (Classroom::where('name->en', $class['name_en'])
-                    ->where('grade_id', $class['grade_id'])
-                    ->orWhere('name->ar', $class['name_en'])
-                    ->where('grade_id', $class['grade_id'])
-                    ->exists()
-                ) {
-                    $nameExists = true; // Set the flag if name exists
-                } else {
-                    $newClass = new Classroom();
-                    $newClass->name = ['en' => $class['name_en'], 'ar' => $class['name_ar']];
-                    $newClass->grade_id = $class['grade_id'];
-                    $newClass->save();
-                }
-            }
+            $nameExists = $this->checkIfNameExists($listClasses);
 
             if ($nameExists) {
-                return redirect()->back()->withErrors(trans('My_Classes_trans.Sorry this name is already existed for this grade'));
+                return redirect()->back()->withErrors(trans('classes_trans.Sorry this name is already existed for this grade'));
             }
 
-            return redirect()->back()->with('add', trans('My_Classes_trans.Classroom added successfully.'));
+            else {
+            $this->createNewClasses($listClasses);
+            }
 
+            return redirect()->back()->with('add', trans('classes_trans.Classroom added successfully.'));
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
+
+
+    public function checkIfNameExists($listClasses)
+    {
+        foreach ($listClasses as $class) {
+            $nameExists = Classroom::where(function ($query) use ($class) {
+                $query->where('name->en', $class['name_en'])
+                    ->orWhere('name->ar', $class['name_ar']);
+            })
+            ->where('grade_id', $class['grade_id'])
+            ->exists();
+
+            if ($nameExists) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public function createNewClasses($listClasses)
+    {
+        foreach ($listClasses as $class) {
+            Classroom::create([
+                'name' => ['en' => $class['name_en'], 'ar' => $class['name_ar']],
+                'grade_id' => $class['grade_id'],
+            ]);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public function update($request)
     {
-//        $validated = $request->validated();
+        try {
+            $class = Classroom::findOrFail($request->id);
+    
+            if ($this->nameExists($request, $class)) {
+                return redirect()->back()->withErrors(trans('classes_trans.Sorry this name is already existed for this grade'));
+            }
+    
+            else {
+            $this->performUpdate($request, $class);
+            return redirect()->back()->with('update', trans('classes_trans.class_updated'));
+            }
 
-        $classroom = Classroom::findOrFail($request->id);
-        $classroom ->update([
-            'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+    
+
+    private function nameExists($request, $class)
+    {
+        $nameExists = Classroom::where('grade_id', $request->grade_id)
+            ->where(function ($query) use ($request, $class) {
+                $query->where('name->en', $request->name_en)
+                    ->Where('name->ar', $request->name_ar);
+
+                if ($class->exists) {
+                    $query->where('id', '!=', $class->id);
+                }
+            })
+            ->exists();
+    
+        return $nameExists;
+    }
+    
+    
+    private function performUpdate($request, $class)
+    {
+        $class->update([
+            'name' => ['en' => $request->name_en, 'ar' => $request->name_ar],
             'grade_id' => $request->grade_id,
         ]);
-        return redirect()->back()->with('update', trans('My_Classes_trans.Classroom is update successfully.'));
+    }    
 
-    }
+
+
+
+
+
+
+
+
 
     public function destroy($request)
     {
-        $classroom = Classroom::findOrFail($request->id);
-        $classroom->delete();
-        return redirect()->back()->with('delete', trans('My_Classes_trans.Classroom is deleted successfully.'));
-
+        $classroom = Classroom::findOrFail($request->id)->delete();
+        return redirect()->back()->with('delete', trans('classes_trans.Classroom is deleted successfully.'));
     }
+
+
+
+
+
+
+
+
+
+
 
     public function filterClasses($request)
     {
-        if ($request->grade_id && $request->grade_id == 1) {
-            $search = Classroom::get();
-            $Grades = Grade::all();
-
+        $search = $this->applyFilters($request->grade_id);
+        $grades = Grade::all();
+    
+        return view('pages.classes.index', compact('grades', 'search'));
+    }
+    
+    private function applyFilters($gradeId)
+    {
+        if ($gradeId && $gradeId == 1) {
+            return Classroom::get();
         } else {
-            $search = Classroom::select('*')->where('grade_id', $request->grade_id)->get();
-            $Grades = Grade::all();
+            return Classroom::where('grade_id', $gradeId)->get();
+        }
+    }
+    
+
+
+
+
+
+
+
+public function deleteSelectedClassrooms($request)
+{
+    try {
+        $deleteIds = explode(",", $request->delete_all_id);
+
+        $deletedCount = Classroom::whereIn('id', $deleteIds)->delete();
+
+        if ($deletedCount > 0) {
+            return redirect()->back()->with('delete_selected', trans('classes_trans.delete_selected'));
         }
 
-        return view('pages.My_Classes.My_Classes', compact('Grades', 'search'));
+        return redirect()->back()->with('delete_selected', trans('classes_trans.No_items_were_deleted'));
+    } catch (\Exception $e) {
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
     }
+}
 
-    public function deleteAll($request)
-    {
-        $delete_all_id = explode(",", $request->delete_all_id);
-
-        Classroom::whereIn('id', $delete_all_id)->Delete();
-        return redirect()->back()->with(['delete_selected' => 'The selected items are deleted successfully']);
-    }
 }

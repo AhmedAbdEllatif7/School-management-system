@@ -3,6 +3,7 @@
 return [
 
     'Name_Grade'                                                  => 'Name Grade',
+    'add_grade'                                                   => 'Add Grade',
     'Notes'                                                       => 'Notes',
     'Processes'                                                   => 'Processes',
     'title_page'                                                  => 'Grades',
@@ -25,7 +26,7 @@ return [
     'Grade update successfully.'                                  => 'Grade updated successfully.',
     'Grade added successfully.'                                   => 'Grade added successfully.',
     'Select'                                                      => 'Select',
-    'Sorry this name is already existed'               =>'Sorry this name is already existed',
+    'grade_already_exists'               =>'Sorry this name is already existed',
     'missing_name_en' =>   'Please enter the name in english',
     'missing_name_ar' => 'Please enter the name in arabic',
     'delete selected items' => 'Delete selected items',
