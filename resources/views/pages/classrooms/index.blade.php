@@ -113,32 +113,32 @@
                                     <?php $listClasses = $search; ?>
                             @else
 
-                                    <?php $listClasses = $classes; ?>
+                                    <?php $listClasses = $classrooms; ?>
                             @endif
 
                             <?php $i = 0; ?>
 
-                            @foreach ($listClasses as $classes)
+                            @foreach ($listClasses as $classrooms)
                                 <tr>
                                         <?php $i++; ?>
-                                    <td><input type="checkbox"  value="{{ $classes->id }}" class="box1" ></td>
+                                    <td><input type="checkbox"  value="{{ $classrooms->id }}" class="box1" ></td>
                                     <td>{{ $i }}</td>
-                                    <td>{{ $classes->name }}</td>
-                                    <td>{{ $classes->grades->name }}</td>
+                                    <td>{{ $classrooms->name }}</td>
+                                    <td>{{ $classrooms->grades->name }}</td>
                                     <td>
                                         <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
-                                                data-target="#edit{{ $classes->id }}"
+                                                data-target="#edit{{ $classrooms->id }}"
                                                 title="{{ trans('grade_trans.Edit') }}"><i class="fa fa-edit"></i></button>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                data-target="#delete{{ $classes->id }}"
+                                                data-target="#delete{{ $classrooms->id }}"
                                                 title="{{ trans('grade_trans.Delete') }}"><i
                                                 class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
 
                                 <!-- edit_modal_classroom -->
-                                <div class="modal fade" id="edit{{ $classes->id }}" tabindex="-1" role="dialog"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="edit{{ $classrooms->id }}" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -163,17 +163,17 @@
                                                                 :</label>
                                                             <input id="Name" type="text" name="name_ar"
                                                                     class="form-control"
-                                                                    value="{{ $classes->getTranslation('name', 'ar') }}"
+                                                                    value="{{ $classrooms->getTranslation('name', 'ar') }}"
                                                                     required>
                                                             <input id="id" type="hidden" name="id" class="form-control"
-                                                                    value="{{ $classes->id }}">
+                                                                    value="{{ $classrooms->id }}">
                                                         </div>
                                                         <div class="col">
                                                             <label for="Name_en"
                                                                     class="mr-sm-2">{{ trans('classes_trans.Name_class_in_english') }}
                                                                 :</label>
                                                             <input type="text" class="form-control"
-                                                                    value="{{ $classes->getTranslation('name', 'en') }}"
+                                                                    value="{{ $classrooms->getTranslation('name', 'en') }}"
                                                                     name="name_en" >
                                                         </div>
                                                     </div><br>
@@ -184,7 +184,7 @@
                                                             <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="grade_id">
                                                                 <option disabled value="">Select Grade</option>
                                                                 @foreach ($grades as $grade)
-                                                                    <option value="{{ $grade->id }}" {{ $grade->id == $classes->grades->id ? 'selected' : '' }}>
+                                                                    <option value="{{ $grade->id }}" {{ $grade->id == $classrooms->grades->id ? 'selected' : '' }}>
                                                                         {{ $grade->name }}
                                                                     </option>
                                                                 @endforeach
@@ -207,8 +207,8 @@
 
 
                                 <!-- delete_modal_classroom -->
-                                <div class="modal fade" id="delete{{$classes->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                                     aria-hidden="true">
+                                <div class="modal fade" id="delete{{$classrooms->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -229,21 +229,21 @@
                                                             <label for="Name" class="mr-sm-2">{{ trans('grade_trans.stage_name_ar') }}
                                                                 :</label>
                                                             <input id="Name" type="text" name="name_ar" class="form-control"
-                                                                   value="{{$classes->getTranslation('name','ar')}}" readonly>
+                                                                value="{{$classrooms->getTranslation('name','ar')}}" readonly>
                                                         </div>
                                                         <div class="col">
                                                             <label for="Name_en" class="mr-sm-2">{{ trans('grade_trans.stage_name_en') }}
                                                                 :</label>
                                                             <input type="text" class="form-control" name="name_en"
-                                                                   value="{{$classes->getTranslation('name','en')}}" readonly>
+                                                                value="{{$classrooms->getTranslation('name','en')}}" readonly>
                                                         </div>
                                                     </div>
-                                                    <input type="hidden" id="id" name="id" value="{{$classes->id}}" >
+                                                    <input type="hidden" id="id" name="id" value="{{$classrooms->id}}" >
                                                     <div class="form-group">
                                                         <label for="exampleFormControlTextarea1">{{ trans('grade_trans.Grade') }}
                                                             :</label>
                                                         <textarea class="form-control" name="notes" id="exampleFormControlTextarea1"
-                                                                  rows="3" readonly>{{$classes->grades->name}}</textarea>
+                                                                rows="3" readonly>{{$classrooms->grades->name}}</textarea>
                                                     </div>
                                                     <br><br>
 
@@ -302,7 +302,7 @@
 
                                                 <div class="col">
                                                     <label for="Name"
-                                                           class="mr-sm-2">{{ trans('classes_trans.Name_class_en') }}
+                                                        class="mr-sm-2">{{ trans('classes_trans.Name_class_en') }}
                                                         :</label>
                                                     <input class="form-control" type="text" name="name_en" />
                                                 </div>
@@ -310,7 +310,7 @@
 
                                                 <div class="col">
                                                     <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('classes_trans.Name_Grade') }}
+                                                        class="mr-sm-2">{{ trans('classes_trans.Name_Grade') }}
                                                         :</label>
 
                                                     <div class="box">
@@ -325,10 +325,10 @@
 
                                                 <div class="col">
                                                     <label for="Name_en"
-                                                           class="mr-sm-2">{{ trans('classes_trans.Processes') }}
+                                                        class="mr-sm-2">{{ trans('classes_trans.Processes') }}
                                                         :</label>
                                                     <input class="btn btn-danger btn-block" data-repeater-delete
-                                                           type="button" value="{{ trans('classes_trans.delete_row') }}" />
+                                                        type="button" value="{{ trans('classes_trans.delete_row') }}" />
                                                 </div>
                                             </div>
                                         </div>
@@ -365,7 +365,7 @@
 
     <!-- حذف مجموعة صفوف -->
     <div class="modal fade" id="delete_all" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

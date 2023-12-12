@@ -13,8 +13,6 @@ use App\Http\Controllers\school\admin\LibraryController;
 use App\Http\Controllers\school\admin\PaymentStudentController;
 use App\Http\Controllers\school\admin\ProccrssingFeesController;
 use App\Http\Controllers\school\admin\PromotionController;
-use App\Http\Controllers\school\admin\QuestionController;
-use App\Http\Controllers\school\admin\QuizController;
 use App\Http\Controllers\school\admin\ReceiptController;
 use App\Http\Controllers\school\admin\SectionController;
 use App\Http\Controllers\school\admin\SettingController;

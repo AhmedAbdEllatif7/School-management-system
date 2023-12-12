@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreSection;
+use App\Http\Requests\SectionRequest;
 use App\Models\Section;
 use App\Repositories\Interefaces\SectionRepositoryInterface;
 use Illuminate\Http\Request;
@@ -23,33 +23,14 @@ class SectionController extends Controller
 
 
 
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(StoreSection $request)
+    public function store(SectionRequest $request)
     {
         return $this->section->store($request);
 
     }
 
 
-    public function show(Section $section)
-    {
-        //
-    }
-
-
-
-    public function edit(Section $section)
-    {
-        //
-    }
-
-
-    public function update(StoreSection $request)
+    public function update(SectionRequest $request)
     {
         return $this->section->update($request);
 
@@ -66,6 +47,5 @@ class SectionController extends Controller
     public function getClases($id)
     {
         return $this->section->getClases($id);
-
     }
 }

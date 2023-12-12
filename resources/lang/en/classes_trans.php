@@ -34,7 +34,9 @@ return [
     'delete_classroom' => 'Delete classroom',
     'Sorry this name is already existed for this grade' => 'Sorry this name is already existed for this grade',
 
-
+    'grade_id_required'=>'please select the grade name',
+    'class_name_en_required'=>'please select the class name in english',
+    'class_name_ar_required'=>'please select the class name in arabic',
 
 
 ];

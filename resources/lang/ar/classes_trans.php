@@ -34,7 +34,9 @@ return [
     'delete_classroom' => 'حذف الصف',
     'Sorry this name is already existed for this grade' => 'عفوا هذا الأسم موجود بالفعل لهذه المرحلة',
 
-
+    'grade_id_required'=>'من فضلك أختار المرحلة الدراسية',
+    'class_name_en_required'=>'من فضلك إختار اسم الصف بالإنجليزية',
+    'class_name_ar_required'=>'من فضلك إختار اسم الصف بالعربية',
 
 
 ];

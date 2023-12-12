@@ -22,9 +22,9 @@ class ClassroomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'List_Classes.*.name_ar' => 'required',
-            'List_Classes.*.name_en' => 'required',
-            'List_Classes.*.grade_id' => 'required',
+            'listOfClasses.*.name_ar' => 'required',
+            'listOfClasses.*.name_en' => 'required',
+            'listOfClasses.*.grade_id' => 'required',
 
         ];
     }
@@ -32,11 +32,9 @@ class ClassroomRequest extends FormRequest
     public function messages()
     {
         return [
-                'List_Classes.*.name_ar.required' => trans('validation.Please enter the name in arabic'),
-                'List_Classes.*.name_en.required' => trans('validation.Please enter the name in english'),
-                'List_Classes.*.grade_id.required' => trans('validation.Please enter the grade_id'),
-                'name_ar.required' => trans('validation.Please enter the name in arabic'),
-                'name_en.required' => trans('validation.Please enter the name in english'),
+                'listOfClasses.*.name_ar.required' => trans('classes_trans.class_name_ar_required'),
+                'listOfClasses.*.name_en.required' => trans('classes_trans.class_name_en_required'),
+                'listOfClasses.*.grade_id.required' => trans('classes_trans.grade_id_required'),
         ];
     }
 }

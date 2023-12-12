@@ -11,9 +11,9 @@ class ClassroomRepository implements ClassroomRepositoryInterface {
     
     public function index()
     {
-        $classes = Classroom::all();
+        $classrooms = Classroom::all();
         $grades = Grade::all();
-        return view('pages.classes.index',compact(['classes','grades']));
+        return view('pages.classrooms.index',compact(['classrooms','grades']));
     }
 
 
@@ -158,7 +158,7 @@ class ClassroomRepository implements ClassroomRepositoryInterface {
         $search = $this->applyFilters($request->grade_id);
         $grades = Grade::all();
     
-        return view('pages.classes.index', compact('grades', 'search'));
+        return view('pages.classrooms.index', compact('grades', 'search'));
     }
     
     private function applyFilters($gradeId)

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStudent;
 use App\Models\Section;
 use App\Models\Student;
-use App\Repository\StudentRepositoryInterface;
+use App\Repositories\Interefaces\StudentRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;

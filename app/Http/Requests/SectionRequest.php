@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSection extends FormRequest
+class SectionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class StoreSection extends FormRequest
         return [
             'name_ar' => 'required',
             'name_en' => 'required',
-            'Class_id' => 'required',
-            'Grade_id' => 'required',
+            'class_id' => 'required',
+            'grade_id' => 'required',
         ];
     }
 
@@ -33,10 +33,10 @@ class StoreSection extends FormRequest
     public function messages(): array
     {
         return [
-            'name_ar.required'  => trans('validation.Please enter the name in arabic'),
-            'name_en.required'  => trans('validation.Please enter the name in english'),
-            'Class_id.required'  => trans('validation.Please choose the class name'),
-            'Grade_id.required'  => trans('validation.Please choose the grade name'),
+            'name_ar.required'  => trans('sections_trans.required_ar'),
+            'name_en.required'  => trans('sections_trans.required_en'),
+            'class_id.required'  => trans('sections_trans.Class_id_required'),
+            'grade_id.required'  => trans('sections_trans.Grade_id_required'),
 
         ];
     }

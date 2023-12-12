@@ -32,5 +32,6 @@ return [
     'Not active' => 'غير نشط',
     'Section updated successfully.' => 'تم تعديل القسم بنجاح.',
     'Section deleted successfully.' => 'تم مسح القسم بنجاح.',
+    'sections_name_existed' => 'عفوا هذا الأسم موجود بالفعل لهذه المرحلة وهذا الفصل'
 
 ];

@@ -36,8 +36,9 @@ return [
 
     'File deleted successfully '  => 'File deleted successfully.',
 
-'Sorry students not found'=> 'Sorry students not found',
+    'Sorry students not found'=> 'Sorry students not found',
 
+    'sections_name_existed' => 'Sorry this name is already exists for those grade and classroom',
 
 
 

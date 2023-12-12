@@ -7,30 +7,41 @@ use App\Models\Grade;
 use App\Models\Section;
 use App\Models\Teacher;
 use App\Repositories\Interefaces\SectionRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 
 class SectionRepository implements SectionRepositoryInterface
 {
 
     public function index()
     {
-        $Grades = Grade::with('sections')->get();
-        $list_Grades = Grade::all();
+        $gradesWithItsSections = Grade::with('sections')->get();
+        $AllGrades = Grade::all();
         $teachers = Teacher::all();
-        return view('pages.Sections.Sections',compact(['Grades' , 'list_Grades' , 'teachers']));
+        return view('pages.sections.index',compact(['gradesWithItsSections' , 'AllGrades' , 'teachers']));
     }
 
+
+
+
+
+    
     public function store($request)
     {
         try {
-            $Sections = Section::create([
-                'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
-                'class_id' => $request->Class_id,
-                'grade_id' => $request->Grade_id,
-                'status' => $request->status,
-            ]);
-            $Sections->teachers()->attach($request->teacher_id);
 
-            return redirect()->back()->with('add_section', trans('Sections_trans.Section added successfully.'));
+            $this->nameExisted($request);
+            
+                $section = Section::create([
+                    'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
+                    'class_id' => $request->class_id,
+                    'grade_id' => $request->grade_id,
+                    'status' => $request->status,
+                ]);
+                
+                $this->attachTeacher($section , $request);
+
+                return redirect()->back()->with('add_section', trans('sections_trans.Section added successfully.'));
+            
         }
         catch (\Exception $e)
         {
@@ -38,32 +49,94 @@ class SectionRepository implements SectionRepositoryInterface
         }
     }
 
+
+    private function attachTeacher($section , $request)
+    {
+        $section->teachers()->attach($request->teacher_id);
+    }
+
+
+
+
+    private function nameExisted($request)
+    {
+        $nameExisted = DB::table('sections')
+        ->where('name->en' , $request->name_en)
+        ->where('name->ar' , $request->name_ar)
+        ->where('grade_id' , $request->grade_id)
+        ->where('class_id' , $request->class_id)
+        ->where('id' , '!=' , $request->id)
+        ->exists();
+
+        if($nameExisted)
+        {
+            return redirect()->back()->with('sections_name_existed', trans('sections_trans.sections_name_existed'));
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public function update($request)
     {
-        $section = Section::findOrFail($request->id);
-        $section ->update([
-            'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
-            'grade_id' => $request->Grade_id,
-            'class_id' => $request->Class_id,
-            'status' => $request->status,
-        ]);
 
-        // update pivot tABLE
+        if($this->nameExisted($request))
+        {
+            return redirect()->back()->with('sections_name_existed', trans('sections_trans.sections_name_existed'));
+        }
+
+        else {
+            $section = Section::findOrFail($request->id);
+            $section ->update([
+                'name' => ['en' => $request->name_en , 'ar' => $request->name_ar],
+                'grade_id' => $request->grade_id,
+                'class_id' => $request->class_id,
+                'status' => $request->status,
+            ]);
+
+            $this->syncTeacher($section , $request);
+
+            return redirect()->back()->with('update_section', trans('Sections_trans.Section updated successfully.'));
+        }
+    }
+
+
+    private function syncTeacher($section , $request)
+    {
+        // update pivot table
         if ($request->teacher_id) {
             $section->teachers()->sync($request->teacher_id);
         } else {
             $section->teachers()->sync(array());
         }
-        return redirect()->back()->with('update_section', trans('Sections_trans.Section updated successfully.'));
     }
+
+
+
+
+
+
 
     public function destroy($request)
     {
         $section = Section::findOrFail($request->id);
         $section->delete();
-        return redirect()->back()->with('delete_section', trans('Sections_trans.Section deleted successfully.'));
+        return redirect()->back()->with('delete_section', trans('sections_trans.Section deleted successfully.'));
     }
 
+
+
+
+
+    //Belongs to ajax
     public function getClases($id)
     {
         $list_classes = Classroom::where("grade_id", $id)->pluck("name", "id");
