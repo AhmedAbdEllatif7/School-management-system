@@ -5,7 +5,7 @@ namespace App\Http\Controllers\school\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSection;
 use App\Models\Section;
-use App\Repository\SectionRepositoryInterface;
+use App\Repositories\Interefaces\SectionRepositoryInterface;
 use Illuminate\Http\Request;
 
 class SectionController extends Controller
@@ -18,7 +18,7 @@ class SectionController extends Controller
     }
     public function index()
     {
-       return $this->section->index();
+        return $this->section->index();
     }
 
 

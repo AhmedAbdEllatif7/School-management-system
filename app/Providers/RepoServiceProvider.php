@@ -3,48 +3,66 @@
 namespace App\Providers;
 
 use App\Repositories\ClassroomRepository;
-use App\Repositories\GradeRepository;
 use App\Repositories\Interefaces\ClassroomRepositoryInterface;
+
+use App\Repositories\GradeRepository;
 use App\Repositories\Interefaces\GradeRepositoryInterface;
-use App\Repository\AttendanceRepository;
-use App\Repository\AttendanceRepositoryInterface;
+
+use App\Repositories\SectionRepository;
+use App\Repositories\Interefaces\SectionRepositoryInterface;
+
+use App\Repositories\AttendanceRepository;
+use App\Repositories\Interefaces\AttendanceRepositoryInterface;
 
 
-use App\Repository\FeesInvoicesRepository;
-use App\Repository\FeesInvoicesRepositoryInterface;
-use App\Repository\FeesRepository;
-use App\Repository\FeesRepositoryInterface;
+use App\Repositories\FeesInvoicesRepository;
+use App\Repositories\Interefaces\FeesInvoicesRepositoryInterface;
 
-use App\Repository\GraduationRepository;
-use App\Repository\GraduationRepositoryInterface;
-use App\Repository\LibraryRepository;
-use App\Repository\LibraryRepositoryInterface;
-use App\Repository\ParentStudentRepository;
-use App\Repository\ParentStudentRepositoryInterface;
-use App\Repository\PaymentStudentRepository;
-use App\Repository\PaymentStudentRepositoryInterface;
-use App\Repository\ProccessingFeesRepository;
-use App\Repository\ProccessingFeesRepositoryInterface;
-use App\Repository\PromotionRepository;
-use App\Repository\PromotionRepositoryInterface;
-use App\Repository\QuestionRepository;
-use App\Repository\QuestionRepositoryInterface;
-use App\Repository\QuizRepository;
-use App\Repository\QuizRepositoryInterface;
-use App\Repository\ReceiptStudentRepository;
-use App\Repository\ReceiptStudentRepositoryInterface;
-use App\Repository\SectionRepository;
-use App\Repository\SectionRepositoryInterface;
-use App\Repository\SettingsRepository;
-use App\Repository\SettingsRepositoryInterface;
-use App\Repository\StudenntAccountRepositoryInterface;
-use App\Repository\StudentAccountRepository;
-use App\Repository\StudentRepository;
-use App\Repository\StudentRepositoryInterface;
-use App\Repository\SubjectRepository;
-use App\Repository\SubjectRepositoryInterface;
-use App\Repository\TeacherRepository;
-use App\Repository\TeacherRepositoryInterface;
+use App\Repositories\FeesRepository;
+use App\Repositories\Interefaces\FeesRepositoryInterface;
+
+use App\Repositories\GraduationRepository;
+use App\Repositories\Interefaces\GraduationRepositoryInterface;
+
+use App\Repositories\LibraryRepository;
+use App\Repositories\Interefaces\LibraryRepositoryInterface;
+
+use App\Repositories\ParentStudentRepository;
+use App\Repositories\Interefaces\ParentStudentRepositoryInterface;
+
+use App\Repositories\PaymentStudentRepository;
+use App\Repositories\Interefaces\PaymentStudentRepositoryInterface;
+
+use App\Repositories\ProccessingFeesRepository;
+use App\Repositories\Interefaces\ProccessingFeesRepositoryInterface;
+
+use App\Repositories\PromotionRepository;
+use App\Repositories\Interefaces\PromotionRepositoryInterface;
+
+use App\Repositories\QuestionRepository;
+use App\Repositories\Interefaces\QuestionRepositoryInterface;
+
+use App\Repositories\QuizRepository;
+use App\Repositories\Interefaces\QuizRepositoryInterface;
+
+use App\Repositories\ReceiptStudentRepository;
+use App\Repositories\Interefaces\ReceiptStudentRepositoryInterface;
+
+use App\Repositories\SettingsRepository;
+use App\Repositories\Interefaces\SettingsRepositoryInterface;
+
+use App\Repositories\Interefaces\StudenntAccountRepositoryInterface;
+use App\Repositories\StudentAccountRepository;
+
+use App\Repositories\StudentRepository;
+use App\Repositories\Interefaces\StudentRepositoryInterface;
+
+use App\Repositories\SubjectRepository;
+use App\Repositories\Interefaces\SubjectRepositoryInterface;
+
+use App\Repositories\TeacherRepository;
+use App\Repositories\Interefaces\TeacherRepositoryInterface;
+
 use Illuminate\Support\ServiceProvider;
 
 class RepoServiceProvider extends ServiceProvider
@@ -80,9 +98,9 @@ class RepoServiceProvider extends ServiceProvider
 
         $this->app->bind(SubjectRepositoryInterface::class , SubjectRepository::class);
         
-        $this->app->bind(QuizRepositoryInterface::class , QuizRepository::class);
+        // $this->app->bind(QuizRepositoryInterface::class , QuizRepository::class);
 
-        $this->app->bind(QuestionRepositoryInterface::class , QuestionRepository::class);
+        // $this->app->bind(QuestionRepositoryInterface::class , QuestionRepository::class);
 
         $this->app->bind(LibraryRepositoryInterface::class , LibraryRepository::class);
 

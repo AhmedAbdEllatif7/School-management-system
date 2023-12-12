@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Repository;
-
-use App\Models\Grade;
+namespace App\Repositories\Interefaces;
 
 interface FeesRepositoryInterface
 {

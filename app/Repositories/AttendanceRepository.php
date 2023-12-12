@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\Attendance;
 use App\Models\Grade;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\Teacher;
-use Cassandra\Exception\ValidationException;
+use App\Repositories\Interefaces\AttendanceRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException as ValidationValidationException;
 

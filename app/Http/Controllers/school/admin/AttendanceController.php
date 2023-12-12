@@ -4,7 +4,7 @@ namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
-use App\Repository\AttendanceRepositoryInterface;
+use App\Repositories\Interefaces\AttendanceRepositoryInterface;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller

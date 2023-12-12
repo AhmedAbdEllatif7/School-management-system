@@ -87,11 +87,10 @@ Route::group(['namespace' => 'Auth'], function () {
 
 
         ###################################### Section ###########################
+        Route::resource('sections',SectionController::class);
+
         Route::controller(SectionController::class)->group(function () {
-            Route::resource('sections',SectionController::class);
             Route::get('classes/{id}' ,  'getClases')->name('classes');
-
-
         });
 
 
@@ -212,16 +211,16 @@ Route::group(['namespace' => 'Auth'], function () {
         });
 
 
-        ###################################### Quizzes ###########################
-        Route::controller(QuizController::class)->group(function () {
-            Route::resource('quizzes',QuizController::class);
-        });
+        // ###################################### Quizzes ###########################
+        // Route::controller(QuizController::class)->group(function () {
+        //     Route::resource('quizzes',QuizController::class);
+        // });
 
 
-        ###################################### Questions ###########################
-        Route::controller(QuestionController::class)->group(function () {
-            Route::resource('questions',QuestionController::class);
-        });
+        // ###################################### Questions ###########################
+        // Route::controller(QuestionController::class)->group(function () {
+        //     Route::resource('questions',QuestionController::class);
+        // });
 
 
         ###################################### LibraryRepository ###################

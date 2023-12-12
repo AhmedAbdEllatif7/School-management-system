@@ -4,7 +4,7 @@ namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Question;
-use App\Repository\QuestionRepositoryInterface;
+use App\Repositories\Interefaces\QuestionRepositoryInterface;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller
@@ -59,7 +59,7 @@ class QuestionController extends Controller
 
     public function destroy(Request $request)
     {
-        return $this->question->delete($request);
+        return $this->question->destroy($request);
 
     }
 }

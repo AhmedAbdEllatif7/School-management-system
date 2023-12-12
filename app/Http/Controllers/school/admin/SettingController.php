@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Repository\SettingsRepositoryInterface;
+use App\Repositories\Interefaces\SettingsRepositoryInterface;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller

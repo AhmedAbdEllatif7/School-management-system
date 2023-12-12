@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\Attendance;
 use App\Models\Degree;
@@ -8,6 +8,7 @@ use App\Models\Fees_invoice;
 use App\Models\Parentt;
 use App\Models\Receipt;
 use App\Models\Student;
+use App\Repositories\Interefaces\ParentStudentRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 

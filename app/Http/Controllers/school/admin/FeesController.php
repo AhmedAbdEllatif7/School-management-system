@@ -5,7 +5,7 @@ namespace App\Http\Controllers\school\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFeesRequest;
 use App\Models\Fees;
-use App\Repository\FeesRepositoryInterface;
+use App\Repositories\Interefaces\FeesRepositoryInterface;
 use Illuminate\Http\Request;
 
 class FeesController extends Controller
@@ -13,7 +13,7 @@ class FeesController extends Controller
     protected $fees;
     public function __construct(FeesRepositoryInterface $fees)
     {
-         $this->fees = $fees;
+        $this->fees = $fees;
     }
 
     public function index()
@@ -35,11 +35,11 @@ class FeesController extends Controller
     }
 
 
-    public function show(Fees $fees)
-    {
-        return $this->fees->editFees();
+    // public function show(Fees $fees)
+    // {
+    //     return $this->fees->editFees();
 
-    }
+    // }
 
 
     public function edit($fee)

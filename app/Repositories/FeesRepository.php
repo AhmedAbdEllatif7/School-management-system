@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\Fees;
 use App\Models\Grade;
-use League\CommonMark\Extension\CommonMark\Parser\Block\FencedCodeStartParser;
+use App\Repositories\Interefaces\FeesRepositoryInterface;
 
 class FeesRepository implements FeesRepositoryInterface
 {

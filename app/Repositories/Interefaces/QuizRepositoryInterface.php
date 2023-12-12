@@ -1,23 +1,34 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories\Interefaces;
 
-interface SubjectRepositoryInterface
-{
+
+interface QuizRepositoryInterface {
 
     public function index();
 
+
+
     public function create();
+    
+
 
     public function store($request);
 
-//    public function show($id);
-//
-//
+
+
+    public function show($id);
+
+
     public function edit($id);
-//
+
+
+
     public function update($request);
-//
-    public function destroy($request);
+
+
+
+    public function delete($request);
+
 
 }

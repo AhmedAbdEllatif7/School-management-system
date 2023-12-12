@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\FoundAccount;
 use App\Models\Receipt;
 use App\Models\Student;
 use App\Models\Student_Account;
+use App\Repositories\Interefaces\ReceiptStudentRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 

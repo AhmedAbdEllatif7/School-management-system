@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 use App\Models\Gender;
 use App\Models\Image;
 use App\Models\Specialization;
 use App\Models\Teacher;
+use App\Repositories\Interefaces\TeacherRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;

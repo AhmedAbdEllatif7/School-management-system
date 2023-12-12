@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Repository\ProccessingFeesRepositoryInterface;
+use App\Repositories\Interefaces\ProccessingFeesRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ProccrssingFeesController extends Controller

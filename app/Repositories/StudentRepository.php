@@ -1,23 +1,19 @@
 <?php
 
-namespace App\Repository;
-use App\Http\Requests\StoreStudent;
+namespace App\Repositories;
 use App\Models\Blood;
 use App\Models\Classroom;
 use App\Models\Gender;
 use App\Models\Grade;
 use App\Models\Image;
-use App\Models\My_Parent;
-use App\Models\Nationalitie;
 use App\Models\Nationality;
 use App\Models\Parentt;
 use App\Models\Section;
 use App\Models\Student;
-use App\Models\Type_Blood;
+use App\Repositories\Interefaces\StudentRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use function PHPUnit\Framework\isEmpty;
 
 
 class StudentRepository implements StudentRepositoryInterface{

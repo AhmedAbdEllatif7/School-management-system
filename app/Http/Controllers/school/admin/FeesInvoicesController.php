@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Repository\FeesInvoicesRepositoryInterface;
+use App\Repositories\Interefaces\FeesInvoicesRepositoryInterface;
 use Illuminate\Http\Request;
 
 class FeesInvoicesController extends Controller

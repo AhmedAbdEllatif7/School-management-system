@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\Setting;
+use App\Repositories\Interefaces\SettingsRepositoryInterface;
 use App\Traits\AttachFilesTrait;
 
 class SettingsRepository implements SettingsRepositoryInterface

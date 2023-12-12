@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\Grade;
 use App\Models\Promotion;
 use App\Models\Student;
+use App\Repositories\Interefaces\PromotionRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 class PromotionRepository implements PromotionRepositoryInterface

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Subject;
-use App\Repository\SubjectRepositoryInterface;
+use App\Repositories\Interefaces\SubjectRepositoryInterface;
 use Illuminate\Http\Request;
 
 
@@ -39,11 +39,11 @@ class SubjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Subject $subject)
-    {
-        return $this->subject->show();
+    // public function show(Subject $subject)
+    // {
+    //     return $this->subject->show();
 
-    }
+    // }
 
     /**
      * Show the form for editing the specified resource.

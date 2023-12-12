@@ -4,7 +4,7 @@ namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Graduation;
-use App\Repository\GraduationRepositoryInterface;
+use App\Repositories\Interefaces\GraduationRepositoryInterface;
 use Illuminate\Http\Request;
 
 class GraduationController extends Controller

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Repository\QuizRepositoryInterface;
+use App\Repositories\Interefaces\QuizRepositoryInterface;
 use Illuminate\Http\Request;
 
 class QuizController extends Controller
@@ -53,7 +53,7 @@ class QuizController extends Controller
     }
 
 
-    public function destroy(Request $request)
+    public function delete(Request $request)
     {
         return $this->quiz->delete($request);
 

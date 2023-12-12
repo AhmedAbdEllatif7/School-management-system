@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\ProccrssingFees;
 use App\Models\Student;
 use App\Models\Student_Account;
+use App\Repositories\Interefaces\ProccessingFeesRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;

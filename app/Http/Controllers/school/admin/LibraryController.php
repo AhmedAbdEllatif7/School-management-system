@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Repository\LibraryRepositoryInterface;
+use App\Repositories\Interefaces\LibraryRepositoryInterface;
 use Illuminate\Http\Request;
 
 class LibraryController extends Controller

@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories\Interefaces;
 
-interface PaymentStudentRepositoryInterface
+interface ProccessingFeesRepositoryInterface
 {
     public function index();
 
     public function show($id);
 
     public function store($request);
-//
+
     public function edit($id);
-//
+
     public function update($request);
-//
+
     public function delete($request);
 }

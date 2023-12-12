@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\Fees;
 use App\Models\Fees_invoice;
 use App\Models\Grade;
 use App\Models\Student;
 use App\Models\Student_Account;
+use App\Repositories\Interefaces\FeesInvoicesRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 class FeesInvoicesRepository implements FeesInvoicesRepositoryInterface

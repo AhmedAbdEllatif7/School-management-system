@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\Grade;
 use App\Models\Subject;
 use App\Models\Teacher;
+use App\Repositories\Interefaces\SubjectRepositoryInterface;
 
 class SubjectRepository implements SubjectRepositoryInterface
 {

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Repository\ReceiptStudentRepositoryInterface;
+use App\Repositories\Interefaces\ReceiptStudentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ReceiptController extends Controller

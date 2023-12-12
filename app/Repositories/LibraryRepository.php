@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Traits\AttachFilesTrait;
 use App\Models\Grade;
 use App\Models\Library;
+use App\Repositories\Interefaces\LibraryRepositoryInterface;
 use Illuminate\Support\Facades\File;
 
 class LibraryRepository implements LibraryRepositoryInterface

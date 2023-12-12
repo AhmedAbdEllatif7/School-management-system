@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Repository\PaymentStudentRepositoryInterface;
+use App\Repositories\Interefaces\PaymentStudentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class PaymentStudentController extends Controller
