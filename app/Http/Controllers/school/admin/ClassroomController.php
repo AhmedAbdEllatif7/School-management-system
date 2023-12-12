@@ -4,7 +4,7 @@ namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassroomRequest;
-use App\Repository\ClassroomRepositoryInterface;
+use App\Repositories\Interefaces\ClassroomRepositoryInterface;
 use Illuminate\Http\Request;
 
 class ClassroomController extends Controller

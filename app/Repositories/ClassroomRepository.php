@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\Classroom;
 use App\Models\Grade;
+use App\Repositories\Interefaces\ClassroomRepositoryInterface;
 
 class ClassroomRepository implements ClassroomRepositoryInterface {
 

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
 use App\Models\Grade;
+use App\Repositories\Interefaces\GradeRepositoryInterface;
 
 class GradeRepository implements GradeRepositoryInterface
 {

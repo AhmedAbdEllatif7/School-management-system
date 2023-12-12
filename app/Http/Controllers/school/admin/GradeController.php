@@ -4,7 +4,7 @@ namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GradeRequest;
-use App\Repository\GradeRepositoryInterface;
+use App\Repositories\Interefaces\GradeRepositoryInterface;
 use Illuminate\Http\Request;
 
 class GradeController extends Controller
