@@ -15,48 +15,13 @@ class AddParent extends Component
     use WithFileUploads;
 
     /*
-        first of all i have only one page (add-parent component) and it changes to another page by the conditions,
-        by default it show the parents list why? because i use this condition
+    The 'add-parent' component works as a dynamic page, transitioning between displaying a parent list and father form and mother form based on conditional checks. By default, it shows the parent list using a condition to include either the parent table or the form steps.
 
-        @if($showParentsTable)
-            @include('livewire.Parent_Table')
-        @else
-                
-            @include('livewire.Father_Form')
-            @include('livewire.Mother_Form')
+    The $showParentsTable variable controls the display: when true, it shows the parent table; when false, the form steps appear. Triggering the 'Add Parent' button toggles $showParentsTable to false, hiding the parent table and revealing the initial form step (Father form).
 
-            <div class="row setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
-                @if ($currentStep != 3)
-                <div style="display: none" class="row setup-content" id="step-3">
-                    @endif
-                    ....................etc
-        and i assigned it's value by default ($showParentsTable = true) as you see in cuurent file
-        now if i want to change the parents list page i must make ($showParentsTable = false)
-        
-        for this trick in the parents table there is (Add Parent) button this button do specefic method
-        that make ($showParentsTable = false) then the parents table hideen and the first step of the form appear
-        why? because the condition of the above
+    The form progression operates on $currentStep: initialized at 1, it manages form step visibility. For instance, if $currentStep != 1, the first form step remains hidden. After submitting the father form, $currentStep changes to 2, revealing the mother form, and so forth for subsequent steps.
 
-        and now i make by default public $currentStep = 1 , and in the father form a condition @if($currentStep != 1)
-    <div style="display: none" class="row setup-content" id="step-1">
-        @endif
-
-        if the currentStep == 1 it appear else it hidden , and when i submit the father form i make the currentStep = 2
-        so the mather form appear and father form disappear because the conditions   @if($currentStep != 2)
-    <div style="display: none" class="row setup-content" id="step-2">
-        @endif
-
-        then go to the third form that in the add-parent with it's condition in the above  
-                <div class="row setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
-                @if ($currentStep != 3)
-                <div style="display: none" class="row setup-content" id="step-3">
-                    @endi
-
-                    after the last step i use
-                    $this->clearForm();
-                    $this->currentStep = 1;
-                    
-                    to go to the first step again
+    At the final step, a method clears the form and resets $currentStep to 1, redirecting back to the initial form state.
 
     */
 
@@ -64,7 +29,7 @@ class AddParent extends Component
 
 
 
-
+// Properties for form steps and input fields
     public $successMessage = '';
 
     public $catchError , $updateMode = false , $photos , $showParentsTable = true , $parentID;
@@ -90,7 +55,7 @@ class AddParent extends Component
 
 
     /*
-        Father Livewire validation (helper method for real time validation)
+        Livewire validation (helper method for real time validation)
     */
     public function updated($propertyName)
     {
@@ -113,7 +78,7 @@ class AddParent extends Component
             'nationalities' => Nationality::all(),
             'bloodTypes' => Blood::all(),
             'religions' => Religion::all(),
-            'parents' => Parentt::all(), //for parents table
+            'parents' => Parentt::all(), //Data for parents table
         ]);
     }
 
@@ -190,9 +155,20 @@ class AddParent extends Component
 
 
     public function submitForm(){
-
         try {
-            $parent = new Parentt();
+            $this->saveParentData();
+            $this->uploadFiles();
+            $this->setSuccessState();
+        } catch (\Exception $e) {
+            $this->handleError($e->getMessage());
+        }
+    }
+
+
+
+    private function saveParentData()
+    {
+        $parent = new Parentt();
             // Father_INPUTS
             $parent->email = $this->email;
             $parent->password = Hash::make($this->password);
@@ -217,9 +193,12 @@ class AddParent extends Component
             $parent->mother_religion = $this->motherReligion;
             $parent->mother_address = $this->motherAddress;
             $parent->save();
+    }
 
 
-            if (!empty($this->photos)){
+    private function uploadFiles()
+    {
+        if (!empty($this->photos)){
                 foreach ($this->photos as $photo) {
                     $photo->storeAs($this->fatherPassportID, $photo->getClientOriginalName(), $disk = 'parent_attachments');
                     ParentAttachment::create([
@@ -228,24 +207,43 @@ class AddParent extends Component
                     ]);
                 }
             }
-            $this->successMessage = trans('messages.success');
-            $this->clearForm();
-            $this->currentStep = 1;
-        }
+    }
 
-        catch (\Exception $e) {
-            $this->catchError = $e->getMessage();
-        };
-
+    private function setSuccessState() {
+        $this->successMessage = trans('messages.success');
+        $this->clearForm();
+        $this->currentStep = 1;
+    }
+    
+    private function handleError($errorMessage) {
+        $this->catchError = $errorMessage;
     }
 
 
+
+
+
+
+
+
+
+
     
+
     public function edit($id)
+    {
+        $this->setFlagsAndMode();
+        $this->retrieveParentData($id);
+    }
+
+    private function setFlagsAndMode()
     {
         $this->showParentsTable = false;
         $this->updateMode = true;
+    }
 
+    private function retrieveParentData($id)
+    {
         $parent = Parentt::where('id',$id)->first();
         //هنا كإنك بتقول  {{parent->Email$}} = input name = "" value >
 
@@ -282,6 +280,18 @@ class AddParent extends Component
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     //firstStepSubmit
     public function firstStepSubmit_edit()
     {
@@ -300,8 +310,27 @@ class AddParent extends Component
 
 
 
-    public function submitForm_edit(){
 
+
+
+
+
+
+
+
+
+    public function submitForm_edit(){
+        try {
+            if ($this->parentID){
+                $this->updateParentData();
+            }
+            $this->setSuccessState();
+        } catch (\Exception $e) {
+            $this->handleError($e->getMessage());
+        }
+    }
+    
+    private function updateParentData() {
         if ($this->parentID){
             $parent = Parentt::find($this->parentID);
             $parent->update([
@@ -326,13 +355,17 @@ class AddParent extends Component
                 'mother_religion' => $this->motherReligion,
                 'mother_address' => $this->motherAddress,
             ]);
-
         }
-        $this->currentStep = 1;
-        $this->successMessage = trans('messages.Update');
-
-
     }
+
+
+
+
+
+    
+
+
+
 
     public function delete($id){
         Parentt::findOrFail($id)->delete();
