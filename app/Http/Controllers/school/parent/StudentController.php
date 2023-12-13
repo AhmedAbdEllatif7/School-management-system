@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\school\parent;
 
 use App\Http\Controllers\Controller;
-use App\Repository\ParentStudentRepositoryInterface;
+use App\Repositories\Interefaces\ParentStudentRepositoryInterface;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller

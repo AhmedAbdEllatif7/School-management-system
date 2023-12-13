@@ -17,7 +17,7 @@ use App\Http\Controllers\school\admin\ReceiptController;
 use App\Http\Controllers\school\admin\SectionController;
 use App\Http\Controllers\school\admin\SettingController;
 use App\Http\Controllers\school\admin\SubjectController;
-use App\Http\Controllers\school\parent\ParenttController;
+use App\Http\Controllers\school\admin\ParentController;
 use App\Http\Controllers\school\student\StudentController;
 use App\Http\Controllers\school\teacher\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -92,10 +92,13 @@ Route::group(['namespace' => 'Auth'], function () {
         });
 
 
-
+        /*rename the parent table columns name to the best name convension
+        * and rename it's livewire attrubites to match them and update strucure of
+        * student parent controller and structure of livewire add parent components
+        */
         ###################################### Parent ###########################
-        Route::controller(ParenttController::class)->group(function () {
-            Route::resource('parents',ParenttController::class);
+        Route::controller(ParentController::class)->group(function () {
+            Route::resource('parents',ParentController::class);
 
         });
 

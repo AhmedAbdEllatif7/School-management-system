@@ -2,35 +2,42 @@
 
 return [
 
+
+
     'add_parent' => 'اضافة ولي امر',
     'edit_parent' => 'تعديل ولي امر',
-    'Step1' => 'معلومات الاب',
-    'Step2' => 'معلومات الام',
     'Step3' => 'المرفقات وتاكيد المعلومات',
-    'Email' => 'البريد الالكتروني',
+    'email' => 'البريد الالكتروني',
+    'password' => 'كلمة المرور',
+
+
     //معلومات الاب
-    'Password' => 'كلمة المرور',
-    'Name_Father' => 'اسم الاب باللغة العربية',
-    'Name_Father_en' => 'اسم الاب  باللغة الانجليزية',
-    'Job_Father' => 'اسم الوظيفة باللغة العربية',
-    'Job_Father_en' => 'اسم الوظيفة باللغة الانجليزية',
-    'National_ID_Father' => 'رقم الهوية',
-    'Passport_ID_Father' => 'رقم جواز السفر',
-    'Phone_Father' => 'رقم الهاتف',
-    'Nationality_Father_id' => 'الجنسية',
-    'Blood_Type_Father_id' => 'فصلية الدم',
-    'Religion_Father_id' => 'الديانة',
-    'Address_Father' => 'عنوان الاب',
+    'Step1' => 'معلومات الاب',
+    'fatherNameAr' => 'اسم الاب باللغة العربية',
+    'fatherNameEn' => 'اسم الاب  باللغة الانجليزية',
+    'fatherName' => 'اسم الاب',
+    'fatherAddress' => 'عنوان الاب',
+    'fatherJobAr' => 'وظيفة الأب باللغة العربية',
+    'fatherJobEn' => 'وظيفة الأب باللغة الإنجليزية',
+
+
+    'jobAr' => 'اسم الوظيفة باللغة العربية',
+    'jobEn' => 'اسم الوظيفة باللغة الانجليزية',
+    'identificationlID' => 'رقم الهوية',
+    'passportID' => 'رقم جواز السفر',
+    'phone' => 'رقم الهاتف',
+    'nationality' => 'الجنسية',
+    'bloodType' => 'فصلية الدم',
+    'religion' => 'الديانة',
+    'job' => 'اسم الوظيفة',
+
 
      //معلومات الام
-    'Name_Mother' => 'اسم الام باللغة العربية',
-    'Name_Mother_en' => 'اسم الام  باللغة الانجليزية',
-    'Job_Mother' => 'اسم الوظيفة باللغة العربية',
-    'Job_Mother_en' => 'اسم الوظيفة باللغة الانجليزية',
-    'National_ID_Mother' => 'رقم الهوية',
-    'Passport_ID_Mother' => 'رقم جواز السفر',
-    'Phone_Mother' => 'رقم الهاتف',
-    'Address_Mother' => 'عنوان الام',
+    'Step2' => 'معلومات الام',
+    'motherNameAr' => 'اسم الام باللغة العربية',
+    'motherNameEn' => 'اسم الام  باللغة الانجليزية',
+    'motherAddress' => 'عنوان الام',
+
 
     'Next' => 'التالي',
     'Back' => 'السابق',
@@ -40,6 +47,7 @@ return [
     'Processes' => 'العمليات',
 
     'Parent updated successfully.' => 'تم تعديل بيانت ولي الأمر بنجاح',
+    'parents_list' =>'قائمة اولياء الأمور',
 
 
 

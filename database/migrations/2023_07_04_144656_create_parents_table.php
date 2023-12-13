@@ -17,40 +17,40 @@ return new class extends Migration
             $table->string('password');
 
             // Father information
-            $table->string('Name_Father');
-            $table->string('National_ID_Father');
-            $table->string('Passport_ID_Father');
-            $table->string('Phone_Father');
-            $table->string('Job_Father');
+            $table->string('father_name');
+            $table->string('father_national_id');
+            $table->string('father_passport_id');
+            $table->string('father_phone');
+            $table->string('father_job');
 
-            $table->unsignedBigInteger('Nationality_Father_id');
-            $table->unsignedBigInteger('Blood_Type_Father_id');
-            $table->unsignedBigInteger('Religion_Father_id');
+            $table->unsignedBigInteger('father_nationality');
+            $table->unsignedBigInteger('father_blood_type');
+            $table->unsignedBigInteger('father_religion');
 
             // Relations
-            $table->foreign('Nationality_Father_id')->references('id')->on('nationalities')->onDelete('cascade');
-            $table->foreign('Blood_Type_Father_id')->references('id')->on('bloods')->onDelete('cascade');
-            $table->foreign('Religion_Father_id')->references('id')->on('religions')->onDelete('cascade');
+            $table->foreign('father_nationality')->references('id')->on('nationalities')->onDelete('cascade');
+            $table->foreign('father_blood_type')->references('id')->on('bloods')->onDelete('cascade');
+            $table->foreign('father_religion')->references('id')->on('religions')->onDelete('cascade');
 
-            $table->string('Address_Father');
+            $table->string('father_address');
 
             // Mother information
-            $table->string('Name_Mother');
-            $table->string('National_ID_Mother');
-            $table->string('Passport_ID_Mother');
-            $table->string('Phone_Mother');
-            $table->string('Job_Mother');
+            $table->string('mother_name');
+            $table->string('mother_national_id');
+            $table->string('mother_passport_id');
+            $table->string('mother_phone');
+            $table->string('mother_job');
 
-            $table->unsignedBigInteger('Nationality_Mother_id');
-            $table->unsignedBigInteger('Blood_Type_Mother_id');
-            $table->unsignedBigInteger('Religion_Mother_id');
+            $table->unsignedBigInteger('mother_nationality');
+            $table->unsignedBigInteger('mother_blood_type');
+            $table->unsignedBigInteger('mother_religion');
 
             // Relations
-            $table->foreign('Nationality_Mother_id')->references('id')->on('nationalities')->onDelete('cascade');
-            $table->foreign('Blood_Type_Mother_id')->references('id')->on('bloods')->onDelete('cascade');
-            $table->foreign('Religion_Mother_id')->references('id')->on('religions')->onDelete('cascade');
+            $table->foreign('mother_nationality')->references('id')->on('nationalities')->onDelete('cascade');
+            $table->foreign('mother_blood_type')->references('id')->on('bloods')->onDelete('cascade');
+            $table->foreign('mother_religion')->references('id')->on('religions')->onDelete('cascade');
 
-            $table->string('Address_Mother');
+            $table->string('mother_address');
             $table->timestamps();
         });
     }

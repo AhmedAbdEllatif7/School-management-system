@@ -4,8 +4,7 @@ namespace App\Http\Controllers\school\teacher;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateTeacherRequest;
-use App\Repository\TeacherRepositoryInterface;
-use App\RepositoryPattern\RepoInterface;
+use App\Repositories\Interefaces\TeacherRepositoryInterface;
 use Illuminate\Http\Request;
 
 class TeacherController extends Controller
@@ -32,7 +31,7 @@ class TeacherController extends Controller
 
     public function storeTeacher(Request $request)
     {
-       return $this->Teacher->submitAddTeacher($request);
+        return $this->Teacher->submitAddTeacher($request);
     }
 
     public function editTeacherForm(Request $request){

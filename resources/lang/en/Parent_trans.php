@@ -1,33 +1,45 @@
 <?php
 
 return [
-    'add_parent' => 'add parent',
+
+
+    //معلومات الأب
+    'fatherNameAr' => 'Father Name Arabic',
+    'fatherNameEn' => 'Father Name English',
+    'fatherName' => 'Father Name',
     'Step1' => 'Father information',
-    'Step2' => 'Mother information',
+    'fatherAddress' => 'Address Father',
+    'fatherJobAr' => 'Father job on arabic',
+    'fatherJobEn' => 'Father job on english',
+
+    'add_parent' => 'Add parent',
     'Step3' => 'Confirm information',
-    'Email' => 'Email',
-    'Password' => 'Password',
-    'Name_Father' => 'Father Name Arabic',
-    'Name_Father_en' => 'Father Name English',
-    'Job_Father' => 'Job Title Arabic',
-    'Job_Father_en' => 'Job Title English',
-    'National_ID_Father' => 'Identification Number',
-    'Passport_ID_Father' => 'Passport Number',
-    'Phone_Father' => 'Telephone Number',
-    'Nationality_Father_id' => 'Nationality',
-    'Blood_Type_Father_id' => 'Blood Type',
-    'Religion_Father_id' => 'Religion',
-    'Address_Father' => 'Address Father',
+    'email' => 'Email',
+    'password' => 'Password',
+
+
+
+    'jobAr' => 'Job Title Arabic',
+    'jobEn' => 'Job Title English',
+    'job' => 'Job Title',
+    'identificationlID' => 'Identification Number',
+    'passportID' => 'Passport Number',
+    'phone' => 'Telephone Number',
+    'nationality' => 'Nationality',
+    'bloodType' => 'Blood Type',
+    'religion' => 'Religion',
+
+
+
+
 
     //معلومات الام
-    'Name_Mother' => 'Mother Name Arabic',
-    'Name_Mother_en' => 'Mother Name English',
-    'Job_Mother' => 'Job Title Arabic',
-    'Job_Mother_en' => 'Job Title English',
-    'National_ID_Mother' => 'Identification Number',
-    'Passport_ID_Mother' => 'Passport Number',
-    'Phone_Mother' => 'Telephone Number',
-    'Address_Mother' => 'Address Mother',
+    'Step2' => 'Mother information',
+    'motherNameAr' => 'Mother Name Arabic',
+    'motherNameEn' => 'Mother Name English',
+    'motherAddress' => 'Address Mother',
+
+
 
     'Next' => 'Next',
     'Back' => 'Back',
@@ -36,5 +48,6 @@ return [
     'Attachments' => 'Attachments',
     'Processes' => 'Processes',
     'Parent updated successfully.' => 'Parent updated successfully.',
+    'parents_list' =>'Parents list',
 
 ];
