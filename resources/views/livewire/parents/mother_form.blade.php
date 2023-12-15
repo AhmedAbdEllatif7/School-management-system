@@ -68,7 +68,7 @@
                     <div class="form-group col-md-6">
                         <label for="inputCity">{{trans('Parent_trans.nationality')}}</label>
                         <select class="custom-select my-1 mr-sm-2" wire:model="motherNationality">
-                            <option selected>{{trans('Parent_trans.Choose')}}...</option>
+                            <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
                             @foreach($nationalities as $national)
                                 <option value="{{$national->id}}">{{$national->name}}</option>
                             @endforeach
@@ -80,7 +80,7 @@
                     <div class="form-group col">
                         <label for="inputState">{{trans('Parent_trans.bloodType')}}</label>
                         <select class="custom-select my-1 mr-sm-2" wire:model="motherBloodType">
-                            <option selected>{{trans('Parent_trans.Choose')}}...</option>
+                            <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
                             @foreach($bloodTypes as $bloodType)
                                 <option value="{{$bloodType->id}}">{{$bloodType->name}}</option>
                             @endforeach
@@ -92,7 +92,7 @@
                     <div class="form-group col">
                         <label for="inputZip">{{trans('Parent_trans.religion')}}</label>
                         <select class="custom-select my-1 mr-sm-2" wire:model="motherReligion">
-                            <option selected>{{trans('Parent_trans.Choose')}}...</option>
+                            <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
                             @foreach($religions as $religion)
                                 <option value="{{$religion->id}}">{{$religion->name}}</option>
                             @endforeach

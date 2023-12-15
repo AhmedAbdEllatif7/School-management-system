@@ -1,11 +1,31 @@
 <div>
-        @if ($catchError)
-            <div class="alert alert-danger" id="success-danger">
-                <button type="button" class="close" data-dismiss="alert">x</button>
-                {{ $catchError }}
-            </div>
-        @endif
 
+    <script>
+        window.addEventListener('reset-error-message', event => {
+            setTimeout(() => {
+                console.log('Resetting error message...');
+                Livewire.emit('resetErrorMessage');
+            }, 5000); // Adjust the time in milliseconds as needed
+        });
+    </script>
+    
+            @if ($catchError)
+                <div class="alert alert-danger" id="success-danger">
+                    <button type="button" class="close" data-dismiss="alert">x</button>
+                    {{ $catchError }}
+                </div>
+            @endif
+
+
+        <script>
+            window.addEventListener('reset-success-message', event => {
+                setTimeout(() => {
+                    Livewire.emit('resetSuccessMessage');
+                }, 5000); // Adjust the time in milliseconds as needed
+            });
+        </script>
+
+        
 
         @if($showParentsTable)
             @include('livewire.parents.parent_table')
@@ -43,11 +63,35 @@
             @include('livewire.parents.mother_form')
 
 
+            {{-- Parents photos --}}
+            @if(!empty($parentPhotos))
+            @foreach($parentPhotos as $photo)
+                <div class="col-md-3">
+                    {{-- beacuase i run php artisan storage:link --}}
+                    <img src="{{ URL::asset('parent_attachments/'.$this->fatherPassportID.'/'.$photo) }}" alt="Parent Photo" style="max-width: 100%;"><br>
+                </div>
+            @endforeach
+            @else
+                <p>No photos available</p>
+            @endif
+
+
+                        
+
+            {{-- Third step --}}
         <div class="row setup-content {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
                 @if ($currentStep != 3)
                 <div style="display: none" class="row setup-content" id="step-3">
                     @endif
-
+                    <div>
+                        <!-- Other form elements... -->
+                        
+                        <!-- Display parent photos -->
+                        
+                    
+                        <!-- Rest of your form -->
+                    </div>
+                    
                     <div class="col-xs-12">
                         <div class="col-md-12"><br>
                             <label style="color: red">{{trans('Parent_trans.Attachments')}}</label>

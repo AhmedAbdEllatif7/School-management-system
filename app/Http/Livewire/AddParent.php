@@ -7,13 +7,14 @@ use App\Models\Nationality;
 use App\Models\ParentAttachment;
 use App\Models\Parentt;
 use App\Models\Religion;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 class AddParent extends Component
 {
     use WithFileUploads;
-
+    
     /*
     The 'add-parent' component works as a dynamic page, transitioning between displaying a parent list and father form and mother form based on conditional checks. By default, it shows the parent list using a condition to include either the parent table or the form steps.
 
@@ -32,7 +33,7 @@ class AddParent extends Component
 // Properties for form steps and input fields
     public $successMessage = '';
 
-    public $catchError , $updateMode = false , $photos , $showParentsTable = true , $parentID;
+    public $catchError , $updateMode = false , $photos , $parentPhotos , $showParentsTable = true , $parentID;
 
     public $currentStep = 1,
 
@@ -51,6 +52,8 @@ class AddParent extends Component
         $motherPhone, $motherJobAr, $motherJobEn,
         $motherNationality, $motherBloodType,
         $motherAddress, $motherReligion;
+
+
 
 
 
@@ -156,14 +159,20 @@ class AddParent extends Component
 
     public function submitForm(){
         try {
+            DB::beginTransaction();
+    
             $this->saveParentData();
             $this->uploadFiles();
             $this->setSuccessState();
+            // dd($this->uploadFiles());
+    
+            DB::commit();
         } catch (\Exception $e) {
+            DB::rollBack();
             $this->handleError($e->getMessage());
         }
     }
-
+    
 
 
     private function saveParentData()
@@ -196,39 +205,64 @@ class AddParent extends Component
     }
 
 
+
     private function uploadFiles()
     {
         if (!empty($this->photos)){
-                foreach ($this->photos as $photo) {
-                    $photo->storeAs($this->fatherPassportID, $photo->getClientOriginalName(), $disk = 'parent_attachments');
-                    ParentAttachment::create([
-                        'file_name' => $photo->getClientOriginalName(),
-                        'parent_id' => Parentt::latest()->first()->id,
-                    ]);
-                }
+            foreach ($this->photos as $photo) {
+                ParentAttachment::create([
+                    'file_name' =>$photo->getClientOriginalName(),
+                    'parent_id' => Parentt::latest()->first()->id,
+                ]);
+                $photo->storeAs('parent_attachments/',$this->fatherIdentificationlID .'/'. $photo->getClientOriginalName(), 'parent_attachments');
             }
+        }
     }
+    
 
-    private function setSuccessState() {
+
+
+
+    private function setSuccessState()
+    {
         $this->successMessage = trans('messages.success');
         $this->clearForm();
         $this->currentStep = 1;
+    
+        // Reset the success message after a delay
+        $this->dispatchBrowserEvent('reset-success-message');
+        $this->dispatchBrowserEvent('reset-error-message');
     }
+    
     
     private function handleError($errorMessage) {
         $this->catchError = $errorMessage;
+        $this->dispatchBrowserEvent('reset-error-message');
+
     }
 
 
+    protected $listeners = ['resetSuccessMessage' , 'resetErrorMessage'];
 
+    public function resetSuccessMessage()
+    {
+        $this->successMessage = '';
+    }
 
-
-
-
-
-
-
+    public function resetErrorMessage()
+    {
+        $this->catchError = '';
+    }
     
+
+
+
+
+
+
+
+
+
 
     public function edit($id)
     {
@@ -276,16 +310,12 @@ class AddParent extends Component
         $this->motherBloodType = $parent->mother_blood_type;
         $this->motherAddress = $parent->mother_address;
         $this->motherReligion = $parent->mother_religion;
+
+        $parentPhotos = ParentAttachment::where('parent_id', $id)->pluck('file_name')->toArray();
+
+    // Pass parent photo details to the view
+    $this->parentPhotos = $parentPhotos;
     }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -307,10 +337,6 @@ class AddParent extends Component
         $this->currentStep = 3;
 
     }
-
-
-
-
 
 
 
@@ -360,9 +386,6 @@ class AddParent extends Component
 
 
 
-
-
-    
 
 
 
