@@ -49,16 +49,16 @@ class TeacherController extends Controller
 
 
 
-    public function update( TeacherRequest $request){
+    public function update(TeacherRequest $request , Teacher $teacher){
 
-        return $this->teacher->update( $request);
+        return $this->teacher->update($request , $teacher);
     }
 
 
 
-    public function destroy(Request $request){
+    public function destroy(Teacher $teacher){
 
-        return $this->teacher->destroy($request);
+        return $this->teacher->destroy($teacher);
     }
 
 

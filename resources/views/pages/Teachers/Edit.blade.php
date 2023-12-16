@@ -29,13 +29,12 @@
                     <div class="col-xs-12">
                         <div class="col-md-12">
                             <br>
-                            <form action="{{route('teachers.update' , 'test')}}" method="POST">
+                            <form action="{{route('teachers.update' , $teacher->id)}}" method="POST">
                                 @method('PUT')
                             @csrf
                             <div class="form-row">
                                 <div class="col">
                                     <label for="title">{{trans('teacher_trans.Email')}}</label>
-                                    <input type="hidden" value="{{$teacher->id}}" name="id">
                                     <input type="email" name="email" value="{{$teacher->email}}" class="form-control">
                                     @error('email')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -122,12 +121,10 @@
                             <br>
 
                             <label for="academic_year">{{ trans('Students_trans.Attachments') }}: <span class="text-danger">*</span></label>
-                            @if($teacher->images->isNotEmpty())
-                                @foreach($teacher->images as $image)
-                                    <img src="{{ asset('attachments/teachers/' . $teacher->email . '/' . $image->filename) }}" alt="Teacher Image">
-                                @endforeach
+                            @if($teacher->images->isNotEmpty() && $teacher->images->first()->filename !== null)
+                                <img src="{{ asset('attachments/teachers/' . $teacher->email . '/' . $teacher->images->first()->filename) }}" alt="Teacher Image">
                             @else
-                                <p>No images available for this teacher.</p>
+                                <p>No image available for this teacher.</p>
                             @endif
 
                         

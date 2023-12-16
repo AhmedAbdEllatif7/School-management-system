@@ -63,15 +63,15 @@
                                             <td>{{$teacher->specializations->name}}</td>
                                                 <td>
                                                     <a href="{{ route('teachers.edit', $teacher->id) }}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_Teacher{{ $teacher->id }}" title="{{ trans('Grades_trans.Delete') }}"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_Teacher" title="{{ trans('Grades_trans.Delete') }}"><i class="fa fa-trash"></i></button>
                                                     <a href="{{ route('teachers.show', $teacher->id)}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" title="{{ trans('Students_trans.View') }}"><i class="far fa-eye"></i></a>
 
                                                 </td>
                                             </tr>
 
-                                            <div class="modal fade" id="delete_Teacher{{$teacher->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="delete_Teacher" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
-                                                    <form action="{{ route('teachers.destroy' , 'error') }}" method="POST">
+                                                    <form action="{{ route('teachers.destroy' , $teacher->id) }}" method="POST">
                                                         @method('DELETE')
                                                         @csrf
                                                     <div class="modal-content">
@@ -88,9 +88,9 @@
                                                         <div class="modal-footer">
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
-                                                                        data-dismiss="modal">{{ trans('My_Classes_trans.Close') }}</button>
+                                                                        data-dismiss="modal">{{ trans('main_trans.Close') }}</button>
                                                                 <button type="submit"
-                                                                        class="btn btn-danger">{{ trans('My_Classes_trans.Delete') }}</button>
+                                                                        class="btn btn-danger">{{ trans('teacher_trans.delete') }}</button>
                                                             </div>
                                                         </div>
                                                     </div>

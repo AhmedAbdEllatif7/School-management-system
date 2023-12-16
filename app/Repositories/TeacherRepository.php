@@ -66,20 +66,17 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
 
 
-    public function update($request){
+    public function update($request , $teacher){
         try {
+            $teacher->email = $request->email;
+            $teacher->password = $request->password;
+            $teacher->name = ['en' => $request->nameEn, 'ar' => $request->nameAr];
+            $teacher->specialization_id = $request->specializationId;
+            $teacher->gender_id = $request->genderId;
+            $teacher->joining_date = $request->joiningDate;
+            $teacher->address = $request->address;
             
-            $teacher = Teacher::findOrFail($request->id);
-            $teacher->update([
-                'email' => $request->email,
-                'password' => $request->password,
-                'name' => ['en' => $request->nameEn, 'ar' => $request->nameAr],
-                'specialization_id' => $request->specializationId,
-                'gender_id' => $request->genderId,
-                'joining_date' => $request->joiningDate,
-                'address' => $request->address
-            ]);
-
+            $teacher->save();
 
             return redirect()->route('teachers.index')->with(['update_teacher' => trans('teacher_trans.Teacher updated successfully.')]);
         }
@@ -91,10 +88,8 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
 
 
-    public function destroy($request){
+    public function destroy($teacher){
         try {
-            $id = $request->id;
-            $teacher = Teacher::findOrFail($id);
             $teacher->delete();
             return redirect()->back()->with(['delete_teacher' => trans('teacher_trans.Teacher deleted successfully.')]);
         }

@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\Image;
 use App\Models\Teacher;
 use App\Traits\AttachFilesTrait;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class TeacherObserver
@@ -70,25 +71,37 @@ class TeacherObserver
 
 
 
-    
+
+
     public function deleted(Teacher $teacher): void
     {
-        //
+        try {
+            DB::beginTransaction();
+    
+            $this->deleteTeacherFolder($teacher);
+            $this->deleteTeacherPhotoRecord($teacher);
+    
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+        }
     }
-
-    /**
-     * Handle the Teacher "restored" event.
-     */
-    public function restored(Teacher $teacher): void
+    
+    private function deleteTeacherFolder($teacher)
     {
-        //
+        $directory = public_path('attachments/teachers/' . $teacher->email);
+        if (File::exists($directory)) {
+            File::deleteDirectory($directory);
+        }
     }
-
-    /**
-     * Handle the Teacher "force deleted" event.
-     */
-    public function forceDeleted(Teacher $teacher): void
+    
+    private function deleteTeacherPhotoRecord($teacher)
     {
-        //
+        Image::where('imageable_id', $teacher->id)->delete();
     }
+    
+
+
+
+
 }

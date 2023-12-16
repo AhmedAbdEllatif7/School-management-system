@@ -47,7 +47,11 @@
                                         aria-selected="false">{{trans('Students_trans.Attachments')}}</a>
                                 </li>
                             </ul>
+                        
+                        
+                
                             <div class="tab-content">
+
                                 <div class="tab-pane fade active show" id="home-02" role="tabpanel"
                                         aria-labelledby="home-02-tab">
                                     <table class="table">
@@ -78,11 +82,18 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="profile-02" role="tabpanel"
+
                                         aria-labelledby="profile-02-tab">
                                     <div class="card card-statistics">
                                         <div class="card-body">
-
-
+                                            @if($teacher->images->isNotEmpty() && $teacher->images->first()->filename !== null)
+                                                <img src="{{ asset('attachments/teachers/' . $teacher->email . '/' . $teacher->images->first()->filename) }}" alt="Teacher Image" 
+                                                style="width:150px; height:100opx">
+                                            @else
+                                                <p>No image available for this teacher.</p>
+                                            @endif
+                                            <br>
+                                            <br>
                                             <form method="post" action="{{route('teacher.upload.photo')}}" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <div class="col-md-3">

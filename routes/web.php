@@ -112,21 +112,7 @@ Route::group(['namespace' => 'Auth'], function () {
         Route::post('teacher/upload-photos', [TeacherController::class,'uploadTeacherPhotos'])->name('teacher.upload.photo');
         Route::get('teacher/download-photo/{teacher_name}/{filename}', [TeacherController::class,'downloadTeacherPhoto'])->name('download.teacher.photo');
 
-        
-        // Route::controller(TeacherController::class)->group(function () {
-        //     Route::get('teachers' , 'index')->name('teachers');
-        //     Route::get('create' , 'create')->name('create.teacher');
-        //     Route::get('edit' , 'edit')->name('edit.teacher');
-        //     Route::get('show/{id}' , 'show')->name('show.teacher');
-        //     Route::post('store' , 'store')->name('store.teacher');
-        //     Route::delete('teacher/delete-photo' , 'deleteTeacherPhoto')->name('delete.teacher.photo');
-        //     Route::post('update' , 'update')->name('update.teacher');
-        //     Route::post('teacher/upload-photos' , 'uploadTeacherPhotos')->name('teacher.upload.file');
-        //     Route::delete('teacher/delete' , 'deleteTeacher')->name('delete.teacher');
-        //     Route::get('teacher/download-photo/{teacher_name}/{filename}' ,  'downloadTeacherPhoto')->name('download.teacher.photo');
 
-
-        // });
 
 
         ###################################### Student ###########################
