@@ -19,13 +19,13 @@ use App\Http\Controllers\school\admin\SettingController;
 use App\Http\Controllers\school\admin\SubjectController;
 use App\Http\Controllers\school\admin\ParentController;
 use App\Http\Controllers\school\student\StudentController;
-use App\Http\Controllers\school\teacher\TeacherController;
+use App\Http\Controllers\school\admin\TeacherController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Admin Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -105,20 +105,28 @@ Route::group(['namespace' => 'Auth'], function () {
 
 
         ###################################### Teacher ###########################
-        Route::controller(TeacherController::class)->group(function () {
-            Route::get('teachers' , 'index')->name('teachers');
-            Route::get('add_teachers' , 'addTeacher')->name('addTeacher');
-            Route::get('edit_teacher_form' , 'editTeacherForm')->name('edit_teacher_form');
-            Route::get('view_teacher_data/{id}' , 'viewTeacherData')->name('viewTeacherData');
-            Route::post('submit_adding_teachers' , 'storeTeacher')->name('submitAddTeacher');
-            Route::post('delete_attachment_teacher' , 'deleteFileTeacher');
-            Route::post('submit_edit' , 'submitEdit')->name('submit_edit');
-            Route::post('upload_teacher_file' , 'uploadTeacherFile')->name('uploadTeacherFile');
-            Route::post('delete_teacher' , 'deleteTeacher')->name('delete_teacher');
-            Route::get('download_teacher_file/{teacher_name}/{filename}' ,  'downloadTeacherFile');
+        Route::resource('teachers', TeacherController::class);
+        
+        // Additional routes
+        Route::delete('teacher/delete-photo', [TeacherController::class,'deleteTeacherPhoto'])->name('delete.teacher.photo');
+        Route::post('teacher/upload-photos', [TeacherController::class,'uploadTeacherPhotos'])->name('teacher.upload.photo');
+        Route::get('teacher/download-photo/{teacher_name}/{filename}', [TeacherController::class,'downloadTeacherPhoto'])->name('download.teacher.photo');
+
+        
+        // Route::controller(TeacherController::class)->group(function () {
+        //     Route::get('teachers' , 'index')->name('teachers');
+        //     Route::get('create' , 'create')->name('create.teacher');
+        //     Route::get('edit' , 'edit')->name('edit.teacher');
+        //     Route::get('show/{id}' , 'show')->name('show.teacher');
+        //     Route::post('store' , 'store')->name('store.teacher');
+        //     Route::delete('teacher/delete-photo' , 'deleteTeacherPhoto')->name('delete.teacher.photo');
+        //     Route::post('update' , 'update')->name('update.teacher');
+        //     Route::post('teacher/upload-photos' , 'uploadTeacherPhotos')->name('teacher.upload.file');
+        //     Route::delete('teacher/delete' , 'deleteTeacher')->name('delete.teacher');
+        //     Route::get('teacher/download-photo/{teacher_name}/{filename}' ,  'downloadTeacherPhoto')->name('download.teacher.photo');
 
 
-        });
+        // });
 
 
         ###################################### Student ###########################

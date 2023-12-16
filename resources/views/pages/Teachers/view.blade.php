@@ -38,28 +38,28 @@
                             <ul class="nav nav-tabs" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active show" id="home-02-tab" data-toggle="tab" href="#home-02"
-                                       role="tab" aria-controls="home-02"
-                                       aria-selected="true">{{trans('main_trans.teacher_details')}}</a>
+                                        role="tab" aria-controls="home-02"
+                                        aria-selected="true">{{trans('main_trans.teacher_details')}}</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-02-tab" data-toggle="tab" href="#profile-02"
-                                       role="tab" aria-controls="profile-02"
-                                       aria-selected="false">{{trans('Students_trans.Attachments')}}</a>
+                                        role="tab" aria-controls="profile-02"
+                                        aria-selected="false">{{trans('Students_trans.Attachments')}}</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="home-02" role="tabpanel"
-                                     aria-labelledby="home-02-tab">
+                                        aria-labelledby="home-02-tab">
                                     <table class="table">
                                         <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">{{trans('Teacher_trans.name')}}</th>
-                                            <th scope="col">{{trans('Teacher_trans.email')}}</th>
-                                            <th scope="col">{{trans('Teacher_trans.gender_id')}}</th>
-                                            <th scope="col">{{trans('Teacher_trans.specialization')}}</th>
-                                            <th scope="col">{{trans('Teacher_trans.joining_date')}}</th>
-                                            <th scope="col">{{trans('Teacher_trans.address')}}</th>
+                                            <th scope="col">{{trans('teacher_trans.name')}}</th>
+                                            <th scope="col">{{trans('teacher_trans.email')}}</th>
+                                            <th scope="col">{{trans('teacher_trans.gender_id')}}</th>
+                                            <th scope="col">{{trans('teacher_trans.specialization')}}</th>
+                                            <th scope="col">{{trans('teacher_trans.joining_date')}}</th>
+                                            <th scope="col">{{trans('teacher_trans.address')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -78,12 +78,12 @@
                                 </div>
 
                                 <div class="tab-pane fade" id="profile-02" role="tabpanel"
-                                     aria-labelledby="profile-02-tab">
+                                        aria-labelledby="profile-02-tab">
                                     <div class="card card-statistics">
                                         <div class="card-body">
 
 
-                                            <form method="post" action="{{url('upload_teacher_file')}}" enctype="multipart/form-data">
+                                            <form method="post" action="{{route('teacher.upload.photo')}}" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <div class="col-md-3">
                                                     <div class="form-group">
@@ -103,7 +103,7 @@
                                         </div>
                                         <br>
                                         <table class="table center-aligned-table mb-0 table table-hover"
-                                               style="text-align:center">
+                                                style="text-align:center">
                                             <thead>
                                             <tr class="table-secondary">
                                                 <th scope="col">#</th>
@@ -120,18 +120,18 @@
                                                     <td>{{$attachment->created_at->diffForHumans()}}</td>
                                                     <td colspan="2">
                                                         <a class="btn btn-outline-info btn-sm"
-                                                           href="{{url('download_teacher_file')}}/{{ $attachment->imageable->name }}/{{$attachment->filename}}"
-                                                           role="button"><i class="fas fa-download"></i>&nbsp; {{trans('Teacher_trans.Download')}}</a>
+                                                            href="{{url('download_teacher_file')}}/{{ $attachment->imageable->name }}/{{$attachment->filename}}"
+                                                            role="button"><i class="fas fa-download"></i>&nbsp; {{trans('teacher_trans.Download')}}</a>
 
                                                         <button type="button" class="btn btn-outline-danger btn-sm"
                                                                 data-toggle="modal"
                                                                 data-target="#Delete_img{{ $attachment->id }}"
-                                                                title="{{ trans('Grades_trans.Delete') }}">{{trans('Teacher_trans.delete')}}
+                                                                title="{{ trans('Grades_trans.Delete') }}">{{trans('teacher_trans.delete')}}
                                                         </button>
 
                                                     </td>
                                                 </tr>
-                                                @include('pages.Teachers.Delete_img')
+                                                @include('pages.teachers.deletePhoto')
                                             @endforeach
                                             </tbody>
                                         </table>

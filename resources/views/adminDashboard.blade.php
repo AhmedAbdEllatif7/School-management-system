@@ -95,7 +95,7 @@ preloader -->
                             </div>
                         </div>
                         <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                            <i class="fa fa-eye" style="color: darkblue; font-size: 18px;"></i><a href="{{route('teachers')}}" target="_blank"><span class="text-danger">{{ trans('main_trans.View Data') }}</span></a>
+                            <i class="fa fa-eye" style="color: darkblue; font-size: 18px;"></i><a href="{{route('teachers.index')}}" target="_blank"><span class="text-danger">{{ trans('main_trans.View Data') }}</span></a>
                         </p>
                     </div>
                 </div>

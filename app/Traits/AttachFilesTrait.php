@@ -10,7 +10,8 @@ trait AttachFilesTrait
     {
         $file_name = $request->file($name)->getClientOriginalName();
         $request->file($name)->storeAs('attachments/',$folder.'/'.$file_name,'upload_attachments');
-
+        
+        return $file_name;
     }
 
     public function deleteFile($name)

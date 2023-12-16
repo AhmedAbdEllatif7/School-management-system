@@ -9,7 +9,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('delete_attachment_teacher')}}" method="post">
+                <form action="{{route('delete.teacher.photo')}}" method="POST">
+                    @method('DELETE')
                     @csrf
                     <input type="hidden" name="id" value="{{$attachment->id}}">
 

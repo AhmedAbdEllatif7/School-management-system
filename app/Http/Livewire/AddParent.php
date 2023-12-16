@@ -14,7 +14,6 @@ use Livewire\WithFileUploads;
 class AddParent extends Component
 {
     use WithFileUploads;
-    
     /*
     The 'add-parent' component works as a dynamic page, transitioning between displaying a parent list and father form and mother form based on conditional checks. By default, it shows the parent list using a condition to include either the parent table or the form steps.
 
@@ -180,7 +179,7 @@ class AddParent extends Component
         $parent = new Parentt();
             // Father_INPUTS
             $parent->email = $this->email;
-            $parent->password = Hash::make($this->password);
+            $parent->password = $this->password;
             $parent->father_name = ['en' => $this->fatherNameEn, 'ar' => $this->fatherNameAr];
             $parent->father_national_id = $this->fatherIdentificationlID;
             $parent->father_passport_id = $this->fatherPassportID;
@@ -363,7 +362,7 @@ class AddParent extends Component
                 'father_passport_id' => $this->fatherPassportID,
                 'father_national_id' => $this->fatherIdentificationlID,
                 'email' => $this->email,
-                'password' => Hash::make($this->password),
+                'password' =>$this->password,
                 'father_name' => ['en' => $this->fatherNameEn, 'ar' => $this->fatherNameAr],
                 'father_phone' => $this->fatherPhone,
                 'father_job' => ['en' => $this->fatherJobEn, 'ar' => $this->fatherJobAr],

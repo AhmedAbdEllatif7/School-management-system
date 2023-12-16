@@ -14,6 +14,12 @@ class Parentt extends Authenticatable
     protected $table = 'parents';
     protected $guarded=[];
 
+
+    protected $casts = [
+        'password' => 'hashed',
+    ];
+
+    
     public function images()
     {
         return $this->morphMany('App\Models\Image', 'imageable');

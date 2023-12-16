@@ -43,5 +43,7 @@ return [
     'created_at' => 'تاريخ الإنشاء',
     'Download' => 'تحميل',
     'delete' => 'حذف',
+    'update' => 'تعديل',
+
 
 ];

@@ -5,27 +5,24 @@ namespace App\Repositories\Interefaces;
 interface TeacherRepositoryInterface{
 
     // get all Teachers
-    public function getAllTeachers();
+    public function index();
 
-    public function getSpecialization();
+    public function create();
 
-    public function getGender();
+    public function edit($teacher);
 
-    public function editTeacherForm($request);
+    public function store($request);
 
-    public function submitAddTeacher($request);
+    public function update( $request);
 
-    public function submitEditTeacher($request);
+    public function destroy($request);
 
-    public function deleteTeacher($request);
+    public function show($id);
 
-    public function viewTeacherData($id);
 
-     public function uploadTeacherFile($request);
+    public function deleteTeacherPhoto($request);
 
-    public function deleteFileTeacher($request);
-
-    public function downloadFileTeacher($teacher_name , $file_name);
+    public function downloadTeacherPhoto($teacher_name , $file_name);
 
 }
 

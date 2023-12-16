@@ -13,79 +13,75 @@ use Illuminate\Support\Facades\Storage;
 
 class TeacherRepository implements TeacherRepositoryInterface{
 
-    public function getAllTeachers(){
-        return Teacher::all();
+
+
+
+    public function index(){
+        $teachers = Teacher::all();
+        return view('pages.teachers.index',compact('teachers'));
     }
 
-    public function getSpecialization(){
-        return specialization::all();
+
+
+    public function create()
+    {
+        $specializations = Specialization::all();
+        $genders = Gender::all();
+        return view('pages.teachers.create',compact('specializations','genders'));
     }
 
-    public function getGender(){
-        return Gender::all();
-    }
 
-    public function submitAddTeacher($request){
 
-        DB::beginTransaction();
-
+    public function store($request)
+    {    
         try {
-            $Teachers = new Teacher();
-            $Teachers->email = $request->Email;
-            $Teachers->password =  Hash::make($request->Password);
-            $Teachers->name = ['en' => $request->Name_en, 'ar' => $request->Name_ar];
-            $Teachers->specialization_id = $request->Specialization_id;
-            $Teachers->gender_id = $request->Gender_id;
-            $Teachers->joining_date = $request->Joining_Date;
-            $Teachers->address = $request->Address;
-            $Teachers->save();
-
-            if($request->hasfile('photos'))
-            {
-                foreach($request->file('photos') as $file)
-                {
-                    $name = $file->getClientOriginalName();
-                    $file->storeAs('attachments/teacher/'.$request->Name_ar, $file->getClientOriginalName(),'upload_attachments');
-
-                    // insert in image_table
-                    $images= new Image();
-                    $images->filename=$name;
-                    $images->imageable_id= $Teachers->id;
-                    $images->imageable_type = 'App\Models\Teacher';
-                    $images->save();
-                }
-            }
-            DB::commit();
-
-            return redirect()->back()->with(['add_teacher' => trans('Teacher_trans.Teacher added successfully.')]);
-        }
-        catch (Exception $e)
-        {
+            $teacher = new Teacher();
+            $teacher->email = $request->email;
+            $teacher->password =  $request->password;
+            $teacher->name = ['en' => $request->nameEn, 'ar' => $request->nameAr];
+            $teacher->specialization_id = $request->specializationId;
+            $teacher->gender_id = $request->genderId;
+            $teacher->joining_date = $request->joiningDate;
+            $teacher->address = $request->address;
+            $teacher->save();
+        
+            return redirect()->back()->with(['add_teacher' => trans('teacher_trans.Teacher added successfully.')]);
+        } catch (Exception $e) {
             DB::rollback();
-
+    
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
+    
 
-    public function editTeacherForm($request){
+
+
+    public function edit($teacher){
         $specializations = specialization::all();
         $genders = Gender::all();
-        $Teachers = Teacher::findOrFail($request->id);
-        return view('Pages.Teachers.Edit' ,compact(['Teachers' , 'specializations' , 'genders']));
+        return view('Pages.teachers.edit' ,compact(['teacher' , 'specializations' , 'genders']));
     }
 
-    public function submitEditTeacher($request){
+
+
+
+
+    public function update($request){
         try {
-            $Teachers = Teacher::findOrFail($request->id);
-            $Teachers->email  = $request->Email;
-            $Teachers->password =  Hash::make($request->Password);
-            $Teachers->name = ['en' => $request->Name_en, 'ar' => $request->Name_ar];
-            $Teachers->specialization_id  = $request->Specialization_id;
-            $Teachers->gender_id  = $request->Gender_id;
-            $Teachers->joining_date = $request->Joining_Date;
-            $Teachers->address = $request->Address;
-            $Teachers->save();
-            return redirect()->route('teachers')->with(['update_teacher' => trans('Teacher_trans.Teacher updated successfully.')]);
+            
+            $teacher = Teacher::findOrFail($request->id);
+            $teacher->update([
+                'email' => $request->email,
+                'password' => $request->password,
+                'name' => ['en' => $request->nameEn, 'ar' => $request->nameAr],
+                'specialization_id' => $request->specializationId,
+                'gender_id' => $request->genderId,
+                'joining_date' => $request->joiningDate,
+                'address' => $request->address
+            ]);
+
+
+            return redirect()->route('teachers.index')->with(['update_teacher' => trans('teacher_trans.Teacher updated successfully.')]);
         }
         catch (Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
@@ -93,12 +89,14 @@ class TeacherRepository implements TeacherRepositoryInterface{
     }
 
 
-    public function deleteTeacher($request){
+
+
+    public function destroy($request){
         try {
             $id = $request->id;
             $teacher = Teacher::findOrFail($id);
             $teacher->delete();
-            return redirect()->back()->with(['delete_teacher' => trans('Teacher_trans.Teacher deleted successfully.')]);
+            return redirect()->back()->with(['delete_teacher' => trans('teacher_trans.Teacher deleted successfully.')]);
         }
         catch (Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
@@ -106,50 +104,33 @@ class TeacherRepository implements TeacherRepositoryInterface{
     }
 
 
-     public function viewTeacherData($id){
 
+
+
+
+
+    public function show($id){
         $teacher = Teacher::findOrFail($id);
-        return view('pages.Teachers.view' , compact('teacher'));
-        }
+        return view('pages.teachers.view' , compact('teacher'));
+    }
 
 
-        public function uploadTeacherFile($request)
-        {
-
-            if($request->hasfile('photos'))
-            {
-                foreach($request->file('photos') as $file)
-                {
-                    $name = $file->getClientOriginalName();
-                    $file->storeAs('attachments/teacher/'.$request->teacher_name, $file->getClientOriginalName(),'upload_attachments');
-
-                    // insert in image_table
-                    $images= new Image();
-                    $images->filename=$name;
-                    $images->imageable_id= $request->teacher_id;
-                    $images->imageable_type = 'App\Models\Teacher';
-                    $images->save();
-
-                }
-
-                return redirect()->back()->with(['add_attachment' => trans('Students_trans.File Stored successfully.') ]);;
-
-            }
-        }
-
-        public function deleteFileTeacher($request)
-        {
-            Storage::disk('upload_attachments')->delete('attachments/teacher/'.$request->teacher_name.'/'.$request->filename);
-
-            // Delete in data
-            image::where('id',$request->id)->where('filename',$request->filename)->delete();
-            return redirect()->back()->with(['delete_attachment' => trans('Students_trans.File deleted successfully ') ]);;
-        }
 
 
-        public function downloadFileTeacher($teacher_name, $file_name)
-        {
-            return response()->download(public_path('attachments/teacher/'.$teacher_name.'/'.$file_name));
 
-        }
+    public function deleteTeacherPhoto($request)
+    {
+        Storage::disk('upload_attachments')->delete('attachments/teacher/'.$request->teacher_name.'/'.$request->filename);
+
+        // Delete in data
+        image::where('id',$request->id)->where('filename',$request->filename)->delete();
+        return redirect()->back()->with(['delete_attachment' => trans('Students_trans.File deleted successfully ') ]);;
+    }
+
+
+    public function downloadTeacherPhoto($teacher_name, $file_name)
+    {
+        return response()->download(public_path('attachments/teacher/'.$teacher_name.'/'.$file_name));
+
+    }
 }
