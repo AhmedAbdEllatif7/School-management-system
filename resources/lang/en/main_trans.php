@@ -261,5 +261,7 @@ return [
     'separator' => 'Please separate each answer with a hyphen -',
     'File not found' => 'File not found',
 
+    'photo_added' => 'Photo added successfilly.',
+
 ];
 

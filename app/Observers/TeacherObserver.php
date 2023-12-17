@@ -12,6 +12,7 @@ class TeacherObserver
 {
 
     use AttachFilesTrait;
+    
     public function created(Teacher $teacher): void
     {
         $this->uploadTeacherPhoto($teacher);
@@ -19,20 +20,20 @@ class TeacherObserver
 
 
 
-    private function uploadTeacherPhoto(Teacher $teacher): void
+    public static function uploadTeacherPhoto($teacher): void
     {
         if (request()->hasFile('photo')) {
-                $fileName = $this->uploadFile(request(), 'photo' , 'teachers/' . request()->email);
-                $this->createImageRecord($fileName, $teacher);
+            $fileName = self::uploadFile(request(), 'photo', 'teachers/' . request()->email);
+            self::createImageRecord($fileName, $teacher->id); // Pass teacher ID here
         }
     }
     
-
-    private function createImageRecord($fileName , $teacher): void
+    
+    public static function createImageRecord($fileName, $teacherId): void
     {
         $image = new Image();
         $image->filename = $fileName;
-        $image->imageable_id = $teacher->id;
+        $image->imageable_id = $teacherId;
         $image->imageable_type = 'App\Models\Teacher';
         $image->save();
     }

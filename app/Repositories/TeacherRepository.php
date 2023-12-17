@@ -5,10 +5,10 @@ use App\Models\Gender;
 use App\Models\Image;
 use App\Models\Specialization;
 use App\Models\Teacher;
+use App\Observers\TeacherObserver;
 use App\Repositories\Interefaces\TeacherRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class TeacherRepository implements TeacherRepositoryInterface{
@@ -105,6 +105,31 @@ class TeacherRepository implements TeacherRepositoryInterface{
     public function show($id){
         $teacher = Teacher::findOrFail($id);
         return view('pages.teachers.view' , compact('teacher'));
+    }
+
+
+
+
+    public function uploadTeacherPhoto($request)
+    {
+        $teacher = $this->findTeacherById($request->teacher_id);
+        
+        if ($teacher) {
+            $this->handlePhotoUpload($teacher);
+            return redirect()->back()->with(['add_photo' => trans('main_trans.photo_added')]);
+        }
+    
+        return redirect()->back()->with(['not_found' => trans('main_trans.File_not_found')]);
+    }
+    
+    private function findTeacherById($teacherId)
+    {
+        return Teacher::findOrFail($teacherId);
+    }
+    
+    private function handlePhotoUpload($teacher)
+    {
+        TeacherObserver::uploadTeacherPhoto($teacher);
     }
 
 

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 
 trait AttachFilesTrait
 {
-    public function uploadFile($request,$name,$folder)
+    public static function uploadFile($request,$name,$folder)
     {
         $file_name = $request->file($name)->getClientOriginalName();
         $request->file($name)->storeAs('',$folder.'/'.$file_name,'upload_attachments');
@@ -14,7 +14,7 @@ trait AttachFilesTrait
         return $file_name;
     }
 
-    public function deleteFile($path)
+    public static function deleteFile($path)
     {
         $pathExists = Storage::disk('upload_attachments')->exists($path);
 

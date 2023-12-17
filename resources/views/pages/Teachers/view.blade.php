@@ -15,12 +15,7 @@
     <!-- row -->
     <div class="row">
 
-        @if(session('add_attachment'))
-            <div class="alert alert-success text-center" style="width: 40%; margin: auto;">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{ session('add_attachment') }}
-            </div>
-        @endif
+
 
 
         @if(session('delete_attachment'))
@@ -30,6 +25,21 @@
             </div>
         @endif
 
+
+        @if(session('not_found'))
+            <div class="alert alert-danger text-center" style="width: 40%; margin: auto;">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ session('not_found') }}
+            </div>
+        @endif
+
+
+        @if(session('add_photo'))
+        <div class="alert alert-success text-center" style="width: 40%; margin: auto;">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ session('add_photo') }}
+        </div>
+        @endif
         <div class="col-md-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">
@@ -86,12 +96,18 @@
                                         aria-labelledby="profile-02-tab">
                                     <div class="card card-statistics">
                                         <div class="card-body">
+
+                                            
                                             @if($teacher->images->isNotEmpty() && $teacher->images->first()->filename !== null)
-                                                <img src="{{ asset('attachments/teachers/' . $teacher->email . '/' . $teacher->images->first()->filename) }}" alt="Teacher Image" 
-                                                style="width:150px; height:100opx">
+                                                @foreach($teacher->images as $image)
+                                                    <p>{{$image->filename}}</p>
+                                                    <img src="{{ asset('attachments/teachers/' . $teacher->email . '/' . $image->filename) }}" alt="Teacher Image" 
+                                                    style="width:150px; height:100opx">
+                                                @endforeach
                                             @else
                                                 <p>No image available for this teacher.</p>
                                             @endif
+                                            
                                             <br>
                                             <br>
                                             <form method="post" action="{{route('teacher.upload.photo')}}" enctype="multipart/form-data">
@@ -100,10 +116,11 @@
                                                     <div class="form-group">
                                                         <label
                                                             for="academic_year">{{trans('Students_trans.Attachments')}}
-                                                            : <span class="text-danger">*</span></label>
-                                                        <input type="file" accept="image/*" name="photos[]" multiple required>
-                                                        <input type="hidden" name="teacher_name" value="{{$teacher->name}}">
-                                                        <input type="hidden" name="teacher_id" value="{{$teacher->id}}">
+                                                                    : <span class="text-danger">*</span></label>
+                                                                <input type="file" accept="image/*" name="photo" multiple required>
+                                                                {{-- <input type="hidden" name="teacher_name" value="{{$teacher->name}}"> --}}
+                                                                <input type="hidden" name="email" value="{{$teacher->email}}">
+                                                                <input type="hidden" name="teacher_id" value="{{$teacher->id}}">
                                                     </div>
                                                 </div>
                                                 <br><br>
@@ -124,19 +141,19 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($teacher->images as $attachment)
+                                            @foreach($teacher->images as $image)
                                                 <tr style='text-align:center;vertical-align:middle'>
                                                     <td>{{$loop->iteration}}</td>
-                                                    <td>{{$attachment->filename}}</td>
-                                                    <td>{{$attachment->created_at->diffForHumans()}}</td>
+                                                    <td>{{$image->filename}}</td>
+                                                    <td>{{$image->created_at->diffForHumans()}}</td>
                                                     <td colspan="2">
                                                         <a class="btn btn-outline-info btn-sm"
-                                                            href="{{url('download_teacher_file')}}/{{ $attachment->imageable->name }}/{{$attachment->filename}}"
+                                                            href="{{url('download_teacher_file')}}/{{ $image->imageable->name }}/{{$image->filename}}"
                                                             role="button"><i class="fas fa-download"></i>&nbsp; {{trans('teacher_trans.Download')}}</a>
 
                                                         <button type="button" class="btn btn-outline-danger btn-sm"
                                                                 data-toggle="modal"
-                                                                data-target="#Delete_img{{ $attachment->id }}"
+                                                                data-target="#Delete_img{{ $image->id }}"
                                                                 title="{{ trans('Grades_trans.Delete') }}">{{trans('teacher_trans.delete')}}
                                                         </button>
 

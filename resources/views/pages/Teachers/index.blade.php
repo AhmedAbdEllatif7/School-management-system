@@ -23,12 +23,14 @@
             </div>
         @endif
 
-            @if(session('delete_teacher'))
-            <div class="alert alert-success text-center" style="width: 40%; margin: auto;">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{ session('delete_teacher') }}
-            </div>
+        @if(session('delete_teacher'))
+        <div class="alert alert-success text-center" style="width: 40%; margin: auto;">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{ session('delete_teacher') }}
+        </div>
         @endif
+
+ 
         <div class="col-md-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">

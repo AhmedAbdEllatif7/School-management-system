@@ -19,6 +19,8 @@ interface TeacherRepositoryInterface{
 
     public function show($id);
 
+    public function uploadTeacherPhoto($request);
+
     public function deleteTeacherPhoto($request);
 
     public function downloadTeacherPhoto($teacher_name , $file_name);

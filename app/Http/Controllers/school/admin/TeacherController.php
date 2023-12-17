@@ -3,10 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateTeacherRequest;
 use App\Http\Requests\TeacherRequest;
-use App\Models\Gender;
-use App\Models\Specialization;
 use App\Models\Teacher;
 use App\Repositories\Interefaces\TeacherRepositoryInterface;
 use Illuminate\Http\Request;
@@ -43,21 +40,22 @@ class TeacherController extends Controller
 
 
 
-    public function edit(Teacher $teacher){
+    public function edit(Teacher $teacher)
+    {
         return $this->teacher->edit($teacher);
     }
 
 
 
-    public function update(TeacherRequest $request , Teacher $teacher){
-
+    public function update(TeacherRequest $request , Teacher $teacher)
+    {
         return $this->teacher->update($request , $teacher);
     }
 
 
 
-    public function destroy(Teacher $teacher){
-
+    public function destroy(Teacher $teacher)
+    {
         return $this->teacher->destroy($teacher);
     }
 
@@ -69,10 +67,16 @@ class TeacherController extends Controller
 
 
 
+    public function uploadTeacherPhoto(Request $request) 
+    {
+        return $this->teacher->uploadTeacherPhoto($request);
+    }
+
+
+
     public function deleteTeacherPhoto(Request $request)
     {
         return $this->teacher->deleteTeacherPhoto($request);
-
     }
 
 

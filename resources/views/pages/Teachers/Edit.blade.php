@@ -120,9 +120,12 @@
 
                             <br>
 
-                            <label for="academic_year">{{ trans('Students_trans.Attachments') }}: <span class="text-danger">*</span></label>
                             @if($teacher->images->isNotEmpty() && $teacher->images->first()->filename !== null)
-                                <img src="{{ asset('attachments/teachers/' . $teacher->email . '/' . $teacher->images->first()->filename) }}" alt="Teacher Image">
+                                @foreach($teacher->images as $image)
+                                    <p>{{$image->filename}}</p>
+                                    <img src="{{ asset('attachments/teachers/' . $teacher->email . '/' . $image->filename) }}" alt="Teacher Image" 
+                                    style="width:150px; height:100opx">
+                                @endforeach
                             @else
                                 <p>No image available for this teacher.</p>
                             @endif
