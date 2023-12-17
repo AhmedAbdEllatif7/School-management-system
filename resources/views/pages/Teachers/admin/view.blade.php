@@ -156,7 +156,7 @@
 
                                                     </td>
                                                 </tr>
-                                                @include('pages.teachers.deletePhoto')
+                                                @include('pages.teachers.admin.deletePhoto')
                                             @endforeach
                                             </tbody>
                                         </table>

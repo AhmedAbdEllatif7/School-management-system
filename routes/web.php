@@ -92,10 +92,9 @@ Route::group(['namespace' => 'Auth'], function () {
         });
 
 
-        /*rename the parent table columns name to the best name convension
-        * and rename it's livewire attrubites to match them and update strucure of
-        * student parent controller and structure of livewire add parent components
-        */
+
+
+
         ###################################### Parent ###########################
         Route::controller(ParentController::class)->group(function () {
             Route::resource('parents',ParentController::class);

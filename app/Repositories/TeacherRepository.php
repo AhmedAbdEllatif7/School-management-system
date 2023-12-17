@@ -21,7 +21,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
     public function index(){
         $teachers = Teacher::all();
-        return view('pages.teachers.index',compact('teachers'));
+        return view('pages.teachers.admin.index',compact('teachers'));
     }
 
 
@@ -30,7 +30,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
     {
         $specializations = Specialization::all();
         $genders = Gender::all();
-        return view('pages.teachers.create',compact('specializations','genders'));
+        return view('pages.teachers.admin.create',compact('specializations','genders'));
     }
 
 
@@ -62,7 +62,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
     public function edit($teacher){
         $specializations = specialization::all();
         $genders = Gender::all();
-        return view('Pages.teachers.edit' ,compact(['teacher' , 'specializations' , 'genders']));
+        return view('Pages.teachers.admin.edit' ,compact(['teacher' , 'specializations' , 'genders']));
     }
 
 
@@ -107,7 +107,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
     public function show($id){
         $teacher = Teacher::findOrFail($id);
-        return view('pages.teachers.view' , compact('teacher'));
+        return view('pages.teachers.admin.view' , compact('teacher'));
     }
 
 
