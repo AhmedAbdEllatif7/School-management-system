@@ -12,10 +12,11 @@
                 <form action="{{route('delete.teacher.photo')}}" method="POST">
                     @method('DELETE')
                     @csrf
-                    <input type="hidden" name="id" value="{{$image->id}}">
+                    {{-- <input type="hidden" name="id" value="{{$image->id}}"> --}}
 
-                    <input type="hidden" name="teacher_name" value="{{$image->imageable->name}}">
-                    <input type="hidden" name="teacher_id" value="{{$image->imageable->id}}">
+                    <input type="hidden" name="teacherEmail" value="{{$teacher->email}}">
+                    <input type="hidden" name="fileName" value="{{$image->filename}}">
+                    <input type="hidden" name="id" value="{{$teacher->id}}">
 
                     <input type="text" readonly value="{{trans('Students_trans.Delete_attachment_tilte')}}" class="form-control">
 

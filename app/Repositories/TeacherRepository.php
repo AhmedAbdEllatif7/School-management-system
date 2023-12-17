@@ -9,7 +9,10 @@ use App\Observers\TeacherObserver;
 use App\Repositories\Interefaces\TeacherRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+
+use function PHPUnit\Framework\isEmpty;
 
 class TeacherRepository implements TeacherRepositoryInterface{
 
@@ -149,13 +152,45 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
     public function deleteTeacherPhoto($request)
     {
-        Storage::disk('upload_attachments')->delete('attachments/teacher/'.$request->teacher_name.'/'.$request->filename);
-
-        // Delete in data
-        image::where('id',$request->id)->where('filename',$request->filename)->delete();
-        return redirect()->back()->with(['delete_attachment' => trans('Students_trans.File deleted successfully ') ]);;
+        DB::beginTransaction();
+        try {
+            $this->deleteFileFromStorage($request->teacherEmail, $request->fileName);
+            $this->deleteImageRecord($request->id, $request->fileName);
+    
+            // If everything is successful, commit the transaction
+            DB::commit();
+    
+            return redirect()->back()->with(['delete_attachment' => trans('teacher_trans.photo_deleted')]);
+        } catch (\Exception $e) {
+            // Something went wrong, rollback the transaction
+            DB::rollBack();
+                return redirect()->back()->with(['error' => trans('teacher_trans.not_found')]);
+        }
     }
-
+    
+    private function deleteFileFromStorage($teacherEmail, $fileName)
+    {
+        Storage::disk('upload_attachments')->delete('teachers/'.$teacherEmail.'/'.$fileName);
+        $directory = 'teachers/'.$teacherEmail;
+    
+        $files = Storage::disk('upload_attachments')->files($directory);
+    
+        if (empty($files)) {
+            Storage::disk('upload_attachments')->deleteDirectory($directory);
+        }
+    }
+    
+    private function deleteImageRecord($imageId, $fileName)
+    {
+        $image = Image::where('imageable_id', $imageId)->where('filename', $fileName)->first();
+        if ($image) {
+            $image->delete();
+            return true; 
+        }
+        return false; 
+    }
+    
+    
 
     public function downloadTeacherPhoto($teacher_name, $file_name)
     {
