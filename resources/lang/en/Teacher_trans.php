@@ -11,7 +11,7 @@ return [
     'Name_en'=>'Name_en',
     'specialization'=>'specialization',
     'Gender'=>'Gender',
-    'Joining_Date'=>'Joining_Date',
+    'Joining_Date'=>'Joining Date',
     'Address'=>'Address',
     'Teacher added successfully.' => 'Teacher added successfully.',
     'Teacher updated successfully.' => 'Teacher updated successfully.',

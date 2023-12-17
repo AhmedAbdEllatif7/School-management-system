@@ -9,15 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{URL::asset('assets2/fonts/icomoon/style.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('assetsForLoginForms/fonts/icomoon/style.css')}}">
 
-    <link rel="stylesheet" href="{{URL::asset('assets2/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('assetsForLoginForms/css/owl.carousel.min.css')}}">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{URL::asset('assets2/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('assetsForLoginForms/css/bootstrap.min.css')}}">
 
     <!-- Style -->
-    <link rel="stylesheet" href="{{URL::asset('assets2/css/style.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('assetsForLoginForms/css/style.css')}}">
 
     <title>{{$type}} : Login</title>
 </head>
@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-md-6">
 
-                <img src="{{URL::asset('assets2/images/undraw_remotely_2j6y.svg')}}" alt="Image" class="img-fluid">
+                <img src="{{URL::asset('assetsForLoginForms/images/undraw_remotely_2j6y.svg')}}" alt="Image" class="img-fluid">
 
             </div>
             <div class="col-md-6 contents">
@@ -110,10 +110,10 @@
 </div>
 
 
-<script src="{{URL::asset('assets2/js/jquery-3.3.1.min.js')}}"></script>
-<script src="{{URL::asset('assets2/js/popper.min.js')}}"></script>
-<script src="{{URL::asset('assets2/js/bootstrap.min.js')}}"></script>
-<script src="{{URL::asset('assets2/js/main.js')}}"></script>
+<script src="{{URL::asset('assetsForLoginForms/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{URL::asset('assetsForLoginForms/js/popper.min.js')}}"></script>
+<script src="{{URL::asset('assetsForLoginForms/js/bootstrap.min.js')}}"></script>
+<script src="{{URL::asset('assetsForLoginForms/js/main.js')}}"></script>
 <script>
     function myFunction() {
         var x = document.getElementById("password");

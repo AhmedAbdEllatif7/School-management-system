@@ -102,8 +102,6 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
 
 
-
-
     public function show($id){
         $teacher = Teacher::findOrFail($id);
         return view('pages.teachers.view' , compact('teacher'));

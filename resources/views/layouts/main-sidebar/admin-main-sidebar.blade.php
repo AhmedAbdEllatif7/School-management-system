@@ -129,6 +129,10 @@
             <ul id="Teachers-menu" class="collapse" data-parent="#sidebarnav">
                 <li> <a href="{{route('teachers.index')}}">{{trans('main_trans.List_Teachers')}}</a> </li>
             </ul>
+
+            <ul id="Teachers-menu" class="collapse" data-parent="#sidebarnav">
+                <li> <a href="{{route('teachers.create')}}">{{ trans('teacher_trans.Add_Teacher') }}</a> </li>
+            </ul>
         </li>
 
 
@@ -143,6 +147,7 @@
             <ul id="Parents-menu" class="collapse" data-parent="#sidebarnav">
                 <li> <a href="{{route('parents.index')}}">{{trans('main_trans.List_Parents')}}</a> </li>
             </ul>
+
         </li>
 
         <!-- Accounts-->
