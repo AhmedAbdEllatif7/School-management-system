@@ -44,4 +44,5 @@ return [
     'Download' => 'Download',
     'delete' => 'Delete',
     'update' => 'Update',
+    'view' => 'View',
 ];

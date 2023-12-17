@@ -72,6 +72,12 @@ class TeacherController extends Controller
         return $this->teacher->uploadTeacherPhoto($request);
     }
 
+    
+    public function openTeacherPhoto($teacherEmail , $fileName) 
+    {
+        return $this->teacher->openTeacherPhoto($teacherEmail , $fileName);
+    }
+
 
 
     public function deleteTeacherPhoto(Request $request)

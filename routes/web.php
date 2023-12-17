@@ -109,6 +109,7 @@ Route::group(['namespace' => 'Auth'], function () {
         
         // Additional routes
         Route::post('teacher/upload-photo', [TeacherController::class,'uploadTeacherPhoto'])->name('teacher.upload.photo');
+        Route::get('teacher/open-photo/{teacherEmail}/{fileName}', [TeacherController::class,'openTeacherPhoto'])->name('teacher.open.photo');
         Route::delete('teacher/delete-photo', [TeacherController::class,'deleteTeacherPhoto'])->name('delete.teacher.photo');
         Route::get('teacher/download-photo/{teacher_name}/{filename}', [TeacherController::class,'downloadTeacherPhoto'])->name('download.teacher.photo');
 

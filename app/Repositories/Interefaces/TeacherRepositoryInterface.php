@@ -21,6 +21,8 @@ interface TeacherRepositoryInterface{
 
     public function uploadTeacherPhoto($request);
 
+    public function openTeacherPhoto($teacherEmail , $fileName);
+
     public function deleteTeacherPhoto($request);
 
     public function downloadTeacherPhoto($teacher_name , $file_name);

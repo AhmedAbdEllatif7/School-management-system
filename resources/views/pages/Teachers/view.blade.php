@@ -95,21 +95,8 @@
 
                                         aria-labelledby="profile-02-tab">
                                     <div class="card card-statistics">
-                                        <div class="card-body">
-
+                                        <div class="card-body">                                        
                                             
-                                            @if($teacher->images->isNotEmpty() && $teacher->images->first()->filename !== null)
-                                                @foreach($teacher->images as $image)
-                                                    <p>{{$image->filename}}</p>
-                                                    <img src="{{ asset('attachments/teachers/' . $teacher->email . '/' . $image->filename) }}" alt="Teacher Image" 
-                                                    style="width:150px; height:100opx">
-                                                @endforeach
-                                            @else
-                                                <p>No image available for this teacher.</p>
-                                            @endif
-                                            
-                                            <br>
-                                            <br>
                                             <form method="post" action="{{route('teacher.upload.photo')}}" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <div class="col-md-3">
@@ -137,6 +124,7 @@
                                                 <th scope="col">#</th>
                                                 <th scope="col">{{trans('Students_trans.filename')}}</th>
                                                 <th scope="col">{{trans('Students_trans.created_at')}}</th>
+                                                <th scope="col">{{trans('Students_trans.photos')}}</th>
                                                 <th scope="col">{{trans('Students_trans.Processes')}}</th>
                                             </tr>
                                             </thead>
@@ -146,10 +134,19 @@
                                                     <td>{{$loop->iteration}}</td>
                                                     <td>{{$image->filename}}</td>
                                                     <td>{{$image->created_at->diffForHumans()}}</td>
+                                                    <td> <div class="col-md-3 mb-3">
+                                                        <img src="{{ asset('attachments/teachers/' . $teacher->email . '/' . $image->filename) }}" alt="Teacher Image" style="width:100px; height:100px;">
+                                                    </div></td>
                                                     <td colspan="2">
+                                                        <a class="btn btn-outline-success btn-sm"
+                                                            href="{{url('teacher/open-photo')}}/{{ $teacher->email }}/{{$image->filename}}"
+                                                            role="button"><i class="fas fa-eye"></i>&nbsp; {{trans('teacher_trans.view')}}
+                                                        </a>
+
                                                         <a class="btn btn-outline-info btn-sm"
                                                             href="{{url('download_teacher_file')}}/{{ $image->imageable->name }}/{{$image->filename}}"
-                                                            role="button"><i class="fas fa-download"></i>&nbsp; {{trans('teacher_trans.Download')}}</a>
+                                                            role="button"><i class="fas fa-download"></i>&nbsp; {{trans('teacher_trans.Download')}}
+                                                        </a>
 
                                                         <button type="button" class="btn btn-outline-danger btn-sm"
                                                                 data-toggle="modal"

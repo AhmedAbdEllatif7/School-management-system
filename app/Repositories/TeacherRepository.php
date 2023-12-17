@@ -136,6 +136,17 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
 
 
+
+    public function openTeacherPhoto($teacherEmail , $fileName) 
+    {
+        return response()->file(public_path('attachments/teachers/'.$teacherEmail.'/'.$fileName));
+    }
+
+
+
+
+
+
     public function deleteTeacherPhoto($request)
     {
         Storage::disk('upload_attachments')->delete('attachments/teacher/'.$request->teacher_name.'/'.$request->filename);

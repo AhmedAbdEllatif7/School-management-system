@@ -44,6 +44,7 @@ return [
     'Download' => 'تحميل',
     'delete' => 'حذف',
     'update' => 'تعديل',
+    'view' => 'عرض',
 
 
 ];
