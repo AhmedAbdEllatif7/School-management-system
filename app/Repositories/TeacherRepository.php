@@ -192,9 +192,9 @@ class TeacherRepository implements TeacherRepositoryInterface{
     
     
 
-    public function downloadTeacherPhoto($teacher_name, $file_name)
+    public function downloadTeacherPhoto($teacherEmail , $fileName)
     {
-        return response()->download(public_path('attachments/teacher/'.$teacher_name.'/'.$file_name));
+        return response()->download(public_path('attachments/teachers/'.$teacherEmail.'/'.$fileName));
 
     }
 }

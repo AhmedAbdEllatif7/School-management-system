@@ -144,7 +144,7 @@
                                                         </a>
 
                                                         <a class="btn btn-outline-info btn-sm"
-                                                            href="{{url('download_teacher_file')}}/{{ $image->imageable->name }}/{{$image->filename}}"
+                                                            href="{{url('teacher/download-photo')}}/{{ $teacher->email }}/{{$image->filename}}"
                                                             role="button"><i class="fas fa-download"></i>&nbsp; {{trans('teacher_trans.Download')}}
                                                         </a>
 

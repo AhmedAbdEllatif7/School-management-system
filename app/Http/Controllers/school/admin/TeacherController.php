@@ -86,9 +86,9 @@ class TeacherController extends Controller
     }
 
 
-    public function downloadTeacherPhoto($teacher_name , $file_name)
+    public function downloadTeacherPhoto($teacherEmail , $fileName)
     {
-        return $this->teacher->downloadTeacherPhoto($teacher_name , $file_name);
+        return $this->teacher->downloadTeacherPhoto($teacherEmail , $fileName);
     }
 
 
