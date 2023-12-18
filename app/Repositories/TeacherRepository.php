@@ -117,7 +117,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
 
 
-    public function uploadTeacherPhoto($request)
+    public function addPhotoFromDetails($request)
     {
         $teacher = $this->findTeacherById($request->teacher_id);
         
@@ -144,7 +144,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
 
 
-    public function openTeacherPhoto($teacherEmail , $fileName) 
+    public function openPhoto($teacherEmail , $fileName) 
     {
         return response()->file(public_path('attachments/teachers/'.$teacherEmail.'/'.$fileName));
     }
@@ -154,7 +154,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
 
 
-    public function deleteTeacherPhoto($request)
+    public function deletePhotoFromDetails($request)
     {
         DB::beginTransaction();
         try {
@@ -197,7 +197,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
     
 
 
-    public function downloadTeacherPhoto($teacherEmail, $fileName)
+    public function downloadPhoto($teacherEmail, $fileName)
     {
         $filePath = public_path('attachments/teachers/' . $teacherEmail . '/' . $fileName);
     

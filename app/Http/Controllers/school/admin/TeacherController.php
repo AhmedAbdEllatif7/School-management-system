@@ -67,28 +67,28 @@ class TeacherController extends Controller
 
 
 
-    public function uploadTeacherPhoto(Request $request) 
+    public function addPhotoFromDetails(Request $request) 
     {
-        return $this->teacher->uploadTeacherPhoto($request);
+        return $this->teacher->addPhotoFromDetails($request);
     }
 
     
-    public function openTeacherPhoto($teacherEmail , $fileName) 
+    public function openPhoto($teacherEmail , $fileName) 
     {
-        return $this->teacher->openTeacherPhoto($teacherEmail , $fileName);
+        return $this->teacher->openPhoto($teacherEmail , $fileName);
     }
 
 
 
-    public function deleteTeacherPhoto(Request $request)
+    public function deletePhotoFromDetails(Request $request)
     {
-        return $this->teacher->deleteTeacherPhoto($request);
+        return $this->teacher->deletePhotoFromDetails($request);
     }
 
 
-    public function downloadTeacherPhoto($teacherEmail , $fileName)
+    public function downloadPhoto($teacherEmail , $fileName)
     {
-        return $this->teacher->downloadTeacherPhoto($teacherEmail , $fileName);
+        return $this->teacher->downloadPhoto($teacherEmail , $fileName);
     }
 
 

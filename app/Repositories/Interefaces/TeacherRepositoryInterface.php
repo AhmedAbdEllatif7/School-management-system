@@ -19,13 +19,13 @@ interface TeacherRepositoryInterface{
 
     public function show($id);
 
-    public function uploadTeacherPhoto($request);
+    public function addPhotoFromDetails($request);
 
-    public function openTeacherPhoto($teacherEmail , $fileName);
+    public function openPhoto($teacherEmail , $fileName);
 
-    public function deleteTeacherPhoto($request);
+    public function deletePhotoFromDetails($request);
 
-    public function downloadTeacherPhoto($teacherEmail , $fileName);
+    public function downloadPhoto($teacherEmail , $fileName);
 
 }
 
