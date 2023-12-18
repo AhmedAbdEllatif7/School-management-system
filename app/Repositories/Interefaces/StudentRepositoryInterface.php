@@ -25,8 +25,7 @@ interface StudentRepositoryInterface{
 
     public function downloadPhoto($studentEmail , $fileName);
 
-
-    public function viewFile($studentName , $fileName);
+    public function openPhoto($studentEmail , $fileName);
 
     public function getClassrooms($id);
 

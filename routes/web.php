@@ -153,9 +153,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
             Route::delete('student/delete-photo' ,  'deletePhotoFromDetails')->name('students.delete.photo');
 
-            Route::get('students/download-photo/{studentEmail}/{fileName}' ,  'downloadPhoto')->name('download.student.photo');
+            Route::get('students/download-photo/{studentEmail}/{fileName}' ,  'downloadPhoto')->name('student.download.photo');
 
-            Route::get('view_file/{student_name}/{filename}' ,  'viewFile');
+            Route::get('students/open-photo/{studentEmail}/{fileName}' ,  'openPhoto')->name('student.open.photo');
 
             //for ajax
             Route::get('get-classrooms/{id}' ,  'getClassrooms');

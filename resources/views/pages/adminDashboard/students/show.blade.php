@@ -147,18 +147,24 @@
                                                         </div>
                                                     </td>
                                                     <td colspan="2">
+
+                                                        <a class="btn btn-outline-success btn-sm"
+                                                            href="{{route('student.open.photo' , ['studentEmail' => $student->email , 'fileName' => $image->filename])}}"
+                                                            role="button"><i class="fas fa-eye"></i>&nbsp; {{trans('teacher_trans.view')}}
+                                                        </a>
+                                                        
+
                                                         <a class="btn btn-outline-info btn-sm"
-                                                        href="{{ route('download.student.photo', ['studentEmail' => $student->email, 'fileName' => $image->filename]) }}"
-                                                        role="button"><i class="fas fa-download"></i>&nbsp; {{trans('students_trans.Download')}}</a>
+                                                            href="{{ route('student.download.photo', ['studentEmail' => $student->email, 'fileName' => $image->filename]) }}"
+                                                            role="button"><i class="fas fa-download"></i>&nbsp; {{trans('students_trans.Download')}}
+                                                        </a>
+
 
                                                         <button type="button" class="btn btn-outline-danger btn-sm"
-                                                                data-toggle="modal"
-                                                                data-target="#Delete_img{{ $image->id }}"
-                                                                title="{{ trans('Grades_trans.Delete') }}"><i class="fas fa-trash"></i>&nbsp;{{trans('teacher_trans.delete')}}
+                                                            data-toggle="modal"
+                                                            data-target="#Delete_img{{ $image->id }}"
+                                                            title="{{ trans('Grades_trans.Delete') }}"><i class="fas fa-trash"></i>&nbsp;{{trans('teacher_trans.delete')}}
                                                         </button>
-
-                                                        <a href="{{url('view_file')}}/{{ $image->imageable->name }}/{{$image->filename}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" title="{{ trans('students_trans.View') }}"><i class="far fa-eye"></i></a>
-
                                                     </td>
                                                 </tr>
                                                 @include('pages.adminDashboard.students.deletePhoto')

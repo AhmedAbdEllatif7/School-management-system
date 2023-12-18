@@ -82,9 +82,9 @@ class StudentController extends Controller
 
 
 
-        public function viewFile($studentName , $fileName){
+        public function openPhoto($studentEmail , $fileName){
 
-            return $this->student->viewFile($studentName , $fileName);
+            return $this->student->openPhoto($studentEmail , $fileName);
 
         }
 

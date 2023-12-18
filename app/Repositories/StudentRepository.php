@@ -195,7 +195,7 @@ class StudentRepository implements StudentRepositoryInterface{
     private function deleteFileFromStorage($studentEmail, $fileName)
     {
         Storage::disk('upload_attachments')->delete('students/'.$studentEmail.'/'.$fileName);
-        $directory = 'teachers/'.$studentEmail;
+        $directory = 'students/'.$studentEmail;
     
         $files = Storage::disk('upload_attachments')->files($directory);
     
@@ -227,19 +227,12 @@ class StudentRepository implements StudentRepositoryInterface{
     }
 
 
-            
 
-            public function viewFile($studentName, $fileName)
-            {
-                $file = 'attachments/students/' . $studentName . '/' . $fileName;
 
-                if (!Storage::disk('upload_attachments')->exists($file)) {
-                    return redirect()->back()->with('error_file', trans('main_trans.File_not_found'));
-                }
-
-                return response()->file(Storage::disk('upload_attachments')->path($file));
-            }
-
+    public function openPhoto($studentEmail , $fileName) 
+    {
+        return response()->file(public_path('attachments/students/'.$studentEmail.'/'.$fileName));
+    }
 
 
 
