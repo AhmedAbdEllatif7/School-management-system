@@ -26,6 +26,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
 
 
+
     public function create()
     {
         $specializations = Specialization::all();
@@ -35,6 +36,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
 
 
+    // Teacher Observer manages automatic photo uploads.
     public function store($request)
     {    
         try {
@@ -68,7 +70,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
 
 
-
+    // Teacher Observer manages automatic student folder rename.
     public function update($request , $teacher){
         try {
             $teacher->email = $request->email;
@@ -91,6 +93,8 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
 
 
+
+    // Teacher Observer manages automatic delete it's folder .
     public function destroy($teacher){
         try {
             $teacher->delete();

@@ -42,7 +42,7 @@ class StudentRepository implements StudentRepositoryInterface{
 
 
 
-
+    // Student Observer manages automatic photo uploads.
     public function store($request)
     {
         try {
@@ -94,6 +94,7 @@ class StudentRepository implements StudentRepositoryInterface{
 
 
 
+    // Student Observer manages automatic student folder rename.
     public function update($request)
     {
         try {
