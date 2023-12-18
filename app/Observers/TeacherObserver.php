@@ -74,7 +74,7 @@ class TeacherObserver
 
 
 
-    public function deleted(Teacher $teacher): void
+    public function deleted(Teacher $teacher)
     {
         try {
             DB::beginTransaction();
@@ -84,9 +84,11 @@ class TeacherObserver
     
             DB::commit();
         } catch (\Exception $e) {
+            return redirect()->back()->with('error' , $e->getMessage());
             DB::rollBack();
         }
     }
+    
     
     private function deleteTeacherFolder($teacher)
     {

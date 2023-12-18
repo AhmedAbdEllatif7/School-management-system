@@ -127,11 +127,10 @@ class StudentRepository implements StudentRepositoryInterface{
 
 
 
-    public function deleteStudent($request)
+    public function destroy($request)
     {
         Student::findOrFail($request->id)->forceDelete();
         return redirect()->back()->with(['deleteStudent' => trans('Students_trans.Student deleted successfully.') ]);;
-
     }
 
 

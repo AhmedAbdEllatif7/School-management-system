@@ -80,7 +80,7 @@
 
                                                     </td>
                                                 </tr>
-                                            @include('pages.Students.Delete')
+                                            @include('pages.adminDashboard.students.delete')
                                             @endforeach
                                         </table>
                                     </div>

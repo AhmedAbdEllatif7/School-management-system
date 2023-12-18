@@ -60,7 +60,7 @@ class StudentController extends Controller
 
     public function destroy(Request $request)
     {
-        return $this->student->deleteStudent($request);
+        return $this->student->destroy($request);
     }
 
     public function getClassrooms($id)
