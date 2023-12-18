@@ -35,22 +35,25 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 
-//Auth
+
+        Route::get('/' , [HomeController::class, 'index'])->name('selection')->middleware('guest');
 
 
-Route::get('/' , [HomeController::class, 'index'])->name('selection')->middleware('guest');
+        ###################################### Begin Auth ###########################
+
+            Route::group(['namespace' => 'Auth'], function () {
+
+                Route::get('/login/{type}', [LoginController::class , 'loginForm'])->middleware('guest')->name('login.show');
+
+                Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+                Route::get('/logout/{type}', [LoginController::class , 'logout'])->name('logout');
 
 
-Route::group(['namespace' => 'Auth'], function () {
+            });
 
-    Route::get('/login/{type}', [LoginController::class , 'loginForm'])->middleware('guest')->name('login.show');
+        ###################################### End Auth ###########################
 
-    Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-    Route::get('/logout/{type}', [LoginController::class , 'logout'])->name('logout');
-
-
-});
 
     Route::group(
     [
@@ -65,57 +68,79 @@ Route::group(['namespace' => 'Auth'], function () {
 
 
 
-        ###################################### Grade ###########################
+        ###################################### Begin Grade ###########################
+
         Route::resource('grades',GradeController::class);
-        
-        Route::controller(GradeController::class)->group(function () {
-            Route::delete('delete-selected-grades' ,  'deleteSelectedGrades')->name('delete.selected.grades');
-        });
+
+        Route::delete('delete-selected-grades' ,  [GradeController::class ,'deleteSelectedGrades'])->name('delete.selected.grades');
+
+        ###################################### End Grade ###########################
 
 
 
-        ###################################### Classroom ###########################
+
+
+
+
+        ###################################### Begin Classroom ###########################
+
         Route::resource('classrooms',ClassroomController::class);
 
         Route::controller(ClassroomController::class)->group(function () {
+            // Additional routes
             Route::delete('delete-selected-classrooms' ,  'deleteSelectedClassrooms')->name('delete.selected.classrooms');
             Route::get('filter-classes' ,  'filterClasses')->name('filter.classes');
         });
 
-
-
-        ###################################### Section ###########################
-        Route::resource('sections',SectionController::class);
-
-        Route::controller(SectionController::class)->group(function () {
-            Route::get('classes/{id}' ,  'getClases')->name('classes');
-        });
+        ###################################### End Classroom ###########################
 
 
 
 
 
-        ###################################### Parent ###########################
-        Route::controller(ParentController::class)->group(function () {
-            Route::resource('parents',ParentController::class);
-
-        });
 
 
 
-        ###################################### Teacher ###########################
-        Route::resource('teachers', TeacherController::class);
+        ###################################### Begin Section ###########################
+
+        Route::resource('sections' , SectionController::class);
+
+        Route::get('classes/{id}' ,  [SectionController::class , 'getClases'])->name('classes');
         
-        Route::controller(TeacherController::class)->group(function () {
-        // Additional routes
-        Route::post('teacher/upload-photo' , 'addPhotoFromDetails')->name('teacher.upload.photo');
+        ###################################### End Section ###########################
 
-        Route::get('teacher/open-photo/{teacherEmail}/{fileName}' , 'openPhoto')->name('teacher.open.photo');
 
-        Route::delete('teacher/delete-photo' ,'deletePhotoFromDetails')->name('delete.teacher.photo');
 
-        Route::get('teacher/download-photo/{teacherEmail}/{fileName}' , 'downloadPhoto')->name('download.teacher.photo');
-    });
+
+        ###################################### Begin Parent ###########################
+
+        Route::resource('parents',ParentController::class);
+
+        ###################################### End Parent ###########################
+
+
+
+        ###################################### Begin Teacher ###########################
+
+            Route::resource('teachers', TeacherController::class);
+            
+            Route::controller(TeacherController::class)->group(function () {
+            // Additional routes
+            Route::post('teacher/upload-photo' , 'addPhotoFromDetails')->name('teacher.upload.photo');
+
+            Route::get('teacher/open-photo/{teacherEmail}/{fileName}' , 'openPhoto')->name('teacher.open.photo');
+
+            Route::delete('teacher/delete-photo' ,'deletePhotoFromDetails')->name('delete.teacher.photo');
+
+            Route::get('teacher/download-photo/{teacherEmail}/{fileName}' , 'downloadPhoto')->name('download.teacher.photo');
+        });
+
+        ###################################### End Teacher ###########################
+
+
+
+
+
 
 
 
