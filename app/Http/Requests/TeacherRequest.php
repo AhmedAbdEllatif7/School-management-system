@@ -14,22 +14,18 @@ class TeacherRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
     public function rules(): array
     {
         return [
+            'nameEn' => 'required|string|max:255',
+            'nameAr' => 'required|string|max:255',
             'email' => 'required|email|unique:teachers,email,' . request()->id,
             'password' => 'required|min:6',
-            'nameEn' => 'required|string',
-            'nameAr' => 'required|string',
-            'specializationId' => 'required|exists:specializations,id',
-            'genderId' => 'required|exists:genders,id',
-            'joiningDate' => 'required|date',
+            'specialization_id' => 'required|exists:specializations,id',
+            'gender_id' => 'required|exists:genders,id',
+            'joining_date' => 'required|date',
             'address' => 'required|string',
         ];
     }
+    
 }

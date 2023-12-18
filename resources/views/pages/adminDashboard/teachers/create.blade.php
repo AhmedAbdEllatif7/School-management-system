@@ -80,26 +80,26 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label for="inputCity">{{trans('teacher_trans.specialization')}}</label>
-                                    <select class="custom-select my-1 mr-sm-2" name="specializationId" required>
+                                    <select class="custom-select my-1 mr-sm-2" name="specialization_id" required>
                                         <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
                                         @foreach($specializations as $specialization)
                                             <option value="{{ $specialization->id }}">{{ $specialization->name }}</option>
                                         @endforeach
                                     </select>
                                     
-                                    @error('specializationId')
+                                    @error('specialization_id')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group col">
                                     <label for="inputState">{{trans('teacher_trans.Gender')}}</label>
-                                    <select class="custom-select my-1 mr-sm-2" name="genderId" required>
+                                    <select class="custom-select my-1 mr-sm-2" name="gender_id" required>
                                         <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
                                         @foreach($genders as $gender)
                                             <option value="{{$gender->id}}">{{$gender->name}}</option>
                                         @endforeach
                                     </select>
-                                    @error('genderId')
+                                    @error('gender_id')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -110,9 +110,9 @@
                                 <div class="col">
                                     <label for="title">{{trans('teacher_trans.Joining_Date')}}</label>
                                     <div class='input-group date'>
-                                        <input class="form-control" type="text"  id="datepicker-action" name="joiningDate" data-date-format="yyyy-mm-dd" required>
+                                        <input class="form-control" type="text"  id="datepicker-action" name="joining_date" data-date-format="yyyy-mm-dd" required>
                                     </div>
-                                    @error('joiningDate')
+                                    @error('joining_date')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -130,7 +130,7 @@
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="academic_year">{{trans('Students_trans.Attachments')}} : <span class="text-danger">*</span></label>
+                                        <label >{{trans('Students_trans.Attachments')}} : <span class="text-danger">*</span></label>
                                         <input type="file" accept="image/*" name="photo" >
                                     </div>
                                 </div>

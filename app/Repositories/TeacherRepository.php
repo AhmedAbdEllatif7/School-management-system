@@ -9,15 +9,9 @@ use App\Observers\TeacherObserver;
 use App\Repositories\Interefaces\TeacherRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
-use function PHPUnit\Framework\isEmpty;
-
-class TeacherRepository implements TeacherRepositoryInterface{
-
-
-
+class TeacherRepository implements TeacherRepositoryInterface {
 
     public function index(){
         $teachers = Teacher::all();
@@ -40,17 +34,8 @@ class TeacherRepository implements TeacherRepositoryInterface{
     public function store($request)
     {    
         try {
-            $teacher = new Teacher();
-            $teacher->email = $request->email;
-            $teacher->password =  $request->password;
-            $teacher->name = ['en' => $request->nameEn, 'ar' => $request->nameAr];
-            $teacher->specialization_id = $request->specializationId;
-            $teacher->gender_id = $request->genderId;
-            $teacher->joining_date = $request->joiningDate;
-            $teacher->address = $request->address;
-            $teacher->save();
-        
-            return redirect()->back()->with(['add_teacher' => trans('teacher_trans.Teacher added successfully.')]);
+                $this->storeTeacher($request);
+                return redirect()->back()->with(['add_teacher' => trans('teacher_trans.Teacher added successfully.')]);
         } catch (Exception $e) {
             DB::rollback();
     
@@ -58,6 +43,24 @@ class TeacherRepository implements TeacherRepositoryInterface{
         }
     }
     
+
+
+
+    private function storeTeacher($request)
+    {
+        $validatedData = $request->validated();
+        $formattedName = [
+            'en' => $validatedData['nameEn'],
+            'ar' => $validatedData['nameAr'],
+        ];
+    
+        $validatedData['name'] = $formattedName;
+        Teacher::create($validatedData);
+    }
+
+
+
+
 
 
 
@@ -73,15 +76,14 @@ class TeacherRepository implements TeacherRepositoryInterface{
     // Teacher Observer manages automatic student folder rename.
     public function update($request , $teacher){
         try {
-            $teacher->email = $request->email;
-            $teacher->password = $request->password;
-            $teacher->name = ['en' => $request->nameEn, 'ar' => $request->nameAr];
-            $teacher->specialization_id = $request->specializationId;
-            $teacher->gender_id = $request->genderId;
-            $teacher->joining_date = $request->joiningDate;
-            $teacher->address = $request->address;
-            
-            $teacher->save();
+            $validatedData = $request->validated();
+            $formattedName = [
+                'en' => $validatedData['nameEn'],
+                'ar' => $validatedData['nameAr'],
+            ];
+    
+            $validatedData['name'] = $formattedName;
+            $teacher->update($validatedData);
 
             return redirect()->route('teachers.index')->with(['update_teacher' => trans('teacher_trans.Teacher updated successfully.')]);
         }
@@ -89,6 +91,9 @@ class TeacherRepository implements TeacherRepositoryInterface{
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
+
+
+
 
 
 

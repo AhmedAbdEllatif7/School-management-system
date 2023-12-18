@@ -13,7 +13,7 @@ class Teacher extends Authenticatable
     use HasFactory;
     use HasTranslations;
     public $translatable = ['name'];
-    protected $guarded=[];
+    protected $fillable = ['name' , 'email' , 'password' , 'gender_id' , 'specialization_id' , 'joining_date' , 'address'];
     protected $table  = 'teachers';
 
 

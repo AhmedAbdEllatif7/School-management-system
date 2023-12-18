@@ -11,7 +11,6 @@ use App\Models\Parentt;
 use App\Models\Section;
 use App\Models\Student;
 use App\Repositories\Interefaces\StudentRepositoryInterface;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -64,9 +63,7 @@ class StudentRepository implements StudentRepositoryInterface{
         ];
     
         $validatedData['name'] = $formattedName;
-        $student = Student::create($validatedData);
-    
-        return $student;
+        Student::create($validatedData);        
     }
     
 
@@ -114,7 +111,7 @@ class StudentRepository implements StudentRepositoryInterface{
     private function updateStudentAttributes($student, $request)
     {
         $validatedData = $request->validated();
-        
+
         $formattedName = [
             'en' => $validatedData['nameEn'],
             'ar' => $validatedData['nameAr'],
@@ -122,7 +119,6 @@ class StudentRepository implements StudentRepositoryInterface{
     
         $validatedData['name'] = $formattedName;
         $student->update($validatedData);
-    
     }
 
 
