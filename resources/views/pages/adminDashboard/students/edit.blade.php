@@ -60,7 +60,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{ trans('Students_trans.email') }} :</label>
-                                    <input type="email" value="{{ $student->email }}" name="email" class="form-control">
+                                    <input type="email" value="{{ $student->email }}" name="email" class="form-control" required>
                                     @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -70,7 +70,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{ trans('Students_trans.password') }} :</label>
-                                    <input value="{{ $student->password }}" type="password" name="password" class="form-control">
+                                    <input value="{{ $student->password }}" type="password" name="password" class="form-control" required>
                                     @error('password')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -110,7 +110,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="bg_id">{{ trans('Students_trans.blood_type') }} :</label>
-                                    <select class="custom-select mr-sm-2" name="blood_id">
+                                    <select class="custom-select mr-sm-2" name="blood_id" required>
                                         <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
                                         @foreach($bloodTypes as $bloodType)
                                             <option value="{{ $bloodType->id }}" {{ $bloodType->id == $student->blood_id ? 'selected' : '' }}>{{ $bloodType->name }}</option>
@@ -125,7 +125,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label>{{ trans('Students_trans.Date_of_Birth') }} :</label>
-                                    <input class="form-control" type="text" value="{{ $student->date_birth }}" id="datepicker-action" name="date_birth" data-date-format="yyyy-mm-dd">
+                                    <input class="form-control" type="text" value="{{ $student->date_birth }}" id="datepicker-action" name="date_birth" data-date-format="yyyy-mm-dd" required>
                                     @error('date_birth')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -165,7 +165,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="section_id">{{ trans('Students_trans.section') }} :</label>
-                                    <select class="custom-select mr-sm-2" name="section_id">
+                                    <select class="custom-select mr-sm-2" name="section_id" required>
                                         <option value="{{ $student->section_id }}"> {{ $student->section->name }}</option>
                                     </select>
                                     @error('section_id')

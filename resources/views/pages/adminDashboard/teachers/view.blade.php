@@ -68,7 +68,8 @@
                                         <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">{{trans('teacher_trans.name')}}</th>
+                                            <th scope="col">{{trans('teacher_trans.Name_ar')}}</th>
+                                            <th scope="col">{{trans('teacher_trans.Name_en')}}</th>
                                             <th scope="col">{{trans('teacher_trans.email')}}</th>
                                             <th scope="col">{{trans('teacher_trans.gender_id')}}</th>
                                             <th scope="col">{{trans('teacher_trans.specialization')}}</th>
@@ -79,7 +80,8 @@
                                         <tbody>
                                         <tr>
                                             <th scope="row">{{$teacher->id}}</th>
-                                            <td>{{$teacher->name}}</td>
+                                            <td>{{$teacher->getTranslation('name' ,'ar') }}</td>
+                                            <td>{{$teacher->getTranslation('name' ,'en') }}</td>
                                             <td>{{$teacher->email}}</td>
                                             <td>{{$teacher->genders->name}}</td>
                                             <td>{{$teacher->specializations->name}}</td>
