@@ -11,7 +11,6 @@ use App\Models\Parentt;
 use App\Models\Section;
 use App\Models\Student;
 use App\Repositories\Interefaces\StudentRepositoryInterface;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 

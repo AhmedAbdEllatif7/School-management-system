@@ -4,16 +4,9 @@ namespace App\Observers;
 
 use App\Models\Image;
 use App\Models\Student;
-use App\Models\User;
 use App\Traits\AttachFilesTrait;
+use Illuminate\Support\Facades\File;
 
-//enhance the structure name of blade pages , 
-//edit route name to be best name convension , 
-//rename request validation to be name convension ,
-//rename request input to be more readable ,
-//enhance ajax method names ,
-//make observer of student to store photos and delete it's photo automatic ,
-//enhance student methods
 class StudentObserver
 {
     use AttachFilesTrait;
@@ -41,18 +34,55 @@ class StudentObserver
         $image->imageable_type = 'App\Models\Student';
         $image->save();
     }
-    
-    
-    
+
+
+
+
+
+
+
 
     public function updated(Student $student): void
     {
-        //
+        $this->manageStudentFolder($student);
     }
 
-    /**
-     * Handle the Student "deleted" event.
-     */
+
+
+    private function manageStudentFolder($student)
+    {
+        $oldStudentEmail = $student->getOriginal('email');
+        $newStudentEmail = $student->email;
+
+        if ($oldStudentEmail !== $newStudentEmail)
+        {
+            $this->renameStudentFolder($oldStudentEmail , $newStudentEmail);
+        }
+    }
+
+
+    private function renameStudentFolder($oldStudentEmail , $newStudentEmail)
+    {
+        $oldFolderPath = public_path('attachments/students/' . $oldStudentEmail);
+        $newFolderPath = public_path('attachments/students/' . $newStudentEmail);
+
+        if (File::exists($oldFolderPath))
+        {
+            rename($oldFolderPath , $newFolderPath);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public function deleted(Student $student): void
     {
         //
