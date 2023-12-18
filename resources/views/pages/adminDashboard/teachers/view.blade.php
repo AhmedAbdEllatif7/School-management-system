@@ -140,12 +140,12 @@
                                                     </td>
                                                     <td colspan="2">
                                                         <a class="btn btn-outline-success btn-sm"
-                                                            href="{{url('teachers/open-photo')}}/{{ $teacher->email }}/{{$image->filename}}"
+                                                            href="{{route('teacher.open.photo' , ['teacherEmail' => $teacher->email , 'fileName' => $image->filename])}}"
                                                             role="button"><i class="fas fa-eye"></i>&nbsp; {{trans('teacher_trans.view')}}
                                                         </a>
 
                                                         <a class="btn btn-outline-info btn-sm"
-                                                            href="{{url('teachers/download-photo')}}/{{ $teacher->email }}/{{$image->filename}}"
+                                                            href="{{route('download.teacher.photo' , ['teacherEmail' => $teacher->email , 'fileName' => $image->filename])}}"
                                                             role="button"><i class="fas fa-download"></i>&nbsp; {{trans('teacher_trans.Download')}}
                                                         </a>
 

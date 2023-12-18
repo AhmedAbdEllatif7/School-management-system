@@ -215,16 +215,16 @@ class StudentRepository implements StudentRepositoryInterface{
     }
 
 
-            public function downloadAttachments($studentName, $fileName)
-            {
-                $file = 'attachments/students/' . $studentName . '/' . $fileName;
-
-                if (!Storage::disk('upload_attachments')->exists($file)) {
-                    return redirect()->back()->with('error_file', trans('main_trans.File_not_found'));
-                }
-
-                return response()->download(Storage::disk('upload_attachments')->path($file));
-            }
+    public function downloadPhoto($studentEmail, $fileName)
+    {
+        $filePath = public_path('attachments/students/' . $studentEmail . '/' . $fileName);
+    
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        } else {
+            return redirect()->back()->with(['error' => trans('teacher_trans.not_found')]);
+        }
+    }
 
 
             

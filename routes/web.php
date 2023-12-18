@@ -153,7 +153,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
             Route::delete('student/delete-photo' ,  'deletePhotoFromDetails')->name('students.delete.photo');
 
-            Route::get('download_attachments/{students_name}/{filename}' ,  'downloadAttachments');
+            Route::get('students/download-photo/{studentEmail}/{fileName}' ,  'downloadPhoto')->name('download.student.photo');
 
             Route::get('view_file/{student_name}/{filename}' ,  'viewFile');
 
@@ -170,7 +170,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-        
+
         ###################################### Student ###########################
         Route::controller(PromotionController::class)->group(function () {
             Route::resource('promotion_students',PromotionController::class);

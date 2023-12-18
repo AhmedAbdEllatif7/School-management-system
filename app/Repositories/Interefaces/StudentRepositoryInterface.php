@@ -23,7 +23,7 @@ interface StudentRepositoryInterface{
 
     public function deletePhotoFromDetails($request);
 
-    public function downloadAttachments($studentName , $fileName);
+    public function downloadPhoto($studentEmail , $fileName);
 
 
     public function viewFile($studentName , $fileName);

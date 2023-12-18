@@ -75,15 +75,10 @@ class StudentController extends Controller
     }
 
 
+    public function downloadPhoto($studentEmail , $fileName){
 
-
-
-
-    
-        public function downloadAttachments($studentName , $fileName){
-
-            return $this->student->downloadAttachments($studentName , $fileName);
-        }
+        return $this->student->downloadPhoto($studentEmail , $fileName);
+    }
 
 
 
