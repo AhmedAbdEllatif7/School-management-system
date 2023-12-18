@@ -22,16 +22,16 @@ class GradeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'List_Grades.*.name_ar' => 'required',
-            'List_Grades.*.name_en' => 'required',
+            'listOfGrades.*.name_ar' => 'required',
+            'listOfGrades.*.name_en' => 'required',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'List_Grades.*.name_ar'  => trans('grade_trans.missing_name_ar'),
-            'List_Grades.*.name_en' => trans('grade_trans.missing_name_en'),
+            'listOfGrades.*.name_ar'  => trans('grade_trans.missing_name_ar'),
+            'listOfGrades.*.name_en' => trans('grade_trans.missing_name_en'),
 
         ];
     }
