@@ -216,8 +216,9 @@ return [
     'th_question_name' => 'اسم السؤال',
 
     'edit_question' => 'تعديل سؤال',
-    'show_password' => 'Show password',
+    'show_password' => 'عرض كلمة السر',
     'add_new_book' => 'إضافة كتاب جديد',
+    'photo' => 'الصورة',
 
 
 

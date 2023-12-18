@@ -41,8 +41,6 @@ class StudentObserver
 
 
 
-
-
     public function updated(Student $student): void
     {
         $this->manageStudentFolder($student);

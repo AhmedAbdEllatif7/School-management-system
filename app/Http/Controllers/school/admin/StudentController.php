@@ -62,33 +62,29 @@ class StudentController extends Controller
         return $this->student->destroy($request);
     }
 
-    public function getClassrooms($id)
+
+    public function addPhotoFromDetails(Request $request) 
     {
-        return $this->student->getClassrooms($id);
-    }
-
-    public function getSections($id){
-
-        return $this->student->getSections($id);
+        return $this->student->addPhotoFromDetails($request);
     }
 
 
+    public function deletePhotoFromDetails(Request $request)
+    {
+        return $this->student->deletePhotoFromDetails($request);
+    }
 
 
-        public function uploadAttachments(Request $request){
 
-            return $this->student->uploadAttachments($request);
-        }
 
+
+
+    
         public function downloadAttachments($studentName , $fileName){
 
             return $this->student->downloadAttachments($studentName , $fileName);
         }
 
-        public function deleteAttachment(Request $request){
-
-            return $this->student->deleteAttachment($request);
-        }
 
 
         public function viewFile($studentName , $fileName){
@@ -117,4 +113,14 @@ class StudentController extends Controller
         }
 
 
+
+    //for ajax
+    public function getClassrooms($id)
+    {
+        return $this->student->getClassrooms($id);
+    }
+
+    public function getSections($id) {
+        return $this->student->getSections($id);
+    }
 }

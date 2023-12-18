@@ -44,8 +44,8 @@ return [
     'Deleted_Student_tilte' => 'Are you sure to delete the student ?',
     'Delete_attachment' => 'Delete_attachment',
     'Delete_attachment_tilte' => 'Are you sure to delete the attachment?',
-    'filename' => 'filename',
-    'created_at' => 'created_at',
+    'filename' => 'File name',
+    'created_at' => 'Created at',
     'Download' => 'Download',
     'delete' => 'Delete',
     'Student_Edit' => 'Student Edit',
@@ -213,4 +213,5 @@ return [
 
     'edit_question' => 'Edit question',
     'add_new_book' => 'Add new book',
+    'photo' => 'Photo',
 ];

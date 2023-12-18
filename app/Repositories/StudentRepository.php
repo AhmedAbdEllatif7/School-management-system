@@ -10,7 +10,9 @@ use App\Models\Nationality;
 use App\Models\Parentt;
 use App\Models\Section;
 use App\Models\Student;
+use App\Observers\StudentObserver;
 use App\Repositories\Interefaces\StudentRepositoryInterface;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -126,16 +128,11 @@ class StudentRepository implements StudentRepositoryInterface{
 
 
 
-
-
     public function destroy($request)
     {
         Student::findOrFail($request->id)->forceDelete();
         return redirect()->back()->with(['deleteStudent' => trans('Students_trans.Student deleted successfully.') ]);;
     }
-
-
-
 
 
 
@@ -151,27 +148,71 @@ class StudentRepository implements StudentRepositoryInterface{
 
 
 
-
-
-    public function uploadAttachments($request)
+    public function addPhotoFromDetails($request)
     {
-        if ($request->hasFile('photos')) {
-            foreach ($request->file('photos') as $file) {
-                $name = $file->getClientOriginalName();
-                $file->storeAs('attachments/students/' . $request->student_name, $name, 'upload_attachments');
-
-                // insert in image_table
-                $image = new Image();
-                $image->filename = $name;
-                $image->imageable_id = $request->student_id;
-                $image->imageable_type = 'App\Models\Student';
-                $image->save();
-            }
+        $student = $this->findStudentById($request->student_id);
+        
+        if ($student) {
+            $this->handlePhotoUpload($student);
+            return redirect()->back()->with(['add_photo' => trans('main_trans.photo_added')]);
         }
-
-        return redirect()->back()->with(['add_attachment' => trans('Students_trans.File Stored successfully.') ]);
+        return redirect()->back()->with(['not_found' => trans('main_trans.File_not_found')]);
     }
 
+    
+
+
+    private function handlePhotoUpload($student)
+    {
+        StudentObserver::uploadStudentPhoto($student);
+    }
+
+
+
+
+    public function deletePhotoFromDetails($request)
+    {
+        DB::beginTransaction();
+        try {
+            $this->deleteFileFromStorage($request->studentEmail, $request->fileName);
+            $this->deleteImageRecord($request->studentId, $request->fileName);
+    
+            // If everything is successful, commit the transaction
+            DB::commit();
+    
+            return redirect()->back()->with(['delete_attachment' => trans('teacher_trans.photo_deleted')]);
+        } catch (\Exception $e) {
+            // Something went wrong, rollback the transaction
+            DB::rollBack();
+                return redirect()->back()->with(['error' => trans('teacher_trans.not_found')]);
+        }
+    }
+    
+
+
+
+
+    private function deleteFileFromStorage($studentEmail, $fileName)
+    {
+        Storage::disk('upload_attachments')->delete('students/'.$studentEmail.'/'.$fileName);
+        $directory = 'teachers/'.$studentEmail;
+    
+        $files = Storage::disk('upload_attachments')->files($directory);
+    
+        if (empty($files)) {
+            Storage::disk('upload_attachments')->deleteDirectory($directory);
+        }
+    }
+    
+    private function deleteImageRecord($studentId, $fileName)
+    {
+        $image = Image::where('imageable_id', $studentId)->where('filename', $fileName)->first();
+        if ($image) {
+            $image->delete();
+            return true; 
+        }
+        return false; 
+    }
 
 
             public function downloadAttachments($studentName, $fileName)
@@ -186,22 +227,7 @@ class StudentRepository implements StudentRepositoryInterface{
             }
 
 
-            public function deleteAttachment($request)
-            {
-                $file = 'attachments/students/' . $request->student_name . '/' . $request->filename;
-
-                if (!Storage::disk('upload_attachments')->exists($file)) {
-                    return redirect()->back()->with('error_file', trans('main_trans.File_not_found'));
-                }
-
-                // Delete img in server disk
-                Storage::disk('upload_attachments')->delete($file);
-
-                // Delete in data
-                Image::where('id', $request->id)->where('filename', $request->filename)->delete();
-
-                return redirect()->back()->with(['delete_attachment' => trans('Students_trans.File deleted successfully')]);
-            }
+            
 
             public function viewFile($studentName, $fileName)
             {

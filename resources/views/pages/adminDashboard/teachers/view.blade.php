@@ -54,7 +54,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-02-tab" data-toggle="tab" href="#profile-02"
                                         role="tab" aria-controls="profile-02"
-                                        aria-selected="false">{{trans('Students_trans.Attachments')}}</a>
+                                        aria-selected="false">{{trans('students_trans.Attachments')}}</a>
                                 </li>
                             </ul>
                         
@@ -102,7 +102,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label
-                                                            for="academic_year">{{trans('Students_trans.Attachments')}}
+                                                            for="academic_year">{{trans('students_trans.Attachments')}}
                                                                     : <span class="text-danger">*</span></label>
                                                                 <input type="file" accept="image/*" name="photo" multiple required>
                                                                 {{-- <input type="hidden" name="teacher_name" value="{{$teacher->name}}"> --}}
@@ -112,7 +112,7 @@
                                                 </div>
                                                 <br><br>
                                                 <button type="submit" class="button button-border x-small">
-                                                    {{trans('Students_trans.submit')}}
+                                                    {{trans('students_trans.submit')}}
                                                 </button>
                                             </form>
                                         </div>
@@ -122,10 +122,10 @@
                                             <thead>
                                             <tr class="table-secondary">
                                                 <th scope="col">#</th>
-                                                <th scope="col">{{trans('Students_trans.filename')}}</th>
-                                                <th scope="col">{{trans('Students_trans.created_at')}}</th>
-                                                <th scope="col">{{trans('Students_trans.photos')}}</th>
-                                                <th scope="col">{{trans('Students_trans.Processes')}}</th>
+                                                <th scope="col">{{trans('students_trans.filename')}}</th>
+                                                <th scope="col">{{trans('students_trans.created_at')}}</th>
+                                                <th scope="col">{{trans('students_trans.photo')}}</th>
+                                                <th scope="col">{{trans('students_trans.Processes')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -135,16 +135,17 @@
                                                     <td>{{$image->filename}}</td>
                                                     <td>{{$image->created_at->diffForHumans()}}</td>
                                                     <td> <div class="col-md-3 mb-3">
-                                                        <img src="{{ asset('attachments/teachers/' . $teacher->email . '/' . $image->filename) }}" alt="Teacher Image" style="width:100px; height:100px;">
-                                                    </div></td>
+                                                            <img src="{{ asset('attachments/teachers/' . $teacher->email . '/' . $image->filename) }}" alt="Teacher Image" style="width:100px; height:100px;">
+                                                        </div>
+                                                    </td>
                                                     <td colspan="2">
                                                         <a class="btn btn-outline-success btn-sm"
-                                                            href="{{url('teacher/open-photo')}}/{{ $teacher->email }}/{{$image->filename}}"
+                                                            href="{{url('teachers/open-photo')}}/{{ $teacher->email }}/{{$image->filename}}"
                                                             role="button"><i class="fas fa-eye"></i>&nbsp; {{trans('teacher_trans.view')}}
                                                         </a>
 
                                                         <a class="btn btn-outline-info btn-sm"
-                                                            href="{{url('teacher/download-photo')}}/{{ $teacher->email }}/{{$image->filename}}"
+                                                            href="{{url('teachers/download-photo')}}/{{ $teacher->email }}/{{$image->filename}}"
                                                             role="button"><i class="fas fa-download"></i>&nbsp; {{trans('teacher_trans.Download')}}
                                                         </a>
 

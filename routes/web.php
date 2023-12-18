@@ -126,13 +126,13 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
             
             Route::controller(TeacherController::class)->group(function () {
             // Additional routes
-            Route::post('teacher/upload-photo' , 'addPhotoFromDetails')->name('teacher.upload.photo');
+            Route::post('teachers/upload-photo' , 'addPhotoFromDetails')->name('teacher.upload.photo');
 
-            Route::get('teacher/open-photo/{teacherEmail}/{fileName}' , 'openPhoto')->name('teacher.open.photo');
+            Route::get('teachers/open-photo/{teacherEmail}/{fileName}' , 'openPhoto')->name('teacher.open.photo');
 
             Route::delete('teacher/delete-photo' ,'deletePhotoFromDetails')->name('delete.teacher.photo');
 
-            Route::get('teacher/download-photo/{teacherEmail}/{fileName}' , 'downloadPhoto')->name('download.teacher.photo');
+            Route::get('teachers/download-photo/{teacherEmail}/{fileName}' , 'downloadPhoto')->name('download.teacher.photo');
         });
 
         ###################################### End Teacher ###########################
@@ -148,16 +148,29 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         Route::resource('students' , StudentController::class);
 
         Route::controller(StudentController::class)->group(function () {
+            // Additional routes
+            Route::post('students/upload-photo' ,  'addPhotoFromDetails')->name('students.upload.photo');
+
+            Route::delete('student/delete-photo' ,  'deletePhotoFromDetails')->name('students.delete.photo');
+
+            Route::get('download_attachments/{students_name}/{filename}' ,  'downloadAttachments');
+
+            Route::get('view_file/{student_name}/{filename}' ,  'viewFile');
+
+            //for ajax
             Route::get('get-classrooms/{id}' ,  'getClassrooms');
             Route::get('get-sections/{id}' ,  'getSections');
-
-            Route::post('upload_attachments' ,  'uploadAttachments');
-            Route::post('delete_attachment' ,  'deleteAttachment');
-            Route::get('download_attachments/{students_name}/{filename}' ,  'downloadAttachments');
-            Route::get('view_file/{student_name}/{filename}' ,  'viewFile');
         });
 
+        ###################################### End Student ################################
 
+
+
+
+
+
+
+        
         ###################################### Student ###########################
         Route::controller(PromotionController::class)->group(function () {
             Route::resource('promotion_students',PromotionController::class);

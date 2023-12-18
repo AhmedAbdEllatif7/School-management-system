@@ -164,7 +164,7 @@ class TeacherRepository implements TeacherRepositoryInterface {
         DB::beginTransaction();
         try {
             $this->deleteFileFromStorage($request->teacherEmail, $request->fileName);
-            $this->deleteImageRecord($request->id, $request->fileName);
+            $this->deleteImageRecord($request->teacherId, $request->fileName);
     
             // If everything is successful, commit the transaction
             DB::commit();
@@ -189,9 +189,9 @@ class TeacherRepository implements TeacherRepositoryInterface {
         }
     }
     
-    private function deleteImageRecord($imageId, $fileName)
+    private function deleteImageRecord($teacherId, $fileName)
     {
-        $image = Image::where('imageable_id', $imageId)->where('filename', $fileName)->first();
+        $image = Image::where('imageable_id', $teacherId)->where('filename', $fileName)->first();
         if ($image) {
             $image->delete();
             return true; 

@@ -19,11 +19,12 @@ interface StudentRepositoryInterface{
 
     public function destroy($request);
 
-    public function uploadAttachments($request);
+    public function addPhotoFromDetails($request);
+
+    public function deletePhotoFromDetails($request);
 
     public function downloadAttachments($studentName , $fileName);
 
-    public function deleteAttachment($request);
 
     public function viewFile($studentName , $fileName);
 

@@ -22,6 +22,8 @@
             </div>
         @endif
 
+
+
         @if(session('error_file'))
                     <div class="alert alert-danger text-center" style="width: 40%; margin: auto;">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -103,16 +105,17 @@
                                         <div class="card-body">
 
 
-                                            <form method="post" action="{{url('upload_attachments')}}" enctype="multipart/form-data">
+                                            <form method="post" action="{{route('students.upload.photo')}}" enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label
                                                             for="academic_year">{{trans('students_trans.Attachments')}}
                                                             : <span class="text-danger">*</span></label>
-                                                        <input type="file" accept="image/*" name="photos[]" multiple required>
-                                                        <input type="hidden" name="student_name" value="{{$student->name}}">
+                                                        <input type="file" accept="image/*" name="photo"  required>
                                                         <input type="hidden" name="student_id" value="{{$student->id}}">
+                                                        <input type="hidden" name="email" value="{{$student->email}}">
+                                                        <input type="hidden" name="email" value="{{$student->email}}">
                                                     </div>
                                                 </div>
                                                 <br><br>
@@ -129,31 +132,36 @@
                                                 <th scope="col">#</th>
                                                 <th scope="col">{{trans('students_trans.filename')}}</th>
                                                 <th scope="col">{{trans('students_trans.created_at')}}</th>
+                                                <th scope="col">{{trans('students_trans.photo')}}</th>
                                                 <th scope="col">{{trans('students_trans.Processes')}}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach( $student->images as $attachment)
+                                            @foreach( $student->images as $image)
                                                 <tr style='text-align:center;vertical-align:middle'>
                                                     <td>{{$loop->iteration}}</td>
-                                                    <td>{{$attachment->filename}}</td>
-                                                    <td>{{$attachment->created_at->diffForHumans()}}</td>
+                                                    <td>{{$image->filename}}</td>
+                                                    <td>{{$image->created_at->diffForHumans()}}</td>
+                                                    <td> <div class="col-md-3 mb-3">
+                                                            <img src="{{ asset('attachments/students/' . $student->email . '/' . $image->filename) }}" alt="Student Image" style="width:100px; height:100px;">
+                                                        </div>
+                                                    </td>
                                                     <td colspan="2">
                                                         <a class="btn btn-outline-info btn-sm"
-                                                        href="{{url('download_attachments')}}/{{ $attachment->imageable->name }}/{{$attachment->filename}}"
+                                                        href="{{url('download_attachments')}}/{{ $image->imageable->name }}/{{$image->filename}}"
                                                         role="button"><i class="fas fa-download"></i>&nbsp; {{trans('students_trans.Download')}}</a>
 
                                                         <button type="button" class="btn btn-outline-danger btn-sm"
                                                                 data-toggle="modal"
-                                                                data-target="#Delete_img{{ $attachment->id }}"
-                                                                title="{{ trans('Grades_trans.Delete') }}">{{trans('students_trans.delete')}}
+                                                                data-target="#Delete_img{{ $image->id }}"
+                                                                title="{{ trans('Grades_trans.Delete') }}"><i class="fas fa-trash"></i>&nbsp;{{trans('teacher_trans.delete')}}
                                                         </button>
 
-                                                        <a href="{{url('view_file')}}/{{ $attachment->imageable->name }}/{{$attachment->filename}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" title="{{ trans('students_trans.View') }}"><i class="far fa-eye"></i></a>
+                                                        <a href="{{url('view_file')}}/{{ $image->imageable->name }}/{{$image->filename}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" title="{{ trans('students_trans.View') }}"><i class="far fa-eye"></i></a>
 
                                                     </td>
                                                 </tr>
-                                                @include('pages.Students.Delete_img')
+                                                @include('pages.adminDashboard.students.deletePhoto')
                                             @endforeach
                                             </tbody>
                                         </table>
