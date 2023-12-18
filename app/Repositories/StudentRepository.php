@@ -127,6 +127,7 @@ class StudentRepository implements StudentRepositoryInterface{
 
 
 
+
     public function destroy($request)
     {
         Student::findOrFail($request->id)->forceDelete();
@@ -134,12 +135,23 @@ class StudentRepository implements StudentRepositoryInterface{
     }
 
 
-        public function showStudent($id)
-        {
-            $Student = Student::findOrFail($id);
-            return view('pages.Students.show' , compact('Student'));
 
-        }
+
+
+
+
+
+    public function show($student)
+    {
+        return view('pages.adminDashboard.students.show' , compact('student'));
+    }
+
+
+
+
+
+
+
 
     public function uploadAttachments($request)
     {

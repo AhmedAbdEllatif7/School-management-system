@@ -51,10 +51,9 @@ class StudentController extends Controller
     }
 
 
-
-    public function show($id)
+    public function show(Student $student)
     {
-        return$this->student->showStudent($id);
+        return$this->student->show($student);
     }
 
 

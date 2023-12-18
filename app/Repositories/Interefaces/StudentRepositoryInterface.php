@@ -15,7 +15,7 @@ interface StudentRepositoryInterface{
 
     public function update($request);
 
-    public function showStudent($id);
+    public function show($student);
 
     public function destroy($request);
 
