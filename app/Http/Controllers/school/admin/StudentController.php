@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\school\student;
+namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStudent;
+use App\Http\Requests\StudentRequest;
 use App\Models\Section;
 use App\Models\Student;
 use App\Repositories\Interefaces\StudentRepositoryInterface;
@@ -22,55 +23,41 @@ class StudentController extends Controller
 
     public function index()
     {
-        $students = Student::all();
-        return view('pages.Students.index' , compact('students'));
+        return $this->student->index();
     }
 
 
     public function create()
     {
-        return $this->student->Create_Student();
+        return $this->student->create();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreStudent $request)
+
+    public function store(StudentRequest $request)
     {
-        return $this->student->storeStudent($request);
+        return $this->student->store($request);
     }
 
-    /**
-     * Display the specified resource.
-     */
+
+    public function edit(Student $student)
+    {
+        return $this->student->edit($student);
+    }
+
+
+    public function update(StudentRequest $request)
+    {
+        return $this->student->update($request);
+    }
+
+
+
     public function show($id)
     {
         return$this->student->showStudent($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        $id = Crypt::decrypt($id);
 
-        return $this->student->editForm($id);
-
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(StoreStudent $request)
-    {
-        return $this->student->updateStudent($request);
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request)
     {
         return $this->student->deleteStudent($request);
@@ -78,7 +65,7 @@ class StudentController extends Controller
 
     public function getClassrooms($id)
     {
-       return $this->student->getClassrooms($id);
+        return $this->student->getClassrooms($id);
     }
 
     public function getSections($id){
@@ -87,22 +74,14 @@ class StudentController extends Controller
     }
 
 
-    public function getNewSections($id){
 
-            return $this->student->getNewSection($id);
-        }
 
-     public function getNewClassroom($id){
-
-            return $this->student->getNewClassroom($id);
-        }
-
-     public function uploadAttachments(Request $request){
+        public function uploadAttachments(Request $request){
 
             return $this->student->uploadAttachments($request);
         }
 
-     public function downloadAttachments($studentName , $fileName){
+        public function downloadAttachments($studentName , $fileName){
 
             return $this->student->downloadAttachments($studentName , $fileName);
         }

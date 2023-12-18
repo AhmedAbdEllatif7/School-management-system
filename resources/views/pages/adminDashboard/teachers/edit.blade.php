@@ -32,6 +32,7 @@
                             <form action="{{route('teachers.update' , $teacher->id)}}" method="POST">
                                 @method('PUT')
                             @csrf
+                            <input name="id" value="{{$teacher->id}}" type="hidden">
                             <div class="form-row">
                                 <div class="col">
                                     <label for="title">{{trans('teacher_trans.Email')}}</label>

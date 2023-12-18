@@ -17,7 +17,7 @@ class SectionRepository implements SectionRepositoryInterface
         $gradesWithItsSections = Grade::with('sections')->get();
         $AllGrades = Grade::all();
         $teachers = Teacher::all();
-        return view('pages.sections.index',compact(['gradesWithItsSections' , 'AllGrades' , 'teachers']));
+        return view('pages.adminDashboard.sections.index',compact(['gradesWithItsSections' , 'AllGrades' , 'teachers']));
     }
 
 

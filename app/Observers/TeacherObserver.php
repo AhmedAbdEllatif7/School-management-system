@@ -24,7 +24,7 @@ class TeacherObserver
     {
         if (request()->hasFile('photo')) {
             $fileName = self::uploadFile(request(), 'photo', 'teachers/' . request()->email);
-            self::createImageRecord($fileName, $teacher->id); // Pass teacher ID here
+            self::createImageRecord($fileName, $teacher->id); 
         }
     }
     

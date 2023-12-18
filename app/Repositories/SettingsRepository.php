@@ -16,7 +16,7 @@ class SettingsRepository implements SettingsRepositoryInterface
         $setting['setting'] = $collection->flatMap(function ($collection) {
             return [$collection->key => $collection->value];
         });
-        return view('pages.setting.index', $setting);
+        return view('pages.adminDashboard.settings.index', $setting);
     }
 
     public function update($request){

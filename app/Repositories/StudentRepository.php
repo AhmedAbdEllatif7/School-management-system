@@ -18,137 +18,126 @@ use Illuminate\Support\Facades\Storage;
 
 class StudentRepository implements StudentRepositoryInterface{
 
-   public function Create_Student(){
-
-//
-//       $Grades = Grade::all();
-//       $Genders = Gender::all();
-//       $nationals = Nationality::all();
-//       $bloods = Blood::all();
-//       $my_classes = Classroom::all();
-//       $parents = Parentt::all();
-//       return view('pages.Students.add',compact(['Grades' , 'Genders' , 'nationals' , 'bloods' , 'my_classes' , 'parents']));
 
 
-       $data['my_classes'] = Classroom::all();
-       $data['Grades'] = Grade::all();
-       $data['parents'] = Parentt::all();
-       $data['Genders'] = Gender::all();
-       $data['nationals'] = Nationality::all();
-       $data['bloods'] = Blood::all();
-       return view('pages.Students.add',$data);
-
-    }
-
-    public function getClassrooms($id)
+    public function index()
     {
-        $list_classes = Classroom::where("grade_id", $id)->pluck("name", "id");
-        return $list_classes;
+        $students = Student::all();
+        return view('pages.adminDashboard.students.index' , compact('students'));
     }
 
-    public function getNewClassroom($id)
-        {
-            $list_classes = Classroom::where("grade_id", $id)->pluck("name", "id");
-            return $list_classes;
-        }
 
-    public function getNewSection($id)
-            {
-                $list_sections = Section::where("class_id", $id)->pluck("name", "id");
-                return $list_sections;
-            }
 
-    public function getSections($id){
-
-        $list_sections = Section::where("class_id", $id)->pluck("name", "id");
-        return $list_sections;
-    }
-
-    public function storeStudent($request)
+    public function create()
     {
+        $grades = Grade::all();
+        $genders = Gender::all();
+        $nationals = Nationality::all();
+        $bloodTypes = Blood::all();
+        $classes = Classroom::all();
+        $parents = Parentt::all();
+    
+        return view('pages.adminDashboard.students.create', compact('grades', 'genders', 'nationals', 'bloodTypes', 'classes', 'parents'));
+    }
+    
 
-        DB::beginTransaction();
 
 
+
+    public function store($request)
+    {
         try {
-            $student = new Student();
-            $student->name = ['en' => $request->name_en, 'ar' => $request->name_ar];
-            $student->email = $request->email;
-            $student->password = Hash::make($request->password);
-            $student->gender_id = $request->gender_id;
-            $student->nationalitie_id = $request->nationalitie_id;
-            $student->blood_id = $request->blood_id;
-            $student->date_birth = $request->Date_Birth;
-            $student->grade_id = $request->Grade_id;
-            $student->classroom_id = $request->Classroom_id;
-            $student->section_id = $request->section_id;
-            $student->parent_id = $request->parent_id;
-            $student->academic_year = $request->academic_year;
-            $student->save();
-
-
-            if($request->hasfile('photos'))
-            {
-                foreach($request->file('photos') as $file)
-                {
-                    $name = $file->getClientOriginalName();
-                    $file->storeAs('attachments/students/'.$request->name_ar, $file->getClientOriginalName(),'upload_attachments');
-
-                    // insert in image_table
-                    $images= new Image();
-                    $images->filename=$name;
-                    $images->imageable_id= $student->id;
-                    $images->imageable_type = 'App\Models\Student';
-                    $images->save();
-                }
-            }
-            DB::commit();
-
+            $this->storeStudent($request);    
             return redirect()->back()->with('add_student', trans('Students_trans.Student added successfully.'));
+        } 
+        catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+    
+
+    private function storeStudent($request)
+    {
+        $student = new Student();
+        $student->name = ['en' => $request->nameEn, 'ar' => $request->nameAr];
+        $student->email = $request->email;
+        $student->password = Hash::make($request->password);
+        $student->gender_id = $request->genderId;
+        $student->nationalitie_id = $request->nationalitieId;
+        $student->blood_id = $request->bloodId;
+        $student->date_birth = $request->dateBirth;
+        $student->grade_id = $request->gradeId;
+        $student->classroom_id = $request->classroomId;
+        $student->section_id = $request->sectionId;
+        $student->parent_id = $request->parentId;
+        $student->academic_year = $request->academicYear;
+        $student->save();
+        return $student;
+    }
 
 
-        } catch (\Exception $e) {
-            DB::rollback();
+
+
+
+
+    public function edit($student)
+    {
+        $grades = Grade::all();
+        $genders = Gender::all();
+        $nationals = Nationality::all();
+        $bloodTypes = Blood::all();
+        $classrooms = Classroom::all();
+        $parents = Parentt::all();
+        return view('pages.adminDashboard.students.edit' , compact('student', 'grades', 'genders', 'nationals', 'bloodTypes', 'classrooms', 'parents'));
+    }
+
+
+
+
+
+    public function update($request)
+    {
+        try {
+            $student = $this->findStudentById($request->id);
+            $this->updateStudentAttributes($student, $request);
+            return redirect()->route('students.index')->with(['updateStudent' => trans('Students_trans.Student updated successfully.')]);
+        }
+        catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
-
-    public function editForm($id)
+    private function findStudentById($studentId)
     {
-        $data['my_classes'] = Classroom::all();
-        $data['Grades'] = Grade::all();
-        $data['parents'] = Parentt::all();
-        $data['Genders'] = Gender::all();
-        $data['nationals'] = Nationality::all();
-        $data['bloods'] = Blood::all();
-        $data['Students'] = Student::findOrFail($id);
-        return view('pages.Students.edit' , $data);
+        return Student::findOrFail($studentId);
     }
 
-     public function updateStudent($request)
-        {
-            try {
-                $Edit_Students = Student::findorfail($request->id);
-                $Edit_Students->name = ['ar' => $request->name_ar, 'en' => $request->name_en];
-                $Edit_Students->email = $request->email;
-                $Edit_Students->password = Hash::make($request->password);
-                $Edit_Students->gender_id = $request->gender_id;
-                $Edit_Students->nationalitie_id = $request->nationalitie_id;
-                $Edit_Students->blood_id = $request->blood_id;
-                $Edit_Students->Date_Birth = $request->Date_Birth;
-                $Edit_Students->Grade_id = $request->Grade_id;
-                $Edit_Students->Classroom_id = $request->Classroom_id;
-                $Edit_Students->section_id = $request->section_id;
-                $Edit_Students->parent_id = $request->parent_id;
-                $Edit_Students->academic_year = $request->academic_year;
-                $Edit_Students->save();
+    private function updateStudentAttributes($student, $request)
+    {
+        $student->name = ['ar' => $request->nameAr, 'en' => $request->nameEn];
+        $student->email = $request->email;
+        $student->password = Hash::make($request->password);
+        $student->gender_id = $request->genderId;
+        $student->nationalitie_id = $request->nationalitieId;
+        $student->blood_id = $request->bloodId;
+        $student->date_birth = $request->dateBirth;
+        $student->grade_id = $request->gradeId;
+        $student->classroom_id = $request->classroomId;
+        $student->section_id = $request->sectionId;
+        $student->parent_id = $request->parentId;
+        $student->academic_year = $request->academicYear;
+        $student->save();
+    }
 
-                return redirect()->route('students.index')->with(['updateStudent' => trans('Students_trans.Student updated successfully.')]);
-            } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-            }
-        }
+
+
+
+
+
+
+
+
+
 
 
         public function deleteStudent($request)
@@ -227,6 +216,27 @@ class StudentRepository implements StudentRepositoryInterface{
                 return response()->file(Storage::disk('upload_attachments')->path($file));
             }
 
+
+
+
+
+
+
+            // for ajax
+            public function getClassrooms($id)
+            {
+                $classroomList = Classroom::where("grade_id", $id)->pluck("name", "id");
+                return $classroomList;
+            }
+        
+        
+        
+            // for ajax
+            public function getSections($id){
+        
+                $sectionList = Section::where("class_id", $id)->pluck("name", "id");
+                return $sectionList;
+            }
 
 }
 

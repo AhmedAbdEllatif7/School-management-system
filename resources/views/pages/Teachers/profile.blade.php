@@ -1,17 +1,17 @@
-@extends('layouts.master')
-@section('css')
+    @extends('layouts.master')
+    @section('css')
     @section('title')
         {{trans('main_trans.profile')}}
     @stop
-@endsection
-@section('page-header')
+    @endsection
+    @section('page-header')
     <!-- breadcrumb -->
     @section('PageTitle')
         {{trans('main_trans.profile')}}
     @stop
     <!-- breadcrumb -->
-@endsection
-@section('content')
+    @endsection
+    @section('content')
     <!-- row -->
 
     @if(session('edit_done'))
@@ -29,8 +29,8 @@
                     <div class="card mb-4">
                         <div class="card-body text-center">
                             <img src="{{URL::asset('assets/images/teacher.png')}}"
-                                 alt="avatar"
-                                 class="rounded-circle img-fluid" style="width: 150px;">
+                                    alt="avatar"
+                                    class="rounded-circle img-fluid" style="width: 150px;">
                             <h5 style="font-family: Cairo" class="my-3">{{$information->name}}</h5>
                             <p class="text-muted mb-1">{{$information->email}}</p>
                         </div>
@@ -48,8 +48,8 @@
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">
                                             <input type="text" name="Name_ar"
-                                                   value="{{ $information->getTranslation('name', 'ar') }}"
-                                                   class="form-control">
+                                                    value="{{ $information->getTranslation('name', 'ar') }}"
+                                                    class="form-control">
                                         </p>
                                     </div>
                                 </div>
@@ -61,8 +61,8 @@
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">
                                             <input type="text" name="Name_en"
-                                                   value="{{ $information->getTranslation('name', 'en') }}"
-                                                   class="form-control">
+                                                    value="{{ $information->getTranslation('name', 'en') }}"
+                                                    class="form-control">
                                         </p>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                                             <input type="password" id="password" class="form-control" name="password">
                                         </p><br><br>
                                         <input type="checkbox" class="form-check-input" onclick="myFunction()"
-                                               id="exampleCheck1">
+                                                id="exampleCheck1">
                                         <label class="form-check-label" for="exampleCheck1">{{trans('main_trans.show_password')}}</label>
                                     </div>
                                 </div>
@@ -90,8 +90,8 @@
         </section>
     </div>
     <!-- row closed -->
-@endsection
-@section('js')
+    @endsection
+    @section('js')
 
     <script>
         function myFunction() {
@@ -103,4 +103,4 @@
             }
         }
     </script>
-@endsection
+    @endsection

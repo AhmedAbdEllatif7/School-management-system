@@ -5,27 +5,17 @@ namespace App\Repositories\Interefaces;
 interface StudentRepositoryInterface{
 
 
-    // Get Add Form Student
-    public function Create_Student();
+    public function index();
 
-    // Get classrooms
-    public function getClassrooms($id);
+    public function create();
 
-    //Get Sections
-    public function getSections($id);
+    public function store($request);
 
-    public function getNewClassroom($id);
+    public function edit($student);
 
-    public function getNewSection($id);
-
-    //Store_Student
-    public function storeStudent($request);
-
-    public function editForm($id);
+    public function update($request);
 
     public function showStudent($id);
-
-    public function updateStudent($request);
 
     public function deleteStudent($request);
 
@@ -35,10 +25,11 @@ interface StudentRepositoryInterface{
 
     public function deleteAttachment($request);
 
-
     public function viewFile($studentName , $fileName);
 
+    public function getClassrooms($id);
 
+    public function getSections($id);
 
 
 }

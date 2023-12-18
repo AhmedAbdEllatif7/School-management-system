@@ -41,8 +41,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{{ trans('Students_trans.name_ar') }} : <span class="text-danger">*</span></label>
-                                <input type="text" name="name_ar" class="form-control" required>
-                                @error('name_ar')
+                                <input type="text" name="nameAr" class="form-control" required>
+                                @error('nameAr')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -51,8 +51,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>{{ trans('Students_trans.name_en') }} : <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="name_en" required>
-                                @error('name_en')
+                                <input type="text" class="form-control" name="nameEn" required>
+                                @error('nameEn')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -83,13 +83,13 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="gender">{{ trans('Students_trans.gender') }} : <span class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="gender_id" required>
+                                <select class="custom-select mr-sm-2" name="genderId" required>
                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
-                                    @foreach($Genders as $Gender)
-                                        <option value="{{ $Gender->id }}">{{ $Gender->name }}</option>
+                                    @foreach($genders as $gender)
+                                        <option value="{{ $gender->id }}">{{ $gender->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('gender_id')
+                                @error('genderId')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -98,13 +98,13 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="nationalitie_id">{{ trans('Students_trans.Nationality') }} : <span class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="nationalitie_id" required>
+                                <select class="custom-select mr-sm-2" name="nationalitieId" required>
                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
-                                    @foreach($nationals as $nal)
-                                        <option value="{{ $nal->id }}">{{ $nal->name }}</option>
+                                    @foreach($nationals as $national)
+                                        <option value="{{ $national->id }}">{{ $national->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('nationalitie_id')
+                                @error('nationalitieId')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -113,13 +113,13 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="blood_id">{{ trans('Students_trans.blood_type') }} :</label>
-                                <select class="custom-select mr-sm-2" name="blood_id" required>
+                                <select class="custom-select mr-sm-2" name="bloodId" required>
                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
-                                    @foreach($bloods as $bg)
-                                        <option value="{{ $bg->id }}">{{ $bg->name }}</option>
+                                    @foreach($bloodTypes as $bloodType)
+                                        <option value="{{ $bloodType->id }}">{{ $bloodType->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('blood_id')
+                                @error('bloodId')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -128,8 +128,8 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>{{ trans('Students_trans.Date_of_Birth') }} :</label>
-                                <input class="form-control" type="text" id="datepicker-action" name="Date_Birth" data-date-format="yyyy-mm-dd" required>
-                                @error('Date_Birth')
+                                <input class="form-control" type="text" id="datepicker-action" name="dateBirth" data-date-format="yyyy-mm-dd" required>
+                                @error('dateBirth')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -141,13 +141,13 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="Grade_id">{{ trans('Students_trans.Grade') }} : <span class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="Grade_id" required>
+                                <select class="custom-select mr-sm-2" name="gradeId" required>
                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
-                                    @foreach($Grades as $c)
-                                        <option value="{{ $c->id }}">{{ $c->name }}</option>
+                                    @foreach($grades as $grade)
+                                        <option value="{{ $grade->id }}">{{ $grade->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('Grade_id')
+                                @error('gradeId')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -156,10 +156,10 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="Classroom_id">{{ trans('Students_trans.classrooms') }}: <span class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="Classroom_id" required>
+                                <select class="custom-select mr-sm-2" name="classroomId" required>
                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
                                 </select>
-                                @error('Classroom_id')
+                                @error('classroomId')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -168,10 +168,10 @@
                         <div class="col-md-2">
                             <div class="form-group">
                                 <label for="section_id">{{ trans('Students_trans.section') }} :</label>
-                                <select class="custom-select mr-sm-2" name="section_id" required>
+                                <select class="custom-select mr-sm-2" name="sectionId" required>
                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
                                 </select>
-                                @error('section_id')
+                                @error('sectionId')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -180,13 +180,13 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="parent_id">{{ trans('Students_trans.parent') }} : <span class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="parent_id" required>
+                                <select class="custom-select mr-sm-2" name="parentId" required>
                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
                                     @foreach($parents as $parent)
-                                        <option value="{{ $parent->id }}">{{ $parent->Name_Father }}</option>
+                                        <option value="{{ $parent->id }}">{{ $parent->father_name }}</option>
                                     @endforeach
                                 </select>
-                                @error('parent_id')
+                                @error('parentId')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -195,7 +195,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="academic_year">{{ trans('Students_trans.academic_year') }} : <span class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="academic_year" required>
+                                <select class="custom-select mr-sm-2" name="academicYear" required>
                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
                                     @php
                                         $current_year = date("Y");
@@ -204,7 +204,7 @@
                                         <option value="{{ $year }}">{{ $year }}</option>
                                     @endfor
                                 </select>
-                                @error('academic_year')
+                                @error('academicYear')
                                 <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -215,7 +215,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="academic_year">{{trans('Students_trans.Attachments')}} : <span class="text-danger">*</span></label>
-                            <input type="file" accept="image/*" name="photos[]" multiple>
+                            <input type="file" accept="image/*" name="photo" >
                         </div>
                     </div>
                     <br>
@@ -231,20 +231,23 @@
 
 @section('js')
 
+
+
+    {{-- Get classroom list by ajax --}}
     <script>
         $(document).ready(function () {
-            $('select[name="Grade_id"]').on('change', function () {
-                var Grade_id = $(this).val();
-                if (Grade_id) {
+            $('select[name="gradeId"]').on('change', function () {
+                var gradeId = $(this).val();
+                if (gradeId) {
                     $.ajax({
-                        url: "{{ URL::to('Get_classrooms') }}/" + Grade_id,
+                        url: "{{ URL::to('get-classrooms') }}/" + gradeId,
                         type: "GET",
                         dataType: "json",
                         success: function (data) {
-                            $('select[name="Classroom_id"]').empty();
-                            $('select[name="Classroom_id"]').append('<option selected disabled >{{trans('Parent_trans.Choose')}}...</option>');
+                            $('select[name="classroomId"]').empty();
+                            $('select[name="classroomId"]').append('<option selected disabled >{{trans('Parent_trans.Choose')}}...</option>');
                             $.each(data, function (key, value) {
-                                $('select[name="Classroom_id"]').append('<option value="' + key + '">' + value + '</option>');
+                                $('select[name="classroomId"]').append('<option value="' + key + '">' + value + '</option>');
                             });
 
                         },
@@ -259,19 +262,20 @@
     </script>
 
 
+    {{-- Get section list by ajax --}}
     <script>
         $(document).ready(function () {
-            $('select[name="Classroom_id"]').on('change', function () {
-                var Classroom_id = $(this).val();
-                if (Classroom_id) {
+            $('select[name="classroomId"]').on('change', function () {
+                var classroomId = $(this).val();
+                if (classroomId) {
                     $.ajax({
-                        url: "{{ URL::to('Get_Sections') }}/" + Classroom_id,
+                        url: "{{ URL::to('get-sections') }}/" + classroomId,
                         type: "GET",
                         dataType: "json",
                         success: function (data) {
-                            $('select[name="section_id"]').empty();
+                            $('select[name="sectionId"]').empty();
                             $.each(data, function (key, value) {
-                                $('select[name="section_id"]').append('<option value="' + key + '">' + value + '</option>');
+                                $('select[name="sectionId"]').append('<option value="' + key + '">' + value + '</option>');
                             });
 
                         },

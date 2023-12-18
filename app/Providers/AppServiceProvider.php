@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Student;
 use App\Models\Teacher;
+use App\Observers\StudentObserver;
 use App\Observers\TeacherObserver;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,5 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Teacher::observe(TeacherObserver::class);
+        Student::observe(StudentObserver::class);
+
     }
 }

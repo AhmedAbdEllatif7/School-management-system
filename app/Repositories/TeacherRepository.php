@@ -21,7 +21,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
     public function index(){
         $teachers = Teacher::all();
-        return view('pages.teachers.admin.index',compact('teachers'));
+        return view('pages.adminDashboard.teachers.index',compact('teachers'));
     }
 
 
@@ -30,7 +30,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
     {
         $specializations = Specialization::all();
         $genders = Gender::all();
-        return view('pages.teachers.admin.create',compact('specializations','genders'));
+        return view('pages.adminDashboard.teachers.create',compact('specializations','genders'));
     }
 
 
@@ -62,7 +62,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
     public function edit($teacher){
         $specializations = specialization::all();
         $genders = Gender::all();
-        return view('Pages.teachers.admin.edit' ,compact(['teacher' , 'specializations' , 'genders']));
+        return view('Pages.adminDashboard.teachers.edit' ,compact(['teacher' , 'specializations' , 'genders']));
     }
 
 
@@ -107,7 +107,7 @@ class TeacherRepository implements TeacherRepositoryInterface{
 
     public function show($id){
         $teacher = Teacher::findOrFail($id);
-        return view('pages.teachers.admin.view' , compact('teacher'));
+        return view('pages.adminDashboard.teachers.view' , compact('teacher'));
     }
 
 
@@ -192,9 +192,17 @@ class TeacherRepository implements TeacherRepositoryInterface{
     
     
 
-    public function downloadTeacherPhoto($teacherEmail , $fileName)
-    {
-        return response()->download(public_path('attachments/teachers/'.$teacherEmail.'/'.$fileName));
 
+    public function downloadTeacherPhoto($teacherEmail, $fileName)
+    {
+        $filePath = public_path('attachments/teachers/' . $teacherEmail . '/' . $fileName);
+    
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        } else {
+            return redirect()->back()->with(['error' => trans('teacher_trans.not_found')]);
+        }
     }
+    
+    
 }

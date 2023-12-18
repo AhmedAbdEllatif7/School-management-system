@@ -151,12 +151,12 @@
                                                         <button type="button" class="btn btn-outline-danger btn-sm"
                                                                 data-toggle="modal"
                                                                 data-target="#Delete_img{{ $image->id }}"
-                                                                title="{{ trans('Grades_trans.Delete') }}">{{trans('teacher_trans.delete')}}
+                                                                title="{{ trans('Grades_trans.Delete') }}"><i class="fas fa-trash"></i>&nbsp;{{trans('teacher_trans.delete')}}
                                                         </button>
 
                                                     </td>
                                                 </tr>
-                                                @include('pages.teachers.admin.deletePhoto')
+                                                @include('pages.adminDashboard.teachers.deletePhoto')
                                             @endforeach
                                             </tbody>
                                         </table>

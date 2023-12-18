@@ -11,7 +11,7 @@ class GradeRepository implements GradeRepositoryInterface
     public function index()
     {
         $grades = Grade::all();
-        return view('pages.grades.index',compact('grades'));
+        return view('pages.adminDashboard.grades.index',compact('grades'));
     }
 
 

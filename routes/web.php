@@ -18,7 +18,7 @@ use App\Http\Controllers\school\admin\SectionController;
 use App\Http\Controllers\school\admin\SettingController;
 use App\Http\Controllers\school\admin\SubjectController;
 use App\Http\Controllers\school\admin\ParentController;
-use App\Http\Controllers\school\student\StudentController;
+use App\Http\Controllers\school\admin\StudentController;
 use App\Http\Controllers\school\admin\TeacherController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -116,18 +116,16 @@ Route::group(['namespace' => 'Auth'], function () {
 
 
         ###################################### Student ###########################
+        Route::resource('students' , StudentController::class);
+
         Route::controller(StudentController::class)->group(function () {
-            Route::resource('students',StudentController::class);
-            Route::post('update_student' ,  'update');
-            Route::get('Get_new_classrooms/{id}' ,  'getNewClassroom');
-            Route::get('Get_new_Sections/{id}' ,  'getNewSections');
+            Route::get('get-classrooms/{id}' ,  'getClassrooms');
+            Route::get('get-sections/{id}' ,  'getSections');
 
             Route::post('upload_attachments' ,  'uploadAttachments');
             Route::post('delete_attachment' ,  'deleteAttachment');
             Route::get('download_attachments/{students_name}/{filename}' ,  'downloadAttachments');
             Route::get('view_file/{student_name}/{filename}' ,  'viewFile');
-
-
         });
 
 

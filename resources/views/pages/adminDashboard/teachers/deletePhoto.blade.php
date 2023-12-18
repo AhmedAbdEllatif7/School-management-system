@@ -1,4 +1,4 @@
-<!-- Deleted inFormation Student -->
+<!-- Deleted inFormation teacher -->
 <div class="modal fade" id="Delete_img{{$image->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -12,7 +12,6 @@
                 <form action="{{route('delete.teacher.photo')}}" method="POST">
                     @method('DELETE')
                     @csrf
-                    {{-- <input type="hidden" name="id" value="{{$image->id}}"> --}}
 
                     <input type="hidden" name="teacherEmail" value="{{$teacher->email}}">
                     <input type="hidden" name="fileName" value="{{$image->filename}}">
