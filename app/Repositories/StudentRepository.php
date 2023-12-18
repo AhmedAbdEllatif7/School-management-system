@@ -57,22 +57,18 @@ class StudentRepository implements StudentRepositoryInterface{
 
     private function storeStudent($request)
     {
-        $student = new Student();
-        $student->name = ['en' => $request->nameEn, 'ar' => $request->nameAr];
-        $student->email = $request->email;
-        $student->password = Hash::make($request->password);
-        $student->gender_id = $request->genderId;
-        $student->nationalitie_id = $request->nationalitieId;
-        $student->blood_id = $request->bloodId;
-        $student->date_birth = $request->dateBirth;
-        $student->grade_id = $request->gradeId;
-        $student->classroom_id = $request->classroomId;
-        $student->section_id = $request->sectionId;
-        $student->parent_id = $request->parentId;
-        $student->academic_year = $request->academicYear;
-        $student->save();
+        $validatedData = $request->validated();
+        $formattedName = [
+            'en' => $validatedData['nameEn'],
+            'ar' => $validatedData['nameAr'],
+        ];
+    
+        $validatedData['name'] = $formattedName;
+        $student = Student::create($validatedData);
+    
         return $student;
     }
+    
 
 
 
@@ -98,8 +94,11 @@ class StudentRepository implements StudentRepositoryInterface{
     public function update($request)
     {
         try {
+
             $student = $this->findStudentById($request->id);
+
             $this->updateStudentAttributes($student, $request);
+
             return redirect()->route('students.index')->with(['updateStudent' => trans('Students_trans.Student updated successfully.')]);
         }
         catch (\Exception $e) {
@@ -114,19 +113,16 @@ class StudentRepository implements StudentRepositoryInterface{
 
     private function updateStudentAttributes($student, $request)
     {
-        $student->name = ['ar' => $request->nameAr, 'en' => $request->nameEn];
-        $student->email = $request->email;
-        $student->password = Hash::make($request->password);
-        $student->gender_id = $request->genderId;
-        $student->nationalitie_id = $request->nationalitieId;
-        $student->blood_id = $request->bloodId;
-        $student->date_birth = $request->dateBirth;
-        $student->grade_id = $request->gradeId;
-        $student->classroom_id = $request->classroomId;
-        $student->section_id = $request->sectionId;
-        $student->parent_id = $request->parentId;
-        $student->academic_year = $request->academicYear;
-        $student->save();
+        $validatedData = $request->validated();
+        
+        $formattedName = [
+            'en' => $validatedData['nameEn'],
+            'ar' => $validatedData['nameAr'],
+        ];
+    
+        $validatedData['name'] = $formattedName;
+        $student->update($validatedData);
+    
     }
 
 
@@ -135,17 +131,12 @@ class StudentRepository implements StudentRepositoryInterface{
 
 
 
+    public function deleteStudent($request)
+    {
+        Student::findOrFail($request->id)->forceDelete();
+        return redirect()->back()->with(['deleteStudent' => trans('Students_trans.Student deleted successfully.') ]);;
 
-
-
-
-
-        public function deleteStudent($request)
-        {
-            Student::findOrFail($request->id)->forceDelete();
-            return redirect()->back()->with(['deleteStudent' => trans('Students_trans.Student deleted successfully.') ]);;
-
-        }
+    }
 
 
         public function showStudent($id)

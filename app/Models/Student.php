@@ -15,9 +15,16 @@ class Student extends Authenticatable
     use HasTranslations;
     use SoftDeletes;
     public $translatable = ['name'];
-    protected $fillable = ['name' , 'email' , 'gender_id' , 'nationalitie_id' , 'blood_id' , 'grade_id' , 'classroom_id' , 'section_id' , 'parent_id' , 'date_birth' , 'academic_year'];
+    protected $fillable = ['name' , 'email' , 'password' , 'gender_id' , 'nationalitie_id' , 'blood_id' , 'grade_id' , 'classroom_id' , 'section_id' , 'parent_id' , 'date_birth' , 'academic_year'];
     public $timestamps = true;
 
+
+
+    protected $casts = [
+        'password' => 'hashed',
+    ];
+
+    
     public function gender()
     {
         return $this->belongsTo('App\Models\Gender', 'gender_id');
