@@ -93,8 +93,4 @@ class TeacherController extends Controller
 
 
 
-
-
-
-
 }

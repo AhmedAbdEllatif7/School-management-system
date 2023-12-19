@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreStudent;
 use App\Http\Requests\StudentRequest;
-use App\Models\Section;
 use App\Models\Student;
 use App\Repositories\Interefaces\StudentRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\DB;
+
 
 class StudentController extends Controller
 {
@@ -76,37 +73,15 @@ class StudentController extends Controller
 
 
     public function downloadPhoto($studentEmail , $fileName){
-
         return $this->student->downloadPhoto($studentEmail , $fileName);
     }
 
 
 
-        public function openPhoto($studentEmail , $fileName){
-
-            return $this->student->openPhoto($studentEmail , $fileName);
-
-        }
-
-
-        public function studentInformation()
-        {
-
-            $ids= DB::table('teacher_section')->where('teacher_id',auth()->user()->id)->pluck('section_id');
-            $students = Student::whereIn('section_id',$ids)->get();
-            $sections = Section::whereIn('id',$ids)->get();
-            return view('pages.Teachers.students.index',compact('students' , 'sections'));
-        }
-
-
-
-        public function sectionInformation()
-        {
-            $ids= DB::table('teacher_section')->where('teacher_id',auth()->user()->id)->pluck('section_id');
-            $sections = Section::whereIn('id',$ids)->get();
-            return view('pages.Teachers.section.index',compact('sections'));
-        }
-
+    public function openPhoto($studentEmail , $fileName)
+    {
+        return $this->student->openPhoto($studentEmail , $fileName);
+    }
 
 
     //for ajax

@@ -237,54 +237,24 @@ class StudentRepository implements StudentRepositoryInterface{
 
 
 
+    // for ajax
+    public function getClassrooms($id)
+    {
+        $classroomList = Classroom::where("grade_id", $id)->pluck("name", "id");
+        return $classroomList;
+    }
 
 
-            // for ajax
-            public function getClassrooms($id)
-            {
-                $classroomList = Classroom::where("grade_id", $id)->pluck("name", "id");
-                return $classroomList;
-            }
-        
-        
-        
-            // for ajax
-            public function getSections($id){
-        
-                $sectionList = Section::where("class_id", $id)->pluck("name", "id");
-                return $sectionList;
-            }
+
+    // for ajax
+    public function getSections($id){
+
+        $sectionList = Section::where("class_id", $id)->pluck("name", "id");
+        return $sectionList;
+    }
 
 }
 
 
-
-
-//<p class="small p-2 me-3 mb-0 text-white rounded-3 bg-warning" style="border-radius: 15px; padding: 5px 10px; word-break: break-all;">
-//                                                        {{ $message->message_text }}
-//                                                        @if ($message->file)
-//                                                            <img src="{{ asset('storage/' . $message->file) }}" alt="Message Attachment" class="img-thumbnail" style="width: 150px;height: 150px">
-//                                                            </svg>
-//                                                            <span  wire:click="downloadFile({{$message->id}} , '{{$message->file}}')" class="delete-message-btn" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-//                                                                  <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-//                                                                  <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-//                                                                </svg>
-//                                                            </span>
-//
-//@endif
-//                                                        <span  wire:click="deleteId({{$message->id}})" class="delete-message-btn" >&#10005;</span>
-//                                                    </p>
-//public function downloadFile($id, $file)
-//{
-//    $filePath = public_path('storage/' . $file);
-//
-//    if (file_exists($filePath)) {
-//        $filename = basename($filePath); // Get the file name from the path
-//
-//        return response()->download($filePath, $filename);
-//    } else {
-//        return response()->json(['error' => 'File not found'], 404);
-//    }
-//}
 
 
