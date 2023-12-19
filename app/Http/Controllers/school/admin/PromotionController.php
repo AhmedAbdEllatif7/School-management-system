@@ -73,9 +73,9 @@ class PromotionController extends Controller
         //
     }
 
-    public function deleteAll(Request $request)
+    public function revertAllPromotions(Request $request)
     {
-        return $this->promotion->deleteAllPromotion($request);
+        return $this->promotion->revertAllPromotions($request);
     }
 
 

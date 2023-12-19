@@ -9,10 +9,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('delete_all')}}" method="post">
+                <form action="{{route('revert.all.promotions')}}" method="POST">
                     @csrf
-{{--                    @method('DELETE')--}}
-
                     <input type="hidden" name="page_id" value="1">
                     <h5 style="font-family: 'Cairo', sans-serif;">هل انت متـأكد من عملية تراجع كافة الطلاب ؟</h5>
                     <div class="modal-footer">

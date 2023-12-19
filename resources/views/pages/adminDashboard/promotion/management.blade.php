@@ -14,19 +14,19 @@
 @section('content')
     <!-- row -->
     <div class="row">
-        @if(session('return_back_student'))
-            <div class="alert alert-success text-center" style="width: 40%; margin: auto;">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                {{ session('return_back_student') }}
-            </div>
-        @endif
+    
         <div class="col-md-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">
                     <div class="col-xl-12 mb-30">
                         <div class="card card-statistics h-100">
                             <div class="card-body">
-
+                                @if(session('retriveAll'))
+                                    <div class="alert alert-success text-center" style="width: 40%; margin: auto;">
+                                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                        {{ session('retriveAll') }}
+                                    </div>
+                                @endif
 
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Delete_all">
                                     {{ trans('main_trans.revert_all') }}

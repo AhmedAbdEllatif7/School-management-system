@@ -11,7 +11,7 @@ interface PromotionRepositoryInterface {
 
     public function store($request);
 
-    public function deleteAllPromotion($request);
+    public function revertAllPromotions($request);
 
     public function getNewClassrooms($id);
 

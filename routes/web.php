@@ -176,8 +176,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         ###################################### Begin Student Promotion ###########################
         Route::resource('student-promotions' , PromotionController::class);
 
-        Route::controller(PromotionController::class)->group(function () {
-            Route::post('delete_all' ,  'deleteAll');
+        Route::controller(PromotionController::class)->group(function () 
+        {
+            Route::post('revert-all-promotions' ,  'revertAllPromotions')->name('revert.all.promotions');
             Route::post('delete_one' ,  'deleteOne');
 
             //for ajax
