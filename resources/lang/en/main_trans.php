@@ -50,7 +50,7 @@ return [
     'classes'=>'Classes',
     'sections'=>'Sections',
     'students'=>'Students',
-    'list_students'=>'list Students',
+    'manage_promotion'=>'Manage promotion',
     'Students_Promotions'=>'Students Promotions',
 
     'Study_Fees' => 'Study Fees',
@@ -246,6 +246,7 @@ return [
 
     'previous_stage' => 'Previous Academic Stage',
     'academic_year' => 'Academic Year',
+    'olde_academic_year' => 'Old Academic Year',
     'previous_grade' => 'Previous Grade',
     'previous_section' => 'Previous Section',
     'current_stage' => 'Current Academic Stage',

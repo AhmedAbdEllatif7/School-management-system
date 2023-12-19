@@ -2,8 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Promotion;
+use App\Models\Section;
 use App\Models\Student;
 use App\Repositories\Interefaces\PromotionRepositoryInterface;
 use Illuminate\Support\Facades\DB;
@@ -13,49 +15,56 @@ class PromotionRepository implements PromotionRepositoryInterface
 
     public function index()
     {
-        $Grades = Grade::all();
-        return view('pages.Students.promotion.index' , compact('Grades'));
-
+        $grades = Grade::all();
+        return view('pages.adminDashboard.promotion.index' , compact('grades'));
     }
 
 
-    public function storePromotion($request)
+
+    public function create()
+    {
+        $promotions = promotion::all();
+        return view('pages.adminDashboard.promotion.management',compact('promotions'));
+    }
+
+
+    public function store($request)
     {
 
         DB::beginTransaction();
 
         try {
-            $students = Student::where('grade_id', $request->Grade_id)
-                ->where('classroom_id', $request->Classroom_id)
-                ->where('section_id', $request->section_id)
-                ->where('academic_year', $request->academic_year)
-                ->get();
+                $students = Student::where('grade_id', $request->from_grade_id)
+                    ->where('classroom_id', $request->from_classroom_id)
+                    ->where('section_id', $request->from_section_id)
+                    ->where('academic_year', $request->from_academic_year)
+                    ->get();
 
-            if ($students->isEmpty()) {
-                // Handle the case where no students are found
-                return redirect()->back()->with('error_promotions', __('لم يتم العثور على الطلاب'));
-            }
+                    if ($students->isEmpty()) {
+                        return redirect()->back()->with('error_promotions', __('No students found.'));
+                    }
 
-            foreach ($students as $student) {
-                $student->update([
-                    'grade_id' => $request->Grade_id_new,
-                    'classroom_id' => $request->Classroom_id_new,
-                    'section_id' => $request->section_id_new,
-                    'academic_year' => $request->academic_year_new,
-                ]);
+
+                    foreach ($students as $student) {
+                        $student->update([
+                            'grade_id' => $request->to_grade_id,
+                            'classroom_id' => $request->to_classroom_id,
+                            'section_id' => $request->to_section_id,
+                            'academic_year' => $request->to_academic_year,
+                        ]);
 
 
                 Promotion::updateOrCreate(
                     [
                         'student_id' => $student->id,
-                        'from_grade' => $request->Grade_id,
-                        'from_classroom' => $request->Classroom_id,
-                        'from_section' => $request->section_id,
-                        'academic_year' => $request->academic_year,
-                        'to_grade' => $request->Grade_id_new,
-                        'to_classroom' => $request->Classroom_id_new,
-                        'to_section' => $request->section_id_new,
-                        'academic_year_new' => $request->academic_year_new,
+                        'from_grade_id' => $request->from_grade_id,
+                        'from_classroom_id' => $request->from_classroom_id,
+                        'from_section_id' => $request->from_section_id,
+                        'from_academic_year' => $request->from_academic_year,
+                        'to_grade_id' => $request->to_grade_id,
+                        'to_classroom_id' => $request->to_classroom_id,
+                        'to_section_id' => $request->to_section_id,
+                        'to_academic_year' => $request->to_academic_year,
                     ]
                 );
             }
@@ -71,11 +80,7 @@ class PromotionRepository implements PromotionRepositoryInterface
 
     }
 
-    public function create()
-    {
-        $promotions = promotion::all();
-        return view('pages.Students.promotion.management',compact('promotions'));
-    }
+
 
     public function deleteAllPromotion($request)
     {
@@ -126,19 +131,25 @@ class PromotionRepository implements PromotionRepositoryInterface
 
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
+
     }
 
 
 
+         // for ajax
+    public function getNewClassrooms($id)
+    {
+        $classroomList = Classroom::where("grade_id", $id)->pluck("name", "id");
+        return $classroomList;
+    }
 
 
 
+    // for ajax
+    public function getNewSections($id)
+    {
+        $sectionList = Section::where("class_id", $id)->pluck("name", "id");
+        return $sectionList;
+    }
+    }
 
-
-
-
-
-
-
-
-}

@@ -1,13 +1,13 @@
 @extends('layouts.master')
 @section('css')
 @section('title')
-    {{trans('main_trans.list_students')}}
+    {{trans('main_trans.manage_promotion')}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    {{trans('main_trans.list_students')}}
+    {{trans('main_trans.manage_promotion')}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -37,14 +37,14 @@
 
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
-                                           data-page-length="50"
-                                           style="text-align: center">
+                                        data-page-length="50"
+                                        style="text-align: center">
                                         <thead>
                                         <tr>
                                             <th class="alert-info">#</th>
                                             <th class="alert-info">{{ trans('main_trans.name') }}</th>
                                             <th class="alert-danger">{{ trans('main_trans.previous_stage') }}</th>
-                                            <th class="alert-danger">{{ trans('main_trans.academic_year') }}</th>
+                                            <th class="alert-danger">{{ trans('main_trans.olde_academic_year') }}</th>
                                             <th class="alert-danger">{{ trans('main_trans.previous_grade') }}</th>
                                             <th class="alert-danger">{{ trans('main_trans.previous_section') }}</th>
                                             <th class="alert-success">{{ trans('main_trans.current_stage') }}</th>
@@ -66,22 +66,22 @@
                                                 @if ($promotion->student)
                                                     <td>{{$promotion->student->name}}</td>
                                                 @endif
-                                                <td>{{$promotion->f_grade->name}}</td>
-                                                <td>{{$promotion->academic_year}}</td>
-                                                <td>{{$promotion->f_classroom->name}}</td>
-                                                <td>{{$promotion->f_section->name}}</td>
-                                                <td>{{$promotion->t_grade->name}}</td>
-                                                <td>{{$promotion->academic_year_new}}</td>
-                                                <td>{{$promotion->t_classroom->name}}</td>
-                                                <td>{{$promotion->t_section->name}}</td>
+                                                <td>{{$promotion->fromGrade->name}}</td>
+                                                <td>{{$promotion->from_academic_year}}</td>
+                                                <td>{{$promotion->fromClassroom->name}}</td>
+                                                <td>{{$promotion->fromSection->name}}</td>
+                                                <td>{{$promotion->toGrade->name}}</td>
+                                                <td>{{$promotion->to_academic_year}}</td>
+                                                <td>{{$promotion->toClassroom->name}}</td>
+                                                <td>{{$promotion->toSection->name}}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#Delete_one{{$promotion->id}}">{{ trans('main_trans.student_returned') }}
                                                     </button>
 
                                                 </td>
                                             </tr>
-                                        @include('pages.Students.promotion.Delete_all')
-                                        @include('pages.Students.promotion.Delete_one')
+                                        @include('pages.adminDashboard.promotion.deleteAll')
+                                        @include('pages.adminDashboard.promotion.singleDelete')
                                         @endforeach
                                     </table>
                                 </div>

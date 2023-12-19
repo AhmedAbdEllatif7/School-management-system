@@ -34,6 +34,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
+############################################### Admin dashboard routes ##############################################################
+
 
 
         Route::get('/' , [HomeController::class, 'index'])->name('selection')->middleware('guest');
@@ -171,12 +173,23 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-        ###################################### Student ###########################
+        ###################################### Begin Student Promotion ###########################
+        Route::resource('student-promotions' , PromotionController::class);
+
         Route::controller(PromotionController::class)->group(function () {
-            Route::resource('promotion_students',PromotionController::class);
             Route::post('delete_all' ,  'deleteAll');
             Route::post('delete_one' ,  'deleteOne');
+
+            //for ajax
+            Route::get('get-new-classrooms/{id}' ,  'getNewClassrooms');
+            Route::get('get-new-sections/{id}' ,  'getNewSections');
         });
+
+        ###################################### End Student Promotion ###########################
+
+
+
+
 
 
 

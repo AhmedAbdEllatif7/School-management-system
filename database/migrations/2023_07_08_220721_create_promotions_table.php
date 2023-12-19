@@ -14,28 +14,31 @@ return new class extends Migration
         Schema::create('promotions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');
-
-            $table->unsignedBigInteger('from_grade');
-            $table->unsignedBigInteger('from_classroom');
-            $table->unsignedBigInteger('from_section');
-
-            $table->unsignedBigInteger('to_grade');
-            $table->unsignedBigInteger('to_classroom');
-            $table->unsignedBigInteger('to_section');
-
+            
+            // Foreign keys indicating the previous academic status
+            $table->unsignedBigInteger('from_grade_id');
+            $table->unsignedBigInteger('from_classroom_id');
+            $table->unsignedBigInteger('from_section_id');
+            
+            // Foreign keys indicating the new academic status
+            $table->unsignedBigInteger('to_grade_id');
+            $table->unsignedBigInteger('to_classroom_id');
+            $table->unsignedBigInteger('to_section_id');
+            
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
-
-            $table->foreign('from_grade')->references('id')->on('grades')->onDelete('cascade');
-            $table->foreign('from_classroom')->references('id')->on('classrooms')->onDelete('cascade');
-            $table->foreign('from_section')->references('id')->on('sections')->onDelete('cascade');
-
-            $table->foreign('to_grade')->references('id')->on('grades')->onDelete('cascade');
-            $table->foreign('to_classroom')->references('id')->on('classrooms')->onDelete('cascade');
-            $table->foreign('to_section')->references('id')->on('sections')->onDelete('cascade');
-
-
-            $table->string('academic_year');
-            $table->string('academic_year_new');
+            
+            // Foreign keys referencing the previous academic status
+            $table->foreign('from_grade_id')->references('id')->on('grades')->onDelete('cascade');
+            $table->foreign('from_classroom_id')->references('id')->on('classrooms')->onDelete('cascade');
+            $table->foreign('from_section_id')->references('id')->on('sections')->onDelete('cascade');
+            
+            // Foreign keys referencing the new academic status
+            $table->foreign('to_grade_id')->references('id')->on('grades')->onDelete('cascade');
+            $table->foreign('to_classroom_id')->references('id')->on('classrooms')->onDelete('cascade');
+            $table->foreign('to_section_id')->references('id')->on('sections')->onDelete('cascade');
+            
+            $table->string('from_academic_year');
+            $table->string('to_academic_year');
             $table->timestamps();
         });
     }

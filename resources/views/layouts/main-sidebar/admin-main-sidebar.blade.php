@@ -89,11 +89,11 @@
                         <div class="clearfix"></div>
                     </a>
                     <ul id="Students_upgrade" class="collapse">
-                        <li>
-                            <a href="{{url('promotion_students')}}">{{__('main_trans.Student promotion')}}</a>
+                        <li></li>
+                            <a href="{{route('student-promotions.index')}}">{{__('main_trans.Student promotion')}}</a>
                         </li>
                         <li>
-                            <a href="{{route('promotion_students.create')}}">{{__('main_trans.Manage student promotion')}}</a>
+                            <a href="{{route('student-promotions.create')}}">{{__('main_trans.Manage student promotion')}}</a>
                         </li>
                     </ul>
                 </li>

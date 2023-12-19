@@ -9,8 +9,12 @@ interface PromotionRepositoryInterface {
 
     public function create();
 
-    public function storePromotion($request);
+    public function store($request);
 
     public function deleteAllPromotion($request);
+
+    public function getNewClassrooms($id);
+
+    public function getNewSections($id);
 
 }

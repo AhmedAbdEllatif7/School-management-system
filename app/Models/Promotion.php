@@ -13,7 +13,17 @@ class Promotion extends Model
 
     public $timestamps = true;
 
-    protected $guarded=[];
+    protected $fillable = [
+        'student_id' ,
+        'from_grade_id' ,
+        'from_classroom_id' , 
+        'from_section_id' ,
+        'to_grade_id' , 
+        'to_classroom_id' , 
+        'to_section_id' ,
+        'from_academic_year' , 
+        'to_academic_year'
+    ];
 
 
     public function student()
@@ -21,49 +31,36 @@ class Promotion extends Model
         return $this->belongsTo('App\Models\Student', 'student_id');
     }
 
-    // علاقة بين الترقيات والمراحل الدراسية لجلب اسم المرحلة في جدول الترقيات
-
-    public function f_grade()
+    public function fromGrade()
     {
-        return $this->belongsTo('App\Models\Grade', 'from_grade');
+        return $this->belongsTo('App\Models\Grade', 'from_grade_id');
     }
-
-
-    // علاقة بين الترقيات الصفوف الدراسية لجلب اسم الصف في جدول الترقيات
-
-    public function f_classroom()
+    
+    public function fromClassroom()
     {
-        return $this->belongsTo('App\Models\Classroom', 'from_classroom');
+        return $this->belongsTo('App\Models\Classroom', 'from_classroom_id');
     }
-
-    // علاقة بين الترقيات الاقسام الدراسية لجلب اسم القسم  في جدول الترقيات
-
-    public function f_section()
+    
+    public function fromSection()
     {
-        return $this->belongsTo('App\Models\Section', 'from_section');
+        return $this->belongsTo('App\Models\Section', 'from_section_id');
     }
-
-    // علاقة بين الترقيات والمراحل الدراسية لجلب اسم المرحلة في جدول الترقيات
-
-    public function t_grade()
+    
+    public function toGrade()
     {
-        return $this->belongsTo('App\Models\Grade', 'to_grade');
+        return $this->belongsTo('App\Models\Grade', 'to_grade_id');
     }
-
-
-    // علاقة بين الترقيات الصفوف الدراسية لجلب اسم الصف في جدول الترقيات
-
-    public function t_classroom()
+    
+    public function toClassroom()
     {
-        return $this->belongsTo('App\Models\Classroom', 'to_classroom');
+        return $this->belongsTo('App\Models\Classroom', 'to_classroom_id');
     }
-
-    // علاقة بين الترقيات الاقسام الدراسية لجلب اسم القسم  في جدول الترقيات
-
-    public function t_section()
+    
+    public function toSection()
     {
-        return $this->belongsTo('App\Models\Section', 'to_section');
+        return $this->belongsTo('App\Models\Section', 'to_section_id');
     }
+    
 
 
 
