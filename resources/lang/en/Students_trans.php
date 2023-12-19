@@ -214,4 +214,10 @@ return [
     'edit_question' => 'Edit question',
     'add_new_book' => 'Add new book',
     'photo' => 'Photo',
+    'revert_seletecd_promotion' => 'Revert seleted promotion',
+    'sure_revert_seleted' => 'Are you sure you want to revert the seleted promotions?',
+    'promotion_retreved' => 'Selected promotion retreived successfully.',
+
+
+
 ];

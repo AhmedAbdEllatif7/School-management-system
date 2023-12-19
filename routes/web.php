@@ -147,6 +147,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
         ###################################### Begin Student ###########################
+        
         Route::resource('students' , StudentController::class);
 
         Route::controller(StudentController::class)->group(function () {
@@ -174,12 +175,13 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
         ###################################### Begin Student Promotion ###########################
+
         Route::resource('student-promotions' , PromotionController::class);
 
         Route::controller(PromotionController::class)->group(function () 
         {
             Route::post('revert-all-promotions' ,  'revertAllPromotions')->name('revert.all.promotions');
-            Route::post('delete_one' ,  'deleteOne');
+            Route::post('revert-selected-promotions',  'revertSelectedPromotions')->name('revert.selected.promotions');
 
             //for ajax
             Route::get('get-new-classrooms/{id}' ,  'getNewClassrooms');

@@ -111,20 +111,11 @@ class PromotionRepository implements PromotionRepositoryInterface
 
     public function revertAllPromotions($request)
     {
-        DB::beginTransaction();
-
         try {
-            if ($request->page_id == 1) {
                 $this->deleteAllPromotions();
-                DB::commit();
                 return redirect()->back()->with(['retriveAll' => trans('Students_trans.All promotion return back successfully')]);
-            } else {
-                $this->restoreSinglePromotion($request->id);
-                DB::commit();
-                return redirect()->back()->with(['return_back_student' => trans('Students_trans.restore_student')]);
-            }
-        } catch (\Exception $e) {
-            DB::rollback();
+        }
+        catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
@@ -138,12 +129,6 @@ class PromotionRepository implements PromotionRepositoryInterface
         Promotion::truncate();
     }
 
-    private function restoreSinglePromotion($promotionId)
-    {
-        $promotion = Promotion::findOrFail($promotionId);
-        $this->restoreStudentFromPromotion($promotion);
-        Promotion::destroy($promotionId);
-    }
 
     private function restoreStudentFromPromotion($promotion)
     {
@@ -158,7 +143,40 @@ class PromotionRepository implements PromotionRepositoryInterface
 
 
 
+    public function revertSelectedPromotions($request)
+    {
+        try {
+            $allRevertedId = explode(",", $request->revert_seleted_id);
+            $this->processRevertOfPromotions($allRevertedId);
+            return redirect()->back()->with(['promotion_retreved' => trans('students_trans.promotion_retreved')]);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
 
+    private function processRevertOfPromotions($revertedIds)
+    {
+        foreach ($revertedIds as $id)
+        {
+            $promotion = Promotion::findOrFail($id);
+            $this->restoreStudentFromPromotion($promotion);
+            $this->deletePromotion($promotion);
+        }
+    }
+
+    private function deletePromotion($promotion)
+    {
+        $promotion->delete();
+    }
+
+
+
+
+
+
+
+
+    
          // for ajax
     public function getNewClassrooms($id)
     {

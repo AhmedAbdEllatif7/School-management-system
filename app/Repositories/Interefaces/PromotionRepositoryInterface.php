@@ -13,6 +13,8 @@ interface PromotionRepositoryInterface {
 
     public function revertAllPromotions($request);
 
+    public function revertSelectedPromotions($request);
+
     public function getNewClassrooms($id);
 
     public function getNewSections($id);

@@ -219,7 +219,8 @@ return [
     'show_password' => 'عرض كلمة السر',
     'add_new_book' => 'إضافة كتاب جديد',
     'photo' => 'الصورة',
-
-
+    'revert_seletecd_promotion' => 'إستعادة الترقيات المحددة',
+    'sure_revert_seleted' => 'هل انت متأكد من إستعادة الترقيات المحددة؟',
+    'promotion_retreved' => 'تمت إستعادة الترقيات المحددة بنجاح',
 
 ];

@@ -79,6 +79,12 @@ class PromotionController extends Controller
     }
 
 
+    public function revertSelectedPromotions(Request $request)
+    {
+        return $this->promotion->revertSelectedPromotions($request);
+    }
+
+
 
 
 }
