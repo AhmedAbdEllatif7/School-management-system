@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PromotionRequest;
 use App\Models\Promotion;
 use App\Repositories\Interefaces\PromotionRepositoryInterface;
 use Illuminate\Http\Request;
@@ -28,50 +29,12 @@ class PromotionController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(PromotionRequest $request)
     {
-
         return $this->promotion->store($request);
-
     }
 
 
-    public function getNewClassrooms($id)
-    {
-
-        return $this->promotion->getNewClassrooms($id);
-
-    }
-    public function getNewSections($id)
-    {
-
-        return $this->promotion->getNewSections($id);
-
-    }
-
-
-
-
-
-    public function show(Promotion $promotion)
-    {
-        //
-    }
-
-    public function edit(Promotion $promotion)
-    {
-        //
-    }
-
-    public function update(Request $request, Promotion $promotion)
-    {
-        //
-    }
-
-    public function destroy(Promotion $promotion)
-    {
-        //
-    }
 
     public function revertAllPromotions(Request $request)
     {
@@ -85,6 +48,14 @@ class PromotionController extends Controller
     }
 
 
+    public function getNewClassrooms($id)
+    {
+        return $this->promotion->getNewClassrooms($id);
+    }
 
+    public function getNewSections($id)
+    {
+        return $this->promotion->getNewSections($id);
+    }
 
 }

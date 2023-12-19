@@ -44,32 +44,41 @@
                         <div class="form-row">
                             <div class="form-group col">
                                 <label for="inputState">{{trans('Students_trans.Grade')}}</label>
-                                <select class="custom-select mr-sm-2" name="from_grade_id" required>
+                                <select class="custom-select mr-sm-2" name="from_grade_id"  required>
                                     <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
                                     @foreach($grades as $grade)
                                         <option value="{{$grade->id}}">{{$grade->name}}</option>
                                     @endforeach
                                 </select>
+                                @error('from_grade_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group col">
                                 <label for="Classroom_id">{{trans('Students_trans.classrooms')}} : <span
                                         class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="from_classroom_id" required>
+                                <select class="custom-select mr-sm-2" name="from_classroom_id"  required>
 
                                 </select>
+                                @error('from_classroom_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="form-group col">
                                 <label for="section_id">{{trans('Students_trans.section')}} : </label>
-                                <select class="custom-select mr-sm-2" name="from_section_id" required>
+                                <select class="custom-select mr-sm-2" name="from_section_id"  required>
 
                                 </select>
+                                @error('from_section_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="academic_year">{{trans('Students_trans.academic_year')}} : <span class="text-danger">*</span></label>
-                                    <select class="custom-select mr-sm-2" name="from_academic_year">
+                                    <select class="custom-select mr-sm-2" name="from_academic_year" required>
                                         <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
                                         @php
                                             $current_year = date("Y");
@@ -78,6 +87,9 @@
                                             <option value="{{ $year}}">{{ $year }}</option>
                                         @endfor
                                     </select>
+                                    @error('from_academic_year')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -88,31 +100,40 @@
                         <div class="form-row">
                             <div class="form-group col">
                                 <label for="inputState">{{trans('Students_trans.Grade')}}</label>
-                                <select class="custom-select mr-sm-2" name="to_grade_id" >
+                                <select class="custom-select mr-sm-2" name="to_grade_id" required>
                                     <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
                                     @foreach($grades as $grade)
                                         <option value="{{$grade->id}}">{{$grade->name}}</option>
                                     @endforeach
                                 </select>
+                                @error('to_grade_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group col">
                                 <label for="Classroom_id">{{trans('Students_trans.classrooms')}}: <span
                                         class="text-danger">*</span></label>
                                 <select class="custom-select mr-sm-2" name="to_classroom_id" >
-
+                                    
                                 </select>
+                                @error('to_classroom_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="form-group col">
                                 <label for="section_id">:{{trans('Students_trans.section')}} </label>
-                                <select class="custom-select mr-sm-2" name="to_section_id" >
+                                <select class="custom-select mr-sm-2" name="to_section_id" required>
 
                                 </select>
+                                @error('to_section_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="academic_year">{{trans('Students_trans.academic_year')}} : <span class="text-danger">*</span></label>
-                                    <select class="custom-select mr-sm-2" name="to_academic_year">
+                                    <select class="custom-select mr-sm-2" name="to_academic_year" required>
                                         <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
                                         @php
                                             $current_year = date("Y");
@@ -121,6 +142,9 @@
                                             <option value="{{ $year}}">{{ $year }}</option>
                                         @endfor
                                     </select>
+                                    @error('to_academic_year')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
 
