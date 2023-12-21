@@ -11,7 +11,6 @@ interface GraduationRepositoryInterface{
 
     public function store($request);
 
-
     public function returnAllGraduatedBack();
 
     public function returnStudent($request);

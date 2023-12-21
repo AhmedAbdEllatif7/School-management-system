@@ -223,7 +223,7 @@ return [
     'Student_information' => 'Student information',
     'receipts' => 'Receipts',
     'logout' => 'Logout',
-    'add_Graduate'=>'Add graduate',
+    'add_Graduate'=>'Add graduation',
     'list_Graduate'=>'Graduation list',
     'File_not_found' =>'File not found.',
     'student_id' => [

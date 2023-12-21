@@ -108,10 +108,10 @@
                     </a>
                     <ul id="Graduate_students" class="collapse">
                         <li>
-                            <a href="{{route('Graduation.index')}}">{{trans('main_trans.list_Graduate')}}</a>
+                            <a href="{{route('graduation.index')}}">{{trans('main_trans.list_Graduate')}}</a>
                         </li>
                         <li>
-                            <a href="{{route('Graduation.create')}}">{{trans('main_trans.add_Graduate')}}</a>
+                            <a href="{{route('graduation.create')}}">{{trans('main_trans.add_Graduate')}}</a>
                         </li>
                     </ul>
                 </li>

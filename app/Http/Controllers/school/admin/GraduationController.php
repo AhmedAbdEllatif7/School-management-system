@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Graduation;
+use App\Http\Requests\GraduationRequest;
 use App\Repositories\Interefaces\GraduationRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -28,33 +28,11 @@ class GraduationController extends Controller
         return $this->Graduation->create();
     }
 
-    public function store(Request $request)
+    public function store(GraduationRequest $request)
     {
         return $this->Graduation->store($request);
     }
 
-
-    public function show(Graduation $graduation)
-    {
-        //
-    }
-
-
-    public function edit(Graduation $graduation)
-    {
-        //
-    }
-
-    public function update(Request $request, Graduation $graduation)
-    {
-        //
-    }
-
-
-    public function destroy(Graduation $graduation)
-    {
-        //
-    }
 
     public function returnAllGraduatedBack(Request $request)
     {

@@ -12,38 +12,52 @@ class GraduationRepository implements GraduationRepositoryInterface
 {
     public function index()
     {
-
         $students = Student::onlyTrashed()->get();
-        return view('pages.Students.Graduated.index', compact('students'));
+        return view('pages.adminDashboard.graduation.index', compact('students'));
     }
+
+
 
     public function create()
     {
-        $Grades = Grade::all();
+        $grades = Grade::all();
         $students = Student::all();
         $classrooms = Classroom::all();
         $sections = Section::all();
-        return view('pages.Students.Graduated.create', compact(['Grades', 'students', 'classrooms', 'sections']));
+        return view('pages.adminDashboard.graduation.create', compact(['grades', 'students', 'classrooms', 'sections']));
     }
+
+
+
+
 
     public function store($request)
     {
-
-        $students = student::where('grade_id', $request->Grade_id)
-            ->where('classroom_id', $request->Classroom_id)
-            ->where('section_id', $request->section_id)
-            ->get();
+        $students = $this->fetchStudents($request);
 
         if ($students->isEmpty()) {
             return redirect()->back()->with(['error_Graduated' => trans('Students_trans.Sorry students not found')]);
         } else {
-            foreach ($students as $student) {
-                $student->delete();
-            }
+            $this->deleteStudents($students);
             return redirect()->back()->with(['graduated' => trans('Students_trans.graduated')]);
         }
-
     }
+
+    private function fetchStudents($request)
+    {
+        return Student::where('grade_id', $request->grade_id)
+            ->where('classroom_id', $request->classroom_id)
+            ->where('section_id', $request->section_id)
+            ->get();
+    }
+
+    private function deleteStudents($students)
+    {
+        foreach ($students as $student) {
+            $student->delete();
+        }
+    }
+
 
     public function returnAllGraduatedBack()
     {

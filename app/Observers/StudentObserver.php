@@ -37,10 +37,6 @@ class StudentObserver
     }
 
 
-
-
-
-
     public function updated(Student $student): void
     {
         $this->manageStudentFolder($student);
@@ -72,13 +68,40 @@ class StudentObserver
     }
 
 
-
-
-
-
-
-
+    //soft delete for gradtaion 
     public function deleted(Student $student)
+    {
+        $this->moveStudentFolderToGraduated($student);
+    }
+    
+
+
+
+    private function moveStudentFolderToGraduated($student)
+    {
+        $photoPath = public_path('attachments/students/' . $student->email);
+        $graduatedPath = public_path('attachments/students/graduated/' . $student->email);
+    
+        if (File::exists($photoPath) && !File::exists($graduatedPath)) {
+            if (!File::exists(public_path('attachments/students/graduated'))) {
+                File::makeDirectory(public_path('attachments/students/graduated'), 0755, true, true);
+            }
+            File::move($photoPath, $graduatedPath);
+        }
+    }
+    
+
+
+
+    public function restored(Student $student): void
+    {
+        //
+    }
+
+    /**
+     * Handle the Student "force deleted" event.
+     */
+    public function forceDeleted(Student $student)
     {
         try {
             DB::beginTransaction();
@@ -92,7 +115,8 @@ class StudentObserver
             DB::rollBack();
         }
     }
-    
+
+
     private function deleteStudentFolder($student)
     {
         $directory = public_path('attachments/students/' . $student->email);
@@ -105,21 +129,5 @@ class StudentObserver
     {
         Image::where('imageable_id', $student->id)->delete();
     }
-    
 
-
-
-
-    public function restored(Student $student): void
-    {
-        //
-    }
-
-    /**
-     * Handle the Student "force deleted" event.
-     */
-    public function forceDeleted(Student $student): void
-    {
-        //
-    }
 }

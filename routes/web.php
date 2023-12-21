@@ -114,11 +114,16 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
+
+
+
         ###################################### Begin Parent ###########################
 
         Route::resource('parents',ParentController::class);
 
         ###################################### End Parent ###########################
+
+
 
 
 
@@ -196,17 +201,21 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-        ###################################### Graduation ########################
-        Route::controller(GraduationController::class)->group(function () {
-            Route::resource('Graduation',GraduationController::class);
+
+        ###################################### Begin Student Graduation #######################################
+
+        Route::resource('graduation' , GraduationController::class);
+
+        Route::controller(GraduationController::class)->group(function ()
+        {
             Route::post('return_all_gradated_back', 'returnAllGraduatedBack')->name('returnAllGraduatedBack');
             Route::post('return_student', 'returnStudent')->name('returnStudent');
             Route::post('force_delete', 'ForceDelete')->name('ForceDelete');
             Route::post('graduate_selected', 'graduatedSelected')->name('graduate_selected');
             Route::get('/Get_student_email/{student_id}', 'getStudentEmail');
-
-
         });
+
+        ###################################### End Student Graduation #######################################
 
 
 

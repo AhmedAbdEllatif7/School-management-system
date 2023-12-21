@@ -13,7 +13,6 @@
 @endsection
 @section('content')
     <!-- row -->
-
     @if (Session::has('error_Graduated'))
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <strong>{{Session::get('error_Graduated')}}</strong>
@@ -22,14 +21,7 @@
             </button>
         </div>
     @endif
-
     <div class="row">
-
-
-
-
-
-
             @if (Session::has('error_Graduated'))
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
                     <strong>{{Session::get('error_Graduated')}}</strong>
@@ -46,9 +38,6 @@
                     </button>
                 </div>
             @endif
-
-
-
             @if (Session::has('graduated'))
                 <div class="alert alert-info alert-dismissible fade show" role="alert">
                     <strong>{{Session::get('graduated')}}</strong>
@@ -57,48 +46,52 @@
                     </button>
                 </div>
             @endif
-
         <div class="col-md-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">
-
-
-
-
-
-
-                        <form action="{{route('Graduation.store')}}" method="post">
-                        @csrf
+                    <form action="{{ route('graduation.store') }}" method="POST">
                         @csrf
                         <div class="form-row">
                             <div class="form-group col">
-                                <label for="inputState">{{trans('Students_trans.Grade')}}</label>
-                                <select class="custom-select mr-sm-2" name="Grade_id" required>
-                                    <option selected disabled>{{trans('Parent_trans.Choose')}}...</option>
-                                    @foreach($Grades as $Grade)
-                                        <option value="{{$Grade->id}}">{{$Grade->name}}</option>
+                                <label for="inputState">{{ trans('Students_trans.Grade') }}</label>
+                                <select class="custom-select mr-sm-2 @error('grade_id') is-invalid @enderror" name="grade_id" required>
+                                    <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
+                                    @foreach($grades as $grade)
+                                        <option value="{{ $grade->id }}">{{ $grade->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('grade_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group col">
-                                <label for="Classroom_id">{{trans('Students_trans.classrooms')}} : <span
-                                        class="text-danger">*</span></label>
-                                <select class="custom-select mr-sm-2" name="Classroom_id" required>
-
+                                <label for="Classroom_id">{{ trans('Students_trans.classrooms') }} : <span class="text-danger">*</span></label>
+                                <select class="custom-select mr-sm-2 @error('classroom_id') is-invalid @enderror" name="classroom_id" required>
+                                    <!-- Options for classroom -->
                                 </select>
+                                @error('classroom_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-
                             <div class="form-group col">
-                                <label for="section_id">{{trans('Students_trans.section')}} : </label>
-                                <select class="custom-select mr-sm-2" name="section_id" required>
-
+                                <label for="section_id">{{ trans('Students_trans.section') }} : </label>
+                                <select class="custom-select mr-sm-2 @error('section_id') is-invalid @enderror" name="section_id" required>
+                                    <!-- Options for section -->
                                 </select>
+                                @error('section_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-
                         </div>
-
                         <button type="submit" class="btn btn-primary">{{ trans('main_trans.Submit') }}</button>
                     </form>
+                    
                     <br><br>
                     <div class="form-row">
                         <div class="form-group col">
@@ -109,15 +102,9 @@
                         </div>
                     </div>
 
-
-
-
-
-
-
                     <!-- add_modal_class -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                         aria-hidden="true">
+                        aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -140,7 +127,7 @@
 
                                                             <div class="col">
                                                                 <label for="Name" class="mr-sm-2">{{ trans('Students_trans.student_name') }}:</label>
-                                                                <select class="custom-select mr-sm-2" name="student_id" required>
+                                                                <select class="custom-select mr-sm-2" name="student_id"  >
                                                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
                                                                     @foreach($students as $student)
                                                                         <option value="{{ $student->id }}">{{ $student->name }}</option>
@@ -150,7 +137,7 @@
 
                                                             <div class="col">
                                                                 <label for="Name" class="mr-sm-2">{{ trans('Students_trans.Email') }}:</label>
-                                                                <select class="custom-select mr-sm-2" name="email" required>
+                                                                <select class="custom-select mr-sm-2" name="email"  >
                                                                     <option selected disabled>{{ trans('Parent_trans.Choose') }}...</option>
                                                                 @foreach($students as $student)
                                                                         <option value="{{ $student->email }}">{{ $student->email }}</option>

@@ -147,23 +147,19 @@
                                     @enderror
                                 </div>
                             </div>
-
-
                         </div>
                         <button type="submit" class="btn btn-primary">{{trans('Students_trans.submit')}}</button>
                     </form>
-
                 </div>
             </div>
         </div>
-
     </div>
     <!-- row closed -->
 @endsection
 @section('js')
 
 
-    @include('layouts.ajax')
+    @include('layouts.promotionAjax')
 
 
 @endsection

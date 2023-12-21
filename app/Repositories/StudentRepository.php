@@ -127,8 +127,8 @@ class StudentRepository implements StudentRepositoryInterface{
 
 
 
-
-    public function destroy($request)
+    // Student Observer manages automatic delete it's folder .
+    public function forceDeleted($request)
     {
         Student::findOrFail($request->id)->forceDelete();
         return redirect()->back()->with(['deleteStudent' => trans('Students_trans.Student deleted successfully.') ]);;

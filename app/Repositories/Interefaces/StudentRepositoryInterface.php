@@ -17,7 +17,7 @@ interface StudentRepositoryInterface{
 
     public function show($student);
 
-    public function destroy($request);
+    public function forceDeleted($request);
 
     public function addPhotoFromDetails($request);
 

@@ -45,8 +45,8 @@
                                 <br><br>
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
-                                           data-page-length="50"
-                                           style="text-align: center">
+                                            data-page-length="50"
+                                            style="text-align: center">
                                         <thead>
                                         <tr class="alert-success">
                                             <th>#</th>
@@ -75,9 +75,9 @@
 
                                                 </td>
                                             </tr>
-                                        @include('pages.Students.Graduated.return')
-                                        @include('pages.Students.Graduated.Delete_all')
-                                        @include('pages.Students.Graduated.Delete')
+                                        @include('pages.adminDashboard.graduation.return')
+                                        @include('pages.adminDashboard.graduation.Delete_all')
+                                        @include('pages.adminDashboard.graduation.Delete')
                                         @endforeach
                                     </table>
                                 </div>
