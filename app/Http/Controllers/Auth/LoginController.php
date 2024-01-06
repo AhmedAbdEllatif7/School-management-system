@@ -37,7 +37,7 @@ class LoginController extends Controller
 
     public function login(Request $request){
 
-        if (Auth::guard($this->checkGuard($request))->attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::guard($this->checkGuard($request->type))->attempt(['email' => $request->email, 'password' => $request->password])) {
             return $this->redirect($request);
         }
 

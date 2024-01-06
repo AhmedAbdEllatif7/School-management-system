@@ -18,6 +18,7 @@ class StudentObserver
     }
 
 
+    ############################## Begin Upload Photo ###############################
     public static function uploadStudentPhoto($student): void
     {
         if (request()->hasFile('photo')) {
@@ -35,6 +36,11 @@ class StudentObserver
         $image->imageable_type = 'App\Models\Student';
         $image->save();
     }
+    ############################## End Upload Photo ###############################
+
+
+
+
 
 
     public function updated(Student $student): void
@@ -44,6 +50,9 @@ class StudentObserver
 
 
 
+
+
+    ############################## Begin Manage Student Folder ###############################
     private function manageStudentFolder($student)
     {
         $oldStudentEmail = $student->getOriginal('email');
@@ -66,9 +75,18 @@ class StudentObserver
             rename($oldFolderPath , $newFolderPath);
         }
     }
+    ############################## End Manage Student Folder ###############################
 
 
-    //soft delete for gradtaion 
+
+
+
+
+
+
+
+
+    ################# Begin Soft Delete For Graduation ###################
     public function deleted(Student $student)
     {
         $this->moveStudentFolderToGraduated($student);
@@ -76,31 +94,61 @@ class StudentObserver
     
 
 
-
     private function moveStudentFolderToGraduated($student)
+    {
+        if ($this->checkStudentFolderExists($student)) {
+            $this->createGraduatedDirectory();
+            
+            $photoPath = public_path('attachments/students/' . $student->email);
+            $graduatedPath = public_path('attachments/students/graduated/' . $student->email);
+    
+            File::move($photoPath, $graduatedPath);
+        }
+    }
+
+
+
+    private function checkStudentFolderExists($student)
     {
         $photoPath = public_path('attachments/students/' . $student->email);
         $graduatedPath = public_path('attachments/students/graduated/' . $student->email);
     
-        if (File::exists($photoPath) && !File::exists($graduatedPath)) {
-            if (!File::exists(public_path('attachments/students/graduated'))) {
-                File::makeDirectory(public_path('attachments/students/graduated'), 0755, true, true);
-            }
-            File::move($photoPath, $graduatedPath);
+        return File::exists($photoPath) && !File::exists($graduatedPath);
+    }
+    
+    private function createGraduatedDirectory()
+    {
+        $graduatedDirectory = public_path('attachments/students/graduated');
+    
+        if (!File::exists($graduatedDirectory)) {
+            File::makeDirectory($graduatedDirectory, 0755, true, true);
         }
     }
+    ####################### End Soft Delete For Graduation ###############################
+    
+
+
+    
+
+
     
 
 
 
-    public function restored(Student $student): void
+    public function restored(Student $student)
     {
-        //
+        $graduatedPath = public_path('attachments/students/graduated/' . $student->email);
+        $photoPath = public_path('attachments/students/' . $student->email);
+
+        if (File::exists($graduatedPath)) {
+            File::move($graduatedPath, $photoPath);
+        }
     }
 
-    /**
-     * Handle the Student "force deleted" event.
-     */
+
+
+
+    ##################### Begin Force Deleted #############################
     public function forceDeleted(Student $student)
     {
         try {
@@ -129,5 +177,7 @@ class StudentObserver
     {
         Image::where('imageable_id', $student->id)->delete();
     }
+    ##################### End Force Deleted #############################
+
 
 }

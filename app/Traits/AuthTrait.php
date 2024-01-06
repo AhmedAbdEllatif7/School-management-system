@@ -6,15 +6,15 @@ use App\Providers\RouteServiceProvider;
 
 trait AuthTrait
 {
-    public function checkGuard($request){
+    public function checkGuard($type){
 
-        if($request->type == 'student'){
+        if($type == 'student'){
             $guardName= 'student';
         }
-        elseif ($request->type == 'parent'){
+        elseif ($type == 'parent'){
             $guardName= 'parent';
         }
-        elseif ($request->type == 'teacher'){
+        elseif ($type == 'teacher'){
             $guardName= 'teacher';
         }
         else{
@@ -23,15 +23,15 @@ trait AuthTrait
         return $guardName;
     }
 
-    public function redirect($request){
+    public function redirect($type){
 
-        if($request->type == 'student'){
+        if($type == 'student'){
             return redirect()->intended(RouteServiceProvider::STUDENT);
         }
-        elseif ($request->type == 'parent'){
+        elseif ($type == 'parent'){
             return redirect()->intended(RouteServiceProvider::PARENT);
         }
-        elseif ($request->type == 'teacher'){
+        elseif ($type == 'teacher'){
             return redirect()->intended(RouteServiceProvider::TEACHER);
         }
         else{

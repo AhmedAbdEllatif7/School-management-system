@@ -48,7 +48,7 @@
                             @endif
                                 <br><br>
                             <h3><span style="color:red">{{$type}}</span> : Sign In</h3>
-                            <p class="mb-4">Lorem ipsum dolor sit amet elit. Sapiente sit aut eos consectetur adipisicing.</p>
+                            <p class="mb-4">Welcome back.</p>
                         </div>
                         @if (\Session::has('message'))
                             <div class="alert alert-danger">

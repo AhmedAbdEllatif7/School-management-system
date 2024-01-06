@@ -102,29 +102,27 @@
                         </div>
                     </div>
 
-                    <!-- add_modal_class -->
+                    <!-- add_selected_graduated_modal_class -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
-                                        {{ trans('My_Classes_trans.add_class') }}
+                                        {{ trans('classes_trans.add_class') }}
                                     </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-
-                                    <form class=" row mb-30" action="{{route('graduate_selected')}}" method="POST">
+                                    <form class=" row mb-30" action="{{route('graduate.selected')}}" method="POST">
                                         @csrf
                                         <div class="card-body">
                                             <div class="repeater">
-                                                <div data-repeater-list="List_Student">
+                                                <div data-repeater-list="listOfStudents">
                                                     <div data-repeater-item>
                                                         <div class="row">
-
                                                             <div class="col">
                                                                 <label for="Name" class="mr-sm-2">{{ trans('Students_trans.student_name') }}:</label>
                                                                 <select class="custom-select mr-sm-2" name="student_id"  >
@@ -134,7 +132,6 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
-
                                                             <div class="col">
                                                                 <label for="Name" class="mr-sm-2">{{ trans('Students_trans.Email') }}:</label>
                                                                 <select class="custom-select mr-sm-2" name="email"  >
@@ -144,54 +141,37 @@
                                                                     @endforeach
                                                                 </select>
                                                             </div>
-
-
-
-
                                                             <div class="col">
                                                                 <label for="Name_en"
-                                                                       class="mr-sm-2">{{ trans('My_Classes_trans.Processes') }}
+                                                                    class="mr-sm-2">{{ trans('classes_trans.Processes') }}
                                                                     :</label>
                                                                 <input class="btn btn-danger btn-block" data-repeater-delete
-                                                                       type="button" value="{{ trans('My_Classes_trans.delete_row') }}" />
+                                                                    type="button" value="{{ trans('classes_trans.delete_row') }}" />
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                                 <div class="row mt-20">
                                                     <div class="col-12">
-                                                        <input class="button" data-repeater-create type="button" value="{{ trans('My_Classes_trans.add_row') }}"/>
+                                                        <input class="button" data-repeater-create type="button" value="{{ trans('classes_trans.add_row') }}"/>
                                                     </div>
-
                                                 </div>
-
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">{{ trans('grade_trans.Close') }}</button>
                                                     <button type="submit"
                                                             class="btn btn-success">{{ trans('main_trans.Submit') }}</button>
                                                 </div>
-
-
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
-
-
-
             </div>
         </div>
-
 
 
     </div>

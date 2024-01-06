@@ -10,50 +10,45 @@ use Illuminate\Http\Request;
 class GraduationController extends Controller
 {
 
-    protected $Graduation;
+    protected $graduation;
 
-    public function __construct(GraduationRepositoryInterface $Graduation)
+    public function __construct(GraduationRepositoryInterface $graduation)
     {
-        $this->Graduation = $Graduation;
+        $this->graduation = $graduation;
     }
 
     public function index()
     {
-        return $this->Graduation->index();
+        return $this->graduation->index();
     }
-
 
     public function create()
     {
-        return $this->Graduation->create();
+        return $this->graduation->create();
     }
 
     public function store(GraduationRequest $request)
     {
-        return $this->Graduation->store($request);
+        return $this->graduation->store($request);
     }
 
-
-    public function returnAllGraduatedBack(Request $request)
+    public function restored(Request $request)
     {
-        return $this->Graduation->returnAllGraduatedBack();
+        return $this->graduation->restored($request);
     }
 
-    public function returnStudent(Request $request)
+    public function destroy(Request $request)
     {
-        return $this->Graduation->returnStudent($request);
-    }
-
-    public function ForceDelete(Request $request)
-    {
-        return $this->Graduation->forceDelete($request);
+        return $this->graduation->forceDeleteSelected($request);
     }
 
 
     public function graduatedSelected(Request $request)
     {
-        return $this->Graduation->graduateSelectes($request);
+        return $this->graduation->graduateSelected($request);
 
     }
+
+
 
 }

@@ -81,8 +81,8 @@ return [
     'add_student' => 'Add Student',
 
 
-'Email' => 'Email',
-    'invalid_data' => 'Invalid Data',
+    'Email' => 'Email',
+    'not_found_student' => 'Student data not found',
 
     'Deleted successfully' => 'Deleted successfully',
 
@@ -216,8 +216,13 @@ return [
     'photo' => 'Photo',
     'revert_seletecd_promotion' => 'Revert seleted promotion',
     'sure_revert_seleted' => 'Are you sure you want to revert the seleted promotions?',
+    'sure_restore_seleted' => 'Are you sure you want to restore the seleted students?',
     'promotion_retreved' => 'Selected promotion retreived successfully.',
 
+    'faild_delete' => 'Faild to delete',
+    'faild_restore' => 'Faild to restore',
+    'restore_from_graduation' => 'Restore from graduation',
+    'restore' => 'Restore',
 
 
 

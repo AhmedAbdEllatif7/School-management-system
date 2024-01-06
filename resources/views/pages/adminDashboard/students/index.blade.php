@@ -7,7 +7,7 @@
     @section('page-header')
         <!-- breadcrumb -->
     @section('PageTitle')
-        {{trans('main_trans.list_students')}}
+        {{trans('main_trans.Student List')}}
     @stop
     <!-- breadcrumb -->
     @endsection

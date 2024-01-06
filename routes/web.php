@@ -45,7 +45,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
             Route::group(['namespace' => 'Auth'], function () {
 
-                Route::get('/login/{type}', [LoginController::class , 'loginForm'])->middleware('guest')->name('login.show');
+                Route::get('/login/{type}', [LoginController::class , 'loginForm'])->name('login.show');
 
                 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
@@ -203,16 +203,20 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
         ###################################### Begin Student Graduation #######################################
-
+        /*dont forget to commit by this
+            "Implemented functionality to manage graduated students' data removal efficiently:
+            Introduced an event triggering the deletion of a graduated student's folder and image record upon their deletion.
+            Integrated the feature enabling the forced deletion of multiple graduated students.
+            Improved codebase by refining route naming conventions and enhancing the formatting of blade templates for a more organized structure."
+            Integrated an observer that automatically relocates the student's folder from the graduation directory upon their restoration.
+            This feature ensures seamless management of student data, transferring the folder back to the appropriate location upon restoration from graduation.
+        */
         Route::resource('graduation' , GraduationController::class);
 
         Route::controller(GraduationController::class)->group(function ()
         {
-            Route::post('return_all_gradated_back', 'returnAllGraduatedBack')->name('returnAllGraduatedBack');
-            Route::post('return_student', 'returnStudent')->name('returnStudent');
-            Route::post('force_delete', 'ForceDelete')->name('ForceDelete');
-            Route::post('graduate_selected', 'graduatedSelected')->name('graduate_selected');
-            Route::get('/Get_student_email/{student_id}', 'getStudentEmail');
+            Route::post('student/restored-selected', 'restored')->name('restored.selected.from.graduation');
+            Route::post('graduate-selected', 'graduatedSelected')->name('graduate.selected');
         });
 
         ###################################### End Student Graduation #######################################
@@ -269,18 +273,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         Route::controller(SubjectController::class)->group(function () {
             Route::resource('subjects',SubjectController::class);
         });
-
-
-        // ###################################### Quizzes ###########################
-        // Route::controller(QuizController::class)->group(function () {
-        //     Route::resource('quizzes',QuizController::class);
-        // });
-
-
-        // ###################################### Questions ###########################
-        // Route::controller(QuestionController::class)->group(function () {
-        //     Route::resource('questions',QuestionController::class);
-        // });
 
 
         ###################################### LibraryRepository ###################

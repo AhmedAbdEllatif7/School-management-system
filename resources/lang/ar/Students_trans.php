@@ -86,7 +86,7 @@ return [
 
     'Email' => 'البريد الإلكتروني',
 
-    'invalid_data' => 'بيانات غير صحيحة',
+    'not_found_student' => 'بيانات الطالب غير موجودة',
 
     'Deleted successfully' => 'تم الحذف بنجاح',
 
@@ -222,5 +222,11 @@ return [
     'revert_seletecd_promotion' => 'إستعادة الترقيات المحددة',
     'sure_revert_seleted' => 'هل انت متأكد من إستعادة الترقيات المحددة؟',
     'promotion_retreved' => 'تمت إستعادة الترقيات المحددة بنجاح',
+    'faild_delete' => 'خطأ في الحذف',
+    'faild_restore' => 'خطأ في الإستعادة',
+    'restore_from_graduation' => 'إرجاع من التخرج',
+    'sure_restore_seleted' => 'هل انت متأكد من إرجاع الطلاب المحددين؟',
+    'restore' => 'إستعادة',
+
 
 ];

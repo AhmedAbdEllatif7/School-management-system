@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Events\GraduationStudentDeleting;
 use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Section;
@@ -30,7 +31,7 @@ class GraduationRepository implements GraduationRepositoryInterface
 
 
 
-
+################## Begin Store #######################################################################################
     public function store($request)
     {
         $students = $this->fetchStudents($request);
@@ -54,48 +55,67 @@ class GraduationRepository implements GraduationRepositoryInterface
     private function deleteStudents($students)
     {
         foreach ($students as $student) {
-            $student->delete();
+            $student->delete(); // Soft delete
+        }
+    }
+################################################# End Store ######################################################
+
+
+
+
+
+#################### Begin Restore ######################################################
+    public function restored($request)
+    {
+        try {
+            $restore_selected_ids = explode(",", $request->restore_selected_id);
+            
+            if ($restore_selected_ids) {
+                $restoredStudents = $this->restoreStudents($restore_selected_ids);
+
+                return $this->handleRestoreSuccess($restoredStudents);
+            }
+            
+            return $this->handleRestoreFailure();
+        } catch (\Exception $e) {
+            return $this->handleRestoreError($e->getMessage());
         }
     }
 
-
-    public function returnAllGraduatedBack()
+    private function restoreStudents($studentIds)
     {
-        Student::onlyTrashed()->restore();
-        return redirect()->back()->with(['restore_Graduated' => trans('Students_trans.restore')]);
-
+        return Student::onlyTrashed()->whereIn('id', $studentIds)->get()->each->restore();
     }
 
-    public function returnStudent($request)
+    private function handleRestoreSuccess($restoredStudents)
     {
-
-        $student = Student::withTrashed()->find($request->id);
-        $student->restore();
-        return redirect()->back()->with(['restore_Graduated' => trans('Students_trans.restore')]);
-
+        return redirect()->back()->with(['restored_students' => trans('students_trans.restore_student')]);
     }
 
-    public function forceDelete($request)
+    private function handleRestoreFailure()
     {
-        $student = Student::withTrashed()->findOrFail($request->id)->forceDelete();
-
-        return redirect()->back()->with(['delete_force' => trans('Students_trans.Deleted successfully')]);
+        return redirect()->back()->withErrors(trans('students_trans.faild_restore'));
     }
 
-    public function graduateSelectes($request)
+    private function handleRestoreError($errorMessage)
     {
-        $list_students = $request->List_Student;
+        return redirect()->back()->withErrors(['error' => $errorMessage]);
+    }
+################################################# End Restore ######################################################
 
+
+
+
+
+
+
+#################### Begin Graduated Selected ######################################################
+    public function graduateSelected($request)
+    {
         try {
-            foreach ($list_students as $student) {
-                $student2 = Student::where('id', $student['student_id'])->where('email', $student['email'])->first();
+            $listOfStudents = $request->listOfStudents;
 
-                if ($student2) {
-                    $student2->delete();
-                } else {
-                    return redirect()->back()->with(['error_Graduated' => trans('Students_trans.invalid_data')]);
-                }
-            }
+            $this->processGraduation($listOfStudents);
 
             return redirect()->back()->with(['graduated' => trans('Students_trans.graduated')]);
         } catch (\Exception $e) {
@@ -103,6 +123,63 @@ class GraduationRepository implements GraduationRepositoryInterface
         }
     }
 
+    private function processGraduation($listOfStudents)
+    {
+        foreach ($listOfStudents as $student) {
+            $selectedStudents = $this->getSelectedStudents($student);
+
+            if ($selectedStudents->isEmpty()) {
+                throw new \Exception(trans('Students_trans.not_found_student'));
+            }
+
+            $this->deleteSelectedStudents($selectedStudents);
+        }
+    }
+
+    private function getSelectedStudents($student)
+    {
+        return Student::where('id', $student['student_id'])->where('email', $student['email'])->get();
+    }
+
+    private function deleteSelectedStudents($selectedStudents)
+    {
+        $selectedStudents->each->delete();
+    }
+#################### End Graduated Selected ######################################################
+
+
+
+
+################## Begin Force Delete Selected ######################################################
+    public function forceDeleteSelected($request)
+    {
+        try {
+            $delete_selected_ids = explode(",", $request->delete_selected_id);
+
+            $this->forceDeleteSelectedStudents($delete_selected_ids);
+
+            return redirect()->back()->with(['delete_Selected' => trans('students_trans.delete_done')]);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    private function forceDeleteSelectedStudents($delete_selected_ids)
+    {
+        foreach ($delete_selected_ids as $id) {
+            $student = Student::onlyTrashed()->findOrFail($id);
+
+            $this->deleteStudentData($student);
+        }
+    }
+
+    private function deleteStudentData($student)
+    {
+        event(new GraduationStudentDeleting($student));
+
+        $student->forceDelete();
+    }
+################## End Force Delete Selected ######################################################
 
 
 }

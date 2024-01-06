@@ -48,7 +48,7 @@ return [
     'sections'=>'الاقسام',
     'students'=>'الطلاب',
     'Student_information'=>'معلومات الطلاب',
-'information_student' => 'معلومات الطالب',
+    'information_student' => 'معلومات الطالب',
     'Students_Promotions'=>'ترقية الطلاب',
     'add_Promotion'=>'اضافة ترقية جديدة',
     'list_Promotions'=>'قائمة الترقيات',
@@ -254,13 +254,17 @@ return [
     'delete_all' => 'حذف الكل',
     'delete_student' => 'حذف الطالب',
     'confirmation_cancel_graduation' => 'هل أنت متأكد من إلغاء عملية التخرج؟',
-    'confirmation_delete_all_students' => 'هل أنت متـأكد من عملية حذف كافة الطلاب؟',
+    'confirmation_delete_selected_students' => 'هل أنت متـأكد من عملية حذف الطلاب المحددة؟',
     'return_student' => 'ارجاع طالب',
     'teacher_details' => 'تفاصيل المعلم',
     'separator' => 'يرجى الفصل بين كل إجابة بعلامة -',
     'File not found' => 'الملف غير موجود',
     'photo_added' => 'تمت إضافة الصورة بنجاح.',
     'olde_academic_year' => 'السنة الدراسية السابقة',
+    'delete_selected' => 'حذف العناصر المحددة',
+    'return_selected' => 'إرجاع العناصر المحددة',
+    'cancel' => 'إلغاء',
+    'delete' => 'حذف',
 
 
 ];

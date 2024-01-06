@@ -257,10 +257,14 @@ return [
     'return_student' => 'Return student',
     'delete_student' => 'Delete student',
     'confirmation_cancel_graduation' => 'Are you sure you want to cancel the graduation process?',
-    'confirmation_delete_all_students' => 'Are you sure you want to delete all students?',
+    'confirmation_delete_selected_students' => 'Are you sure you want to delete selected students?',
     'teacher_details' => 'Teacher details',
     'separator' => 'Please separate each answer with a hyphen -',
     'File not found' => 'File not found',
+    'delete_selected' => 'Delete selected',
+    'return_selected' => 'Return selected',
+    'cancel' => 'Cancel',
+    'delete' => 'Delete',
 
     'photo_added' => 'Photo added successfilly.',
 

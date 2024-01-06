@@ -11,11 +11,11 @@ interface GraduationRepositoryInterface{
 
     public function store($request);
 
-    public function returnAllGraduatedBack();
+    public function restored($request);
 
-    public function returnStudent($request);
+    public function forceDeleteSelected($request);
 
-    public function forceDelete($request);
+    public function graduateSelected($request);
 
-    public function graduateSelectes($request);
+
 }
