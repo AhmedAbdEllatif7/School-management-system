@@ -185,20 +185,25 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
         ###################################### Begin Fees ##############################
+
         Route::resource('fees', FeesController::class);
+
         ###################################### End Fees ##############################
 
 
 
         ###################################### Begin FeesInvoices #######################
+
         Route::resource('invoices-fees', InvoiceFeesController::class);
+
         ###################################### End FeesInvoices #######################
 
 
-        ###################################### Receipt ############################
-            Route::controller(ReceiptController::class)->group(function () {
-                Route::resource('receipt_student',ReceiptController::class);
-            });
+        ###################################### Begin Receipt ############################
+
+        Route::resource('student-receipt', ReceiptController::class);
+
+        ###################################### End Receipt ############################
 
 
 

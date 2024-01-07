@@ -163,9 +163,9 @@
                 <li> <a href="{{route('fees.create')}}">{{(trans('main_trans.add_fees'))}} </a> </li>
                 <li> <a href="{{route('fees.index')}}">{{(trans('main_trans.Fees_list'))}}</a> </li>
                 <li> <a href="{{route('invoices-fees.index')}}">{{(trans('main_trans.Invoices_fees_list'))}}</a> </li>
-                <li> <a href="{{route('receipt_student.index')}}">{{(trans('Students_trans.receipt'))}}</a> </li>
-                <li> <a href="{{route('processing_fees.index')}}">{{(trans('Students_trans.exclude_fee_list'))}}</a> </li>
-                <li> <a href="{{route('payments_student.index')}}">{{(trans('Students_trans.payments_student_list'))}}</a> </li>
+                <li> <a href="{{route('student-receipt.index')}}">{{(trans('students_trans.student_receipt'))}}</a> </li>
+                <li> <a href="{{route('processing_fees.index')}}">{{(trans('students_trans.exclude_fee_list'))}}</a> </li>
+                <li> <a href="{{route('payments_student.index')}}">{{(trans('students_trans.payments_student_list'))}}</a> </li>
 
 
             </ul>
@@ -205,8 +205,8 @@
 {{--            <ul id="Exams-icon" class="collapse" data-parent="#sidebarnav">--}}
 {{--                <li> <a href="{{route('quizzes.create')}}">{{trans('main_trans.add_quiz')}}</a> </li>--}}
 {{--                <li> <a href="{{route('quizzes.index')}}">{{trans('main_trans.quizzes_list')}}</a> </li>--}}
-{{--                <li> <a href="{{route('questions.index')}}">{{trans('Students_trans.question_list')}}</a> </li>--}}
-{{--                <li> <a href="{{route('questions.create')}}">{{trans('Students_trans.add_new_question')}}</a> </li>--}}
+{{--                <li> <a href="{{route('questions.index')}}">{{trans('students_trans.question_list')}}</a> </li>--}}
+{{--                <li> <a href="{{route('questions.create')}}">{{trans('students_trans.add_new_question')}}</a> </li>--}}
 
 {{--            </ul>--}}
 {{--        </li>--}}
@@ -221,7 +221,7 @@
             </a>
             <ul id="library-icon" class="collapse" data-parent="#sidebarnav">
                 <li> <a href="{{route('libraries.index')}}">{{trans('main_trans.books_list')}}</a> </li>
-                <li> <a href="{{route('libraries.create')}}">{{trans('Students_trans.add_new_book')}}</a> </li>
+                <li> <a href="{{route('libraries.create')}}">{{trans('students_trans.add_new_book')}}</a> </li>
 
             </ul>
         </li>

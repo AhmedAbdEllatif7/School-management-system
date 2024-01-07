@@ -157,6 +157,7 @@ return [
     'delete_done' => 'تم الحذف بنجاح',
 
     'receipt' => 'قائمة سند قبض',
+    'student_receipt' => 'قائمة سند قبض الطالب',
 
     'add_receipt' => '  إضافة سند قبض',
 
@@ -229,6 +230,7 @@ return [
     'restore' => 'إستعادة',
     'edit_fee' => 'تعديل الرسوم',
     'description' => 'الوصف',
+    'debit' => 'الدين',
 
 
 ];

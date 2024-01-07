@@ -155,6 +155,7 @@ return [
     'attendance_list' => 'Attendance and Absence List for Students',
 
     'receipt' => 'Receipt',
+    'student_receipt' => 'Student receipt',
 
     'add_receipt' => 'Add receipt',
 
@@ -224,6 +225,7 @@ return [
     'restore' => 'Restore',
     'edit_fee' => 'Edit fee',
     'description' => 'Description',
+    'debit' => 'Debit',
 
 
 

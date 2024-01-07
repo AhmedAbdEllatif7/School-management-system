@@ -14,7 +14,7 @@ return new class extends Migration
             $table->date('date');
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
-            $table->decimal('Debit',8,2)->nullable();
+            $table->decimal('debit',8,2)->nullable();
             $table->string('description');
             $table->timestamps();
         });

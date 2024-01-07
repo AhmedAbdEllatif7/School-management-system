@@ -29,7 +29,7 @@
                         </div>
                     @endif
 
-                            <form action="{{route('receipt_student.update', 'test')}}" method="post" autocomplete="off">
+                            <form action="{{route('student-receipt.update', 'error')}}" method="post" autocomplete="off">
                                 @method('PUT')
                                 @csrf
                             @csrf
@@ -37,7 +37,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{trans('Students_trans.Amount')}} : <span class="text-danger">*</span></label>
-                                        <input  class="form-control" name="Debit" value="{{$receipt_student->Debit}}" type="number" >
+                                        <input  class="form-control" name="debit" value="{{$receipt_student->debit}}" type="number" >
                                         <input  type="hidden" name="student_id" value="{{$receipt_student->student->id}}" class="form-control">
                                         <input  type="hidden" name="id"  value="{{$receipt_student->id}}" class="form-control">
                                     </div>
@@ -47,7 +47,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>{{trans('Students_trans.statement')}} : <span class="text-danger">*</span></label>
+                                        <label>{{trans('Students_trans.description')}} : <span class="text-danger">*</span></label>
                                         <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{$receipt_student->description}}</textarea>
                                     </div>
                                 </div>
