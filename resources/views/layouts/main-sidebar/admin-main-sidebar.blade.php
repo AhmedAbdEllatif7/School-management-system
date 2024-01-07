@@ -162,7 +162,7 @@
             <ul id="Accounts-menu" class="collapse" data-parent="#sidebarnav">
                 <li> <a href="{{route('fees.create')}}">{{(trans('main_trans.add_fees'))}} </a> </li>
                 <li> <a href="{{route('fees.index')}}">{{(trans('main_trans.Fees_list'))}}</a> </li>
-                <li> <a href="{{route('fees_invoices.index')}}">{{(trans('main_trans.Invoices_fees_list'))}}</a> </li>
+                <li> <a href="{{route('invoices-fees.index')}}">{{(trans('main_trans.Invoices_fees_list'))}}</a> </li>
                 <li> <a href="{{route('receipt_student.index')}}">{{(trans('Students_trans.receipt'))}}</a> </li>
                 <li> <a href="{{route('processing_fees.index')}}">{{(trans('Students_trans.exclude_fee_list'))}}</a> </li>
                 <li> <a href="{{route('payments_student.index')}}">{{(trans('Students_trans.payments_student_list'))}}</a> </li>

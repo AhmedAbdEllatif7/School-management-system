@@ -40,8 +40,8 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
-                                           data-page-length="50"
-                                           style="text-align: center">
+                                        data-page-length="50"
+                                        style="text-align: center">
                                         <thead>
                                         <tr class="alert-success">
                                             <th>#</th>
@@ -50,26 +50,26 @@
                                             <th>{{ trans('Students_trans.amount') }}</th>
                                             <th>{{ trans('Students_trans.Grade') }}</th>
                                             <th>{{ trans('Students_trans.Classroom') }}</th>
-                                            <th>{{ trans('Students_trans.statement') }}</th>
-                                            <th>{{ trans('My_Classes_trans.Processes') }}</th>
+                                            <th>{{ trans('Students_trans.description') }}</th>
+                                            <th>{{ trans('classes_trans.Processes') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($Fee_invoices as $Fee_invoice)
+                                        @foreach($invoicesFee as $invoiceFee)
                                             <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{$Fee_invoice->student->name}}</td>
-                                            <td>{{$Fee_invoice->fees->title}}</td>
-                                            <td>{{ number_format($Fee_invoice->amount, 2) }}</td>
-                                            <td>{{$Fee_invoice->grade->name}}</td>
-                                            <td>{{$Fee_invoice->classroom->name}}</td>
-                                            <td>{{$Fee_invoice->description}}</td>
+                                            <td>{{$invoiceFee->student->name}}</td>
+                                            <td>{{$invoiceFee->fees->title}}</td>
+                                            <td>{{ number_format($invoiceFee->amount, 2) }}</td>
+                                            <td>{{$invoiceFee->grade->name}}</td>
+                                            <td>{{$invoiceFee->classroom->name}}</td>
+                                            <td>{{$invoiceFee->description}}</td>
                                                 <td>
-                                                    <a href="{{ route('fees_invoices.edit', ['fees_invoice' => $Fee_invoice->id]) }}" class="btn btn-info btn-sm" role="button" aria-pressed="true" title="{{ trans('students_trans.Edit') }}"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#Delete_Fee_invoice{{$Fee_invoice->id}}" title="{{ trans('students_trans.delete') }}"><i class="fa fa-trash"></i></button>
+                                                    <a href="{{ route('invoices-fees.edit' , $invoiceFee->id) }}" class="btn btn-info btn-sm" role="button" aria-pressed="true" title="{{ trans('students_trans.Edit') }}"><i class="fa fa-edit"></i></a>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#Delete_Fee_invoice{{$invoiceFee->id}}" title="{{ trans('students_trans.delete') }}"><i class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>
-                                        @include('pages.Fees_Invoices.Delete')
+                                        @include('pages.adminDashboard.invoicesFee.delete')
                                         @endforeach
                                     </table>
                                 </div>

@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\school\admin\AttendanceController;
 use App\Http\Controllers\school\admin\ClassroomController;
 use App\Http\Controllers\school\admin\FeesController;
-use App\Http\Controllers\school\admin\FeesInvoicesController;
+use App\Http\Controllers\school\admin\InvoiceFeesController;
 use App\Http\Controllers\school\admin\FullCalenderController;
 use App\Http\Controllers\school\admin\GradeController;
 use App\Http\Controllers\school\admin\GraduationController;
@@ -185,19 +185,14 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
         ###################################### Begin Fees ##############################
-        Route::resource('fees',FeesController::class);
-        
-        Route::controller(FeesController::class)->group(function () {
-            Route::get('view_fees','viewFees')->name('viewFees');
-        });
+        Route::resource('fees', FeesController::class);
         ###################################### End Fees ##############################
 
 
 
-        ###################################### FeesInvoices #######################
-        Route::controller(FeesInvoicesController::class)->group(function () {
-            Route::resource('fees_invoices',FeesInvoicesController::class);
-        });
+        ###################################### Begin FeesInvoices #######################
+        Route::resource('invoices-fees', InvoiceFeesController::class);
+        ###################################### End FeesInvoices #######################
 
 
         ###################################### Receipt ############################

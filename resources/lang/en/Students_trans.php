@@ -131,7 +131,7 @@ return [
     'operations' => 'Operations',
     'view_student_data' => 'View Student Data',
     'edit_student_data' => 'Edit Student Data',
-    'add_fee_invoice' => 'Add Fee Invoice',
+    'add_invoice_fee' => 'Add Invoice Fee ',
     'receipt' => 'Receipt',
     'exclude_fee' => 'Exclude Fee',
     'payment' => 'Payment',
@@ -147,7 +147,7 @@ return [
     'student_name' => 'Student Name',
 
     'invoices_fees' => 'Invoices fees',
-    'edit_fees' => 'Edit Tuition Fees',
+    'edit_fees' => 'Edit Invoice Fees',
     'edit_done' => 'ُEdited successfully',
     'delete_done' => 'Deleted successfully',
 
@@ -223,6 +223,7 @@ return [
     'restore_from_graduation' => 'Restore from graduation',
     'restore' => 'Restore',
     'edit_fee' => 'Edit fee',
+    'description' => 'Description',
 
 
 

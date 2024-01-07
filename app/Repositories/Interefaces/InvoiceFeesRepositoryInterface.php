@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interefaces;
 
-interface FeesInvoicesRepositoryInterface
+interface InvoiceFeesRepositoryInterface
 {
         public function index();
 
@@ -10,7 +10,7 @@ interface FeesInvoicesRepositoryInterface
 
         public function store($request);
 
-        public function edit($id);
+        public function edit($invoiceFee);
 
         public function update($request);
 

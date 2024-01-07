@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fees_invoice extends Model
+class InvoiceFee extends Model
 {
     use HasFactory;
 
-    protected $table = 'fees_invoices';
+    protected $table = 'invoice_fees';
 
     public $timestamps = true;
 
@@ -39,7 +39,7 @@ class Fees_invoice extends Model
 
     public function fees()
     {
-        return $this->belongsTo(Fees::class, 'fee_id');
+        return $this->belongsTo(Fee::class, 'fee_id');
     }
 
 }

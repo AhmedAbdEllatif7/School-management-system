@@ -35,7 +35,7 @@
                         <div class="card card-statistics h-100">
                             <div class="card-body">
                                 <a href="{{route('fees.create')}}" class="btn btn-success btn-sm" role="button"
-                                aria-pressed="true">{{trans('students_trans.add')}}</a><br><br>
+                                aria-pressed="true">{{trans('students_trans.add_new_fees')}}</a><br><br>
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
                                         data-page-length="50"

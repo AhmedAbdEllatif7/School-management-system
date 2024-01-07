@@ -131,7 +131,7 @@ return [
     'operations' => 'العمليات',
     'view_student_data' => 'عرض بيانات الطالب',
     'edit_student_data' => 'تعديل بيانات الطالب',
-    'add_fee_invoice' => 'إضافة فاتورة رسوم',
+    'add_invoice_fee' => 'إضافة فاتورة رسوم',
     'receipt' => 'سند قبض',
     'exclude_fee' => 'استبعاد رسوم',
     'payment' => 'سند صرف',
@@ -228,6 +228,7 @@ return [
     'sure_restore_seleted' => 'هل انت متأكد من إرجاع الطلاب المحددين؟',
     'restore' => 'إستعادة',
     'edit_fee' => 'تعديل الرسوم',
+    'description' => 'الوصف',
 
 
 ];
