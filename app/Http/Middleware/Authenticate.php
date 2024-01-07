@@ -20,6 +20,9 @@ class Authenticate extends Middleware
             elseif(\Illuminate\Support\Facades\Request::is(app()->getLocale() . '/parent/dashboard')) {
                 return route('selection');
             }
+            else {
+                return route('selection');
+            }
 
         }
     }

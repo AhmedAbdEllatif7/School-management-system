@@ -8,13 +8,13 @@ interface FeesRepositoryInterface
 
     public function create();
 
-    public function storeFees($request);
+    public function store($request);
 
-    public function editFees($fee_id);
+    public function edit($fee_id);
 
-    public function updateFees($request);
+    public function update($request);
 
-    public function deleteFees($request);
+    public function delete($request);
 
 
 

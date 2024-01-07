@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreFeesRequest;
-use App\Models\Fees;
+use App\Http\Requests\FeesRequest;
+use App\Models\Fee;
 use App\Repositories\Interefaces\FeesRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -29,34 +29,27 @@ class FeesController extends Controller
     }
 
 
-    public function store(StoreFeesRequest $request)
+    public function store(FeesRequest $request)
     {
-        return $this->fees->storeFees($request);
+        return $this->fees->store($request);
     }
 
 
-    // public function show(Fees $fees)
-    // {
-    //     return $this->fees->editFees();
-
-    // }
-
-
-    public function edit($fee)
+    public function edit(Fee $fee)
     {
-        return $this->fees->editFees($fee);
+        return $this->fees->edit($fee);
     }
 
 
-    public function update(Request $request)
+    public function update(FeesRequest $request)
     {
-        return $this->fees->updateFees($request);
+        return $this->fees->update($request);
 
     }
 
 
     public function destroy(Request $request)
     {
-        return $this->fees->deleteFees($request);
+        return $this->fees->delete($request);
     }
 }

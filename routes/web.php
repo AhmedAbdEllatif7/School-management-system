@@ -36,10 +36,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 ############################################### Admin dashboard routes ##############################################################
 
-
-
         Route::get('/' , [HomeController::class, 'index'])->name('selection')->middleware('guest');
-
 
         ###################################### Begin Auth ###########################
 
@@ -47,7 +44,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
                 Route::get('/login/{type}', [LoginController::class , 'loginForm'])->name('login.show');
 
-                Route::post('/login', [LoginController::class, 'login'])->name('login');
+                Route::post('/login-submit', [LoginController::class, 'login'])->name('login');
 
                 Route::get('/logout/{type}', [LoginController::class , 'logout'])->name('logout');
 
@@ -68,8 +65,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         Route::get('admin/dashboard',[HomeController::class , 'adminDashboard'])->name('admin.dashboard');
 
 
-
-
         ###################################### Begin Grade ###########################
 
         Route::resource('grades',GradeController::class);
@@ -77,10 +72,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         Route::delete('delete-selected-grades' ,  [GradeController::class ,'deleteSelectedGrades'])->name('delete.selected.grades');
 
         ###################################### End Grade ###########################
-
-
-
-
 
 
 
@@ -98,11 +89,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-
-
-
-
-
         ###################################### Begin Section ###########################
 
         Route::resource('sections' , SectionController::class);
@@ -114,16 +100,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-
-
-
         ###################################### Begin Parent ###########################
 
         Route::resource('parents',ParentController::class);
 
         ###################################### End Parent ###########################
-
-
 
 
 
@@ -143,10 +124,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         });
 
         ###################################### End Teacher ###########################
-
-
-
-
 
 
 
@@ -175,10 +152,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-
-
-
-
         ###################################### Begin Student Promotion ###########################
 
         Route::resource('student-promotions' , PromotionController::class);
@@ -198,19 +171,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-
-
-
-
         ###################################### Begin Student Graduation #######################################
-        /*dont forget to commit by this
-            "Implemented functionality to manage graduated students' data removal efficiently:
-            Introduced an event triggering the deletion of a graduated student's folder and image record upon their deletion.
-            Integrated the feature enabling the forced deletion of multiple graduated students.
-            Improved codebase by refining route naming conventions and enhancing the formatting of blade templates for a more organized structure."
-            Integrated an observer that automatically relocates the student's folder from the graduation directory upon their restoration.
-            This feature ensures seamless management of student data, transferring the folder back to the appropriate location upon restoration from graduation.
-        */
         Route::resource('graduation' , GraduationController::class);
 
         Route::controller(GraduationController::class)->group(function ()
@@ -223,11 +184,13 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-        ###################################### Fees ##############################
+        ###################################### Begin Fees ##############################
+        Route::resource('fees',FeesController::class);
+        
         Route::controller(FeesController::class)->group(function () {
-            Route::resource('fees',FeesController::class);
             Route::get('view_fees','viewFees')->name('viewFees');
         });
+        ###################################### End Fees ##############################
 
 
 

@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Fees;
+use App\Models\Fee;
 use App\Models\Grade;
 use App\Repositories\Interefaces\FeesRepositoryInterface;
 
@@ -10,65 +10,86 @@ class FeesRepository implements FeesRepositoryInterface
 {
     public function index()
     {
-        $fees = Fees::all();
-        return view('pages.Fees.index' , compact('fees'));
+        $fees = Fee::select('title', 'id', 'amount', 'grade_id', 'classroom_id', 'description', 'year')->get();
+        return view('pages.adminDashboard.fees.index' , compact('fees'));
     }
 
 
     public function create()
     {
-        $Grades = Grade::all();
-        return view('pages.Fees.add' , compact('Grades'));
+        $grades = Grade::select('id', 'name')->get();
+        return view('pages.adminDashboard.fees.create' , compact('grades'));
     }
 
 
-    public function storeFees($request)
+    public function store($request)
+    {     
+        $validatedData = $request->validated();
+    
+        $formattedData = $this->formatData($validatedData);
+    
+        Fee::create($formattedData);
+    
+        return redirect()->back()->with(['store_fees' => 'fees_stored']);
+    }
+    
+    private function formatData(array $data)
     {
-        $fees = new Fees();
-        $fees->title  = ['en' => $request->title_en , 'ar' => $request->title_ar];
-        $fees->amount = $request->amount;
-        $fees->grade_id = $request->Grade_id;
-        $fees->classroom_id = $request->Classroom_id;
-        $fees->description = $request->description;
-        $fees->year = $request->year;
-        $fees->fee_type = $request->Fee_type;
-        $fees->save();
-
-        return redirect()->back()->with(['store_fees' =>'fees_stored']);
+        $formattedTitle = [
+            'en' => $data['title_en'],
+            'ar' => $data['title_ar']
+        ];
+    
+        unset($data['title_en'], $data['title_ar']);
+    
+        $data['title'] = $formattedTitle;
+    
+        return $data;
     }
-
-
-    public function editFees($fee_id)
+    
+    
+    
+    public function edit($fee)
     {
-        $Grades = Grade::all();
-        $fee = Fees::findOrFail($fee_id);
-        return view('pages.Fees.edit' , compact(['Grades' , 'fee']));
+        $grades = Grade::select('id', 'name')->get();
+        return view('pages.adminDashboard.fees.edit' , compact(['grades' , 'fee']));
     }
 
 
-     public function updateFees($request)
-     {
-         $fees = Fees::findOrFail($request->id);
-         $fees->update([
-             'title' => ['en' => $request->title_en, 'ar' => $request->title_ar],
-             'amount' => $request->amount,
-             'grade_id' => $request->Grade_id,
-             'classroom_id' => $request->Classroom_id,
-             'description' => $request->description,
-             'year' => $request->year,
-             'fee_type' => $request->Fee_type,
-         ]);
 
-         return redirect()->route('fees.index')->with(['update_fees' => 'Fees updated successfully']);
+    public function update($request)
+    {
+        $validatedData = $request->validated();
+    
+        $formattedData = $this->formatUpdateData($validatedData);
+    
+        $fees = Fee::findOrFail($request->id);
+        $fees->update($formattedData);
+    
+        return redirect()->route('fees.index')->with(['update_fees' => 'Fees updated successfully']);
+    }
+    
+    private function formatUpdateData(array $data)
+    {
+        $formattedTitle = [
+            'en' => $data['title_en'],
+            'ar' => $data['title_ar']
+        ];
+    
+        unset($data['title_en'], $data['title_ar']);
+    
+        $data['title'] = $formattedTitle;
+    
+        return $data;
+    }
+    
 
-     }
+    public function delete($request)
+    {
+        Fee::findOrFail($request->id)->delete();
+        return redirect()->route('fees.index')->with(['delete_fees' => 'Fees deleted successfully']);
 
-     public function deleteFees($request)
-     {
-            $fees = Fees::findOrFail($request->id)->delete();
-         return redirect()->route('fees.index')->with(['delete_fees' => 'Fees deleted successfully']);
-
-     }
+    }
 
 
 

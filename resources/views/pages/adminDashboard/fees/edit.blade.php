@@ -1,13 +1,13 @@
 @extends('layouts.master')
 @section('css')
 @section('title')
-    تعديل رسوم دراسية
+{{trans('Students_trans.edit_fee')}}
 @stop
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
 @section('PageTitle')
-    تعديل رسوم دراسية
+{{trans('Students_trans.edit_fee')}}
 @stop
 <!-- breadcrumb -->
 @endsection
@@ -28,7 +28,7 @@
                         </div>
                     @endif
 
-                    <form action="{{route('fees.update' , 'test')}}" method="post" autocomplete="off">
+                    <form action="{{route('fees.update' , 'error')}}" method="post" autocomplete="off">
                         @method('PUT')
                         @csrf
                         <div class="form-row">
@@ -56,16 +56,16 @@
 
                             <div class="form-group col">
                                 <label for="inputState">{{ trans('Students_trans.Grade') }}</label>
-                                <select class="custom-select mr-sm-2" name="Grade_id">
-                                    @foreach($Grades as $Grade)
-                                        <option value="{{ $Grade->id }}" {{$Grade->id == $fee->grade_id ? 'selected' : ""}}>{{ $Grade->name }}</option>
+                                <select class="custom-select mr-sm-2" name="grade_id">
+                                    @foreach($grades as $grade)
+                                        <option value="{{ $grade->id }}" {{$grade->id == $fee->grade_id ? 'selected' : ""}}>{{ $grade->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group col">
                                 <label for="inputZip">{{ trans('Students_trans.Classroom') }}</label>
-                                <select class="custom-select mr-sm-2" name="Classroom_id">
+                                <select class="custom-select mr-sm-2" name="classroom_id">
                                     <option value="{{$fee->classroom_id}}">{{$fee->classrooms->name}}</option>
                                 </select>
                             </div>
@@ -83,7 +83,7 @@
 
                             <div class="form-group col">
                                 <label for="inputZip">{{trans('Students_trans.Fees_type')}}</label>
-                                <select class="custom-select mr-sm-2" name="Fee_type">
+                                <select class="custom-select mr-sm-2" name="fee_type">
                                     <option value="1">{{trans('Students_trans.Study_fees')}}</option>
                                     <option value="2">{{trans('Students_trans.Study_bus')}}</option>
                                 </select>

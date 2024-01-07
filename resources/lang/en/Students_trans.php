@@ -3,8 +3,8 @@
 return [
 
     'personal_information' => 'personal information',
-    'name_ar' => 'Name arabic',
-    'name_en' => 'Name english',
+    'name_ar' => 'Arabic name',
+    'name_en' => 'English name',
     'email' => 'email',
     'password' => 'password',
     'gender' => 'gender',
@@ -95,7 +95,6 @@ return [
     'Notes' => 'Notes',
     'Actions' => 'Actions',
 
-    'add' => 'Add new fees',
     'Fees' => 'Fees',
 
     'add_new_fees' => 'Add new fees',
@@ -223,6 +222,7 @@ return [
     'faild_restore' => 'Faild to restore',
     'restore_from_graduation' => 'Restore from graduation',
     'restore' => 'Restore',
+    'edit_fee' => 'Edit fee',
 
 
 

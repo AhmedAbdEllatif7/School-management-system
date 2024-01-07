@@ -227,6 +227,7 @@ return [
     'restore_from_graduation' => 'إرجاع من التخرج',
     'sure_restore_seleted' => 'هل انت متأكد من إرجاع الطلاب المحددين؟',
     'restore' => 'إستعادة',
+    'edit_fee' => 'تعديل الرسوم',
 
 
 ];
