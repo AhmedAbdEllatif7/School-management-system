@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Interefaces\ProccessingFeesRepositoryInterface;
+use App\Http\Requests\ProcessingFeesRequest;
+use App\Repositories\Interefaces\ProcessingFeesRepositoryInterface;
 use Illuminate\Http\Request;
 
-class ProccrssingFeesController extends Controller
+class ProcessingFeesController extends Controller
 {
 
     protected $proccessingFees;
-    public function __construct(ProccessingFeesRepositoryInterface $proccessingFees)
+    public function __construct(ProcessingFeesRepositoryInterface $proccessingFees)
     {
         $this->proccessingFees = $proccessingFees;
     }
@@ -19,14 +20,7 @@ class ProccrssingFeesController extends Controller
         return $this->proccessingFees->index();
     }
 
-
-    public function create()
-    {
-
-    }
-
-
-    public function store(Request $request)
+    public function store(ProcessingFeesRequest $request)
     {
         return $this->proccessingFees->store($request);
 
@@ -44,7 +38,7 @@ class ProccrssingFeesController extends Controller
     }
 
 
-    public function update(Request $request)
+    public function update(ProcessingFeesRequest $request)
     {
         return $this->proccessingFees->update($request);
     }

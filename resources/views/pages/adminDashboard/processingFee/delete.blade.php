@@ -1,5 +1,5 @@
 <!-- Deleted inFormation Student -->
-<div class="modal fade" id="Delete_receipt{{$ProcessingFee->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Delete_receipt{{$processingFee->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,10 +9,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{route('processing_fees.destroy' , 'test')}}" method="post">
+                <form action="{{route('processing-fees.destroy' , 'test')}}" method="post">
                     @csrf
                     @method('DELETE')
-                    <input type="hidden" name="id" value="{{$ProcessingFee->id}}">
+                    <input type="hidden" name="id" value="{{$processingFee->id}}">
                     <h5 style="font-family: 'Cairo', sans-serif;">{{ trans('Students_trans.are_you_sure_delete') }}</h5>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('Students_trans.Close')}}</button>

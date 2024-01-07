@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProccrssingFees extends Model
+class ProcessingFee extends Model
 {
     use HasFactory;
 
-    protected $table = 'proccrssing_fees';
+    protected $table = 'processing_fees';
 
     public $timestamps = true;
 

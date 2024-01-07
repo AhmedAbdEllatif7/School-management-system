@@ -69,7 +69,7 @@ class Student extends Authenticatable
 
     public function student_account()
     {
-        return $this->hasMany('App\Models\Student_Account', 'student_id');
+        return $this->hasMany('App\Models\StudentAccount', 'student_id');
     }
 
     // علاقة بين الطلاب والاباء لجلب اسم الاب في جدول الاباء

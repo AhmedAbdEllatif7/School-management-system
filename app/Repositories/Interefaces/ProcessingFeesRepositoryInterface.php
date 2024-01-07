@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interefaces;
 
-interface ProccessingFeesRepositoryInterface
+interface ProcessingFeesRepositoryInterface
 {
     public function index();
 

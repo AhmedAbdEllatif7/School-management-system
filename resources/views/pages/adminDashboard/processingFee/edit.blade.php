@@ -15,7 +15,7 @@
     <!-- row -->
     <div class="row">
         {{trans('Students_trans.edit_proceessing_fee')}}
-        : <label style="color: red">{{$ProcessingFee->student->name}}</label>
+        : <label style="color: red">{{$processingFee->student->name}}</label>
         <div class="col-md-12 mb-30">
             <div class="card card-statistics h-100">
                 <div class="card-body">
@@ -30,7 +30,7 @@
                         </div>
                     @endif
 
-                            <form action="{{route('processing_fees.update' , 'test')}}" method="post" autocomplete="off">
+                            <form action="{{route('processing-fees.update' , 'error')}}" method="post" autocomplete="off">
                                 @method('PUT')
 
                                 @csrf
@@ -39,9 +39,9 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{trans('Students_trans.Amount')}} : <span class="text-danger">*</span></label>
-                                        <input  class="form-control" name="Debit" value="{{$ProcessingFee->amount}}" type="number" >
-                                        <input  type="hidden" name="student_id" value="{{$ProcessingFee->student->id}}" class="form-control">
-                                        <input  type="hidden" name="id"  value="{{$ProcessingFee->id}}" class="form-control">
+                                        <input  class="form-control" name="amount" value="{{$processingFee->amount}}" type="number" required>
+                                        <input  type="hidden" name="student_id" value="{{$processingFee->student->id}}" class="form-control">
+                                        <input  type="hidden" name="id"  value="{{$processingFee->id}}" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -49,8 +49,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>{{trans('Students_trans.statement')}} : <span class="text-danger">*</span></label>
-                                        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{$ProcessingFee->description}}</textarea>
+                                        <label>{{trans('Students_trans.description')}} : <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3">{{$processingFee->description}}</textarea>
                                     </div>
                                 </div>
 

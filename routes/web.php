@@ -11,7 +11,7 @@ use App\Http\Controllers\school\admin\GradeController;
 use App\Http\Controllers\school\admin\GraduationController;
 use App\Http\Controllers\school\admin\LibraryController;
 use App\Http\Controllers\school\admin\PaymentStudentController;
-use App\Http\Controllers\school\admin\ProccrssingFeesController;
+use App\Http\Controllers\school\admin\ProcessingFeesController;
 use App\Http\Controllers\school\admin\PromotionController;
 use App\Http\Controllers\school\admin\ReceiptController;
 use App\Http\Controllers\school\admin\SectionController;
@@ -207,10 +207,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-        ###################################### ProccessingFees ####################
-        Route::controller(ProccrssingFeesController::class)->group(function () {
-            Route::resource('processing_fees',ProccrssingFeesController::class);
-        });
+        ###################################### Begin ProccessingFees ############################
+
+            Route::resource('processing-fees', ProcessingFeesController::class);
+
+        ###################################### End ProccessingFees ############################
 
 
 

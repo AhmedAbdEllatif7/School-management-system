@@ -164,7 +164,7 @@
                 <li> <a href="{{route('fees.index')}}">{{(trans('main_trans.Fees_list'))}}</a> </li>
                 <li> <a href="{{route('invoices-fees.index')}}">{{(trans('main_trans.Invoices_fees_list'))}}</a> </li>
                 <li> <a href="{{route('student-receipt.index')}}">{{(trans('students_trans.student_receipt'))}}</a> </li>
-                <li> <a href="{{route('processing_fees.index')}}">{{(trans('students_trans.exclude_fee_list'))}}</a> </li>
+                <li> <a href="{{route('processing-fees.index')}}">{{(trans('students_trans.exclude_fee_list'))}}</a> </li>
                 <li> <a href="{{route('payments_student.index')}}">{{(trans('students_trans.payments_student_list'))}}</a> </li>
 
 

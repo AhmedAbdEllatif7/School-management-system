@@ -33,8 +33,8 @@ use App\Repositories\Interefaces\ParentStudentRepositoryInterface;
 use App\Repositories\PaymentStudentRepository;
 use App\Repositories\Interefaces\PaymentStudentRepositoryInterface;
 
-use App\Repositories\ProccessingFeesRepository;
-use App\Repositories\Interefaces\ProccessingFeesRepositoryInterface;
+use App\Repositories\ProcessingFeesRepository;
+use App\Repositories\Interefaces\ProcessingFeesRepositoryInterface;
 
 use App\Repositories\PromotionRepository;
 use App\Repositories\Interefaces\PromotionRepositoryInterface;
@@ -90,7 +90,7 @@ class RepoServiceProvider extends ServiceProvider
 
         $this->app->bind(ReceiptStudentRepositoryInterface::class , ReceiptStudentRepository::class);
 
-        $this->app->bind(ProccessingFeesRepositoryInterface::class , ProccessingFeesRepository::class);
+        $this->app->bind(ProcessingFeesRepositoryInterface::class , ProcessingFeesRepository::class);
 
         $this->app->bind(PaymentStudentRepositoryInterface::class , PaymentStudentRepository::class);
 

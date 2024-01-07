@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('proccrssing_fees', function (Blueprint $table) {
+        Schema::create('processing_fees', function (Blueprint $table) {
             $table->id();
             $table->date('date');
             $table->foreignId('student_id')->references('id')->on('students')->onDelete('cascade');
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('proccrssing_fees');
+        Schema::dropIfExists('processing_fees');
     }
 };
