@@ -265,7 +265,10 @@ return [
     'return_selected' => 'إرجاع العناصر المحددة',
     'cancel' => 'إلغاء',
     'delete' => 'حذف',
-
+    'download_book' => 'تحميل الكتاب',
+    'view_book' => 'عرض الكتاب',
+    'edit_book' => 'تعديل الكتاب',
+    'delete_book' => 'حذف الكتاب',
 
 ];
 

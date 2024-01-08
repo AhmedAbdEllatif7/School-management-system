@@ -16,8 +16,8 @@ interface LibraryRepositoryInterface
 
     public function delete($request);
 
-    public function download($filename);
+    public function downloadBook($filename);
 
-    public function viewFile($filename);
+    public function viewBook($filename);
 
 }

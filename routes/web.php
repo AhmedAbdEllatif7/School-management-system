@@ -242,15 +242,16 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         ####################### End Subjects ##########################
 
 
-        ############################ LibraryRepository ###################
+        ############################ Begin Library ####################################
         Route::resource('libraries', LibraryController::class);
 
         Route::controller(LibraryController::class)->group(function () {
-            Route::get('download_libraries/{filename}' , 'downloadFile')->name('downloadFileName');
-            Route::get('view_libraries/{filename}' , 'viewFile')->name('viewFileName');
-
+            Route::get('download-libraries/{filename}' , 'downloadBook')->name('download.book');
+            Route::get('view-book/{filename}' , 'viewBook')->name('view.book');
         });
+        ############################ End Library ####################################
 
+        
 
         ###################################### Settings #############################
         Route::controller(SettingController::class)->group(function () {

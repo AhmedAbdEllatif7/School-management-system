@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LibraryRequest;
 use App\Repositories\Interefaces\LibraryRepositoryInterface;
 use Illuminate\Http\Request;
 
@@ -26,54 +27,39 @@ class LibraryController extends Controller
     public function create()
     {
         return $this->library->create();
-
     }
 
 
-    public function store(Request $request)
+    public function store(LibraryRequest $request)
     {
         return $this->library->store($request);
-
     }
-
-
-
-    public function show($id)
-    {
-
-    }
-
 
     public function edit($id)
     {
         return $this->library->edit($id);
-
     }
 
 
-    public function update(Request $request)
+    public function update(LibraryRequest $request)
     {
         return $this->library->update($request);
-
     }
 
 
     public function destroy(Request $request)
     {
         return $this->library->delete($request);
-
     }
 
-    public function downloadFile($filename)
+    public function downloadBook($filename)
     {
-        return $this->library->download($filename);
-
+        return $this->library->downloadBook($filename);
     }
 
 
-    public function viewFile($filename)
+    public function viewBook($filename)
     {
-        return $this->library->viewFile($filename);
-
+        return $this->library->viewBook($filename);
     }
 }

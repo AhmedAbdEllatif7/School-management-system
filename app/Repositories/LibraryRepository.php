@@ -14,76 +14,93 @@ class LibraryRepository implements LibraryRepositoryInterface
     use AttachFilesTrait;
     public function index()
     {
-        $books = Library::all();
-        return view('pages.library.index',compact('books'));
+        $books = Library::select('id', 'title', 'file_name', 'grade_id', 'classroom_id', 'section_id')->get();
+        return view('pages.adminDashboard.library.index',compact('books'));
     }
 
     public function create()
     {
-        $grades = Grade::all();
-        return view('pages.library.create',compact('grades'));
+        $grades = Grade::select('id', 'name')->get();
+        return view('pages.adminDashboard.library.create',compact('grades'));
     }
 
+
+    ############## Begin Store ###############################################################
     public function store($request)
     {
         try {
-            $books = new Library();
-            $books->title = $request->title;
-            $books->file_name =  $request->file('file_name')->getClientOriginalName();
-            $books->Grade_id = $request->Grade_id;
-            $books->classroom_id = $request->Classroom_id;
-            $books->section_id = $request->section_id;
-            $books->teacher_id = 1;
-            $books->save();
-            $this->uploadFile($request,'file_name' , 'library');
-
+            $validatedData = $request->validated();
+            $fileName = $this->extractFileName($request);
+            $this->createLibraryRecord($validatedData, $fileName);
+    
+            $this->uploadFile($request, 'file_name', 'library');
+    
             return redirect()->route('libraries.create')->with(['add_done' => trans('Students_trans.add_done')]);
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
+    
+    private function extractFileName($request)
+    {
+        return $request->file('file_name')->getClientOriginalName();
+    }
+    
+    private function createLibraryRecord($validatedData, $fileName)
+    {
+        $validatedData['file_name'] = $fileName;
+        Library::create($validatedData);
+    }
+    ################ End Store ###############################################################
+
+
+
+
 
     public function edit($id)
     {
-        $grades = Grade::all();
+        $grades =Grade::select('id', 'name')->get();
         $book = library::findorFail($id);
-        return view('pages.library.edit',compact('book','grades'));
+        return view('pages.adminDashboard.library.edit',compact('book','grades'));
     }
 
+
+
+
+    ############## Begin Update ###############################################################
     public function update($request)
     {
         try {
+            $validatedData = $request->validated();
 
-            $book = library::findorFail($request->id);
-            $book->title = $request->title;
-            $book->Grade_id = $request->Grade_id;
-            $book->classroom_id = $request->Classroom_id;
-            $book->section_id = $request->section_id;
-            $book->teacher_id = 1;
+            $book = Library::findOrFail($request->id);
 
-            if($request->hasfile('file_name')){
-
-                $this->deleteFile($book->file_name);
-
-                $this->uploadFile($request,'file_name' , 'library');
-
-                $file_name_new = $request->file('file_name')->getClientOriginalName();
-                $book->file_name = $book->file_name !== $file_name_new ? $file_name_new : $book->file_name;
-
+            if ($request->hasFile('file_name')) {
+                $validatedData['file_name'] = $this->updateTheFile($book, $request);
             }
 
-            $book->save();
+            $book->update($validatedData);
 
             return redirect()->route('libraries.index')->with(['edit_done' => trans('Students_trans.edit_done')]);
-
         } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
 
+    private function updateTheFile($book, $request)
+    {
+        $this->deleteFile('library/' . $book->file_name);
+
+        $file_name_new = $this->uploadFile($request, 'file_name', 'library');
+        
+        return $file_name_new;
+    }
+    ############## End Update ###############################################################
 
 
-    public function download($filename)
+
+
+    public function downloadBook($filename)
     {
         $filePath = public_path('attachments/library/'.$filename);
 
@@ -95,7 +112,7 @@ class LibraryRepository implements LibraryRepositoryInterface
     }
 
 
-    public function viewFile($filename)
+    public function viewBook($filename)
     {
         $filePath = public_path('attachments/library/'.$filename);
 

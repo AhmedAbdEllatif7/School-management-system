@@ -267,6 +267,9 @@ return [
     'delete' => 'Delete',
 
     'photo_added' => 'Photo added successfilly.',
-
+    'download_book' => 'download book',
+    'view_book' => 'view book',
+    'edit_book' => 'edit book',
+    'delete_book' => 'delete book',
 ];
 

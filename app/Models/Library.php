@@ -13,17 +13,22 @@ class Library extends Model
 
     public $timestamps = true;
 
-    protected $guarded=[];
-
+    protected $fillable = [
+        'title',
+        'file_name',
+        'grade_id',
+        'classroom_id',
+        'section_id',
+    ];
     public function grade()
     {
-        return $this->belongsTo('App\Models\Grade', 'Grade_id');
+        return $this->belongsTo('App\Models\Grade', 'grade_id');
     }
 
 
     public function classroom()
     {
-        return $this->belongsTo('App\Models\Classroom', 'Classroom_id');
+        return $this->belongsTo('App\Models\Classroom', 'classroom_id');
     }
 
     public function section()
