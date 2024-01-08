@@ -251,15 +251,17 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         });
         ############################ End Library ####################################
 
-        
 
-        ###################################### Settings #############################
+
+        ###################################### Begin Settings #############################
         Route::controller(SettingController::class)->group(function () {
-            Route::get('settings', 'index')->name('view.settings');
-            Route::post('settings', 'update')->name('updateSetting');
-
-
+            Route::get('settings', 'index')->name('settings.index');
+            Route::post('settings', 'update')->name('settings.update');
         });
+        ###################################### Begin Settings #############################
+
+
+
 
 
         ###################################### Calendar ##############################

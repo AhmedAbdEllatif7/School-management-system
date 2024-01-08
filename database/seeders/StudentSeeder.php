@@ -10,7 +10,6 @@ use App\Models\Nationality;
 use App\Models\Parentt;
 use App\Models\Section;
 use App\Models\Student;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 

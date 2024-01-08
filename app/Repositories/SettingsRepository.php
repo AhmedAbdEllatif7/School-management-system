@@ -10,42 +10,46 @@ class SettingsRepository implements SettingsRepositoryInterface
 {
 
     use AttachFilesTrait;
+
     public function index(){
 
-        $collection = Setting::all();
-        $setting['setting'] = $collection->flatMap(function ($collection) {
-            return [$collection->key => $collection->value];
-        });
-        return view('pages.adminDashboard.settings.index', $setting);
+        $settings = Setting::all()->pluck('value', 'key')->toArray();
+
+        return view('pages.adminDashboard.settings.index', compact('settings'));
     }
 
-    public function update($request){
+    
+    public function update($request)
+    {
+        try {
+            $settingsData = $request->get('settings');
 
-        try{
-            $info = $request->except('_token', '_method', 'logo');
-            foreach ($info as $key=> $value){
-                Setting::where('key', $key)->update(['value' => $value]);
+            if ($request->hasFile('logo')) {
+                $oldLogo = Setting::where('key', 'logo')->first();
+                if ($oldLogo) {
+                    $this->deleteFile('logo/' . $oldLogo->value);
+                }
+                
+                $logoPath = $this->uploadLogo($request);
+                $settingsData['logo'] = $logoPath;
             }
 
-//            $key = array_keys($info);
-//            $value = array_values($info);
-//            for($i =0; $i<count($info);$i++){
-//                Setting::where('key', $key[$i])->update(['value' => $value[$i]]);
-//            }
-
-            if($request->hasFile('logo')) {
-                $logo_name = $request->file('logo')->getClientOriginalName();
-                Setting::where('key', 'logo')->update(['value' => $logo_name]);
-                $this->uploadFile($request,'logo','logo');
+            // Update or create settings based on the submitted data
+            foreach ($settingsData as $key => $value) {
+                Setting::updateOrCreate(['key' => $key], ['value' => $value]);
             }
 
-            return back();
-        }
-        catch (\Exception $e){
-
+            return redirect()->route('settings.index')->with(['success' => 'Settings updated successfully']);
+        } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
-
     }
+
+    private function uploadLogo($request)
+    {
+        $newFileName = $this->uploadFile($request, 'logo', 'logo');
+        return $newFileName;
+    }
+
 
 }

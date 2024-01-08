@@ -62,7 +62,7 @@
 
                         <div class="dropdown-divider"></div>
                         @if(auth()->guard('web')->check())
-                        <a class="dropdown-item" href="{{route('view.settings')}}"><i class="text-info ti-settings">
+                        <a class="dropdown-item" href="{{route('settings.index')}}"><i class="text-info ti-settings">
                                 </i>{{trans('main_trans.Setting')}}
                         </a>
                         @endif

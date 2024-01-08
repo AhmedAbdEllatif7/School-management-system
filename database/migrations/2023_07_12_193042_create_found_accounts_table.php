@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('found_accounts', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->foreignId('payment_id')->nullable()->references('id')->on('payment_students')->onDelete('cascade');
+            $table->foreignId('payment_id')->nullable()->references('id')->on('student_payments')->onDelete('cascade');
             $table->foreignId('receipt_id')->nullable()->references('id')->on('receipts')->onDelete('cascade');
             $table->decimal('Debit',8,2)->nullable();
             $table->decimal('credit',8,2)->nullable();

@@ -195,23 +195,6 @@
             </ul>
         </li>
 
-{{--        <!-- Quizzes-->--}}
-{{--        <li>--}}
-{{--            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Exams-icon">--}}
-{{--                <div class="pull-left"><i class="fas fa-book-open"></i><span class="right-nav-text">{{trans('main_trans.quizzes')}}</span></div>--}}
-{{--                <div class="pull-right"><i class="ti-plus"></i></div>--}}
-{{--                <div class="clearfix"></div>--}}
-{{--            </a>--}}
-{{--            <ul id="Exams-icon" class="collapse" data-parent="#sidebarnav">--}}
-{{--                <li> <a href="{{route('quizzes.create')}}">{{trans('main_trans.add_quiz')}}</a> </li>--}}
-{{--                <li> <a href="{{route('quizzes.index')}}">{{trans('main_trans.quizzes_list')}}</a> </li>--}}
-{{--                <li> <a href="{{route('questions.index')}}">{{trans('students_trans.question_list')}}</a> </li>--}}
-{{--                <li> <a href="{{route('questions.create')}}">{{trans('students_trans.add_new_question')}}</a> </li>--}}
-
-{{--            </ul>--}}
-{{--        </li>--}}
-
-
         <!-- library-->
         <li>
             <a href="javascript:void(0);" data-toggle="collapse" data-target="#library-icon">
@@ -227,29 +210,11 @@
         </li>
 
 
-{{--        <!-- Onlinec lasses-->--}}
-{{--        <li>--}}
-{{--            <a href="javascript:void(0);" data-toggle="collapse" data-target="#Onlineclasses-icon">--}}
-{{--                <div class="pull-left"><i class="fas fa-video"></i><span class="right-nav-text">{{trans('main_trans.Onlineclasses')}}</span></div>--}}
-{{--                <div class="pull-right"><i class="ti-plus"></i></div>--}}
-{{--                <div class="clearfix"></div>--}}
-{{--            </a>--}}
-{{--            <ul id="Onlineclasses-icon" class="collapse" data-parent="#sidebarnav">--}}
-{{--                <li> <a href="fontawesome-icon.html">font Awesome</a> </li>--}}
-{{--                <li> <a href="themify-icons.html">Themify icons</a> </li>--}}
-{{--                <li> <a href="weather-icon.html">Weather icons</a> </li>--}}
-{{--            </ul>--}}
-{{--        </li>--}}
-
-
         <!-- Settings-->
         <li>
-            <a href="{{url('settings')}}"><i class="fas fa-cogs"></i><span class="right-nav-text">{{trans('main_trans.Settings')}} </span></a>
+            <a href="{{route('settings.index')}}"><i class="fas fa-cogs"></i><span class="right-nav-text">{{trans('main_trans.Settings')}} </span></a>
         </li>
 
 
 
-
-
-    </ul>
 </div>
