@@ -154,18 +154,22 @@ class StudentPaymentRepository implements StudentPaymentRepositoryInterface
         $studentsAccounts->save();
     }
 
-//
+
     public function delete($request)
     {
         try {
-            StudentPayment::destroy($request->id);
-            return redirect()->route('payments_student.index')->with(['delete_done' => trans('Students_trans.delete_done')]);
-        }
-
-        catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+            $payment = StudentPayment::findOrFail($request->id);
+            $payment->delete();
+    
+            return redirect()
+                ->route('payments_student.index')
+                ->with(['delete_done' => trans('Students_trans.delete_done')]);
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->withErrors(['error' => $e->getMessage()]);
         }
     }
-
+    
 
 }
