@@ -226,8 +226,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
         ###################################### Attendance ########################
+        Route::resource('attendance', AttendanceController::class);
+
         Route::controller(AttendanceController::class)->group(function () {
-                Route::resource('attendance',AttendanceController::class);
                 Route::post('edit_student_presence/{id}' , 'editStudentPresence')->name('editStudentPresence');
             });
 

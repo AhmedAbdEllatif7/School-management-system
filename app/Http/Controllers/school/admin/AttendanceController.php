@@ -21,13 +21,6 @@ class AttendanceController extends Controller
         return $this->attendance->index();
     }
 
-
-    public function create()
-    {
-        //
-    }
-
-
     public function store(Request $request)
     {
         return $this->attendance->store($request);
@@ -37,46 +30,6 @@ class AttendanceController extends Controller
     public function show($id)
     {
         return $this->attendance->show($id);
-    }
-
-
-    public function edit(Attendance $attendance)
-    {
-        //
-    }
-
-    public function update(Request $request, Attendance $attendance)
-    {
-        //
-    }
-
-    public function destroy(Attendance $attendance)
-    {
-        //
-    }
-
-    public function editStudentPresence($id)
-    {
-        return $this->attendance->edit($id);
-    }
-
-    public  function getAttendance()
-    {
-        return $this->attendance->attendance();
-
-    }
-
-    public function attendanceReport()
-    {
-        return $this->attendance->attendanceReport();
-
-    }
-
-
-    public function attendanceSearch(Request $request)
-    {
-        return $this->attendance->attendanceSearch($request);
-
     }
 
 }
