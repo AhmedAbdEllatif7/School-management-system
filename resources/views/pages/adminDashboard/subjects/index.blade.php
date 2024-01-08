@@ -1,17 +1,17 @@
-@extends('layouts.master')
-@section('css')
-@section('title')
+    @extends('layouts.master')
+    @section('css')
+    @section('title')
     {{ trans('Students_trans.subject_list') }}
-@stop
-@endsection
-@section('page-header')
+    @stop
+    @endsection
+    @section('page-header')
     <!-- breadcrumb -->
-@section('PageTitle')
+    @section('PageTitle')
     {{ trans('Students_trans.subject_list') }}
-@stop
-<!-- breadcrumb -->
-@endsection
-@section('content')
+    @stop
+    <!-- breadcrumb -->
+    @endsection
+    @section('content')
     <!-- row -->
 
 
@@ -36,15 +36,15 @@
                         <div class="card card-statistics h-100">
                             <div class="card-body">
                                 <a href="{{route('subjects.create')}}" class="btn btn-success btn-sm" role="button"
-                                   aria-pressed="true">{{ trans('Students_trans.add_subject') }}</a><br><br>
+                                    aria-pressed="true">{{ trans('Students_trans.add_subject') }}</a><br><br>
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
-                                           data-page-length="50"
-                                           style="text-align: center">
+                                            data-page-length="50"
+                                            style="text-align: center">
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>{{ trans('Students_trans.subject_name_english') }}</th>
+                                            <th>{{ trans('Students_trans.name') }}</th>
                                             <th>{{ trans('Students_trans.educational_stage') }}</th>
                                             <th>{{ trans('Students_trans.class') }}</th>
                                             <th>{{ trans('Students_trans.teacher_name') }}</th>
@@ -104,8 +104,8 @@
         </div>
     </div>
     <!-- row closed -->
-@endsection
-@section('js')
+    @endsection
+    @section('js')
     @toastr_js
     @toastr_render
-@endsection
+    @endsection

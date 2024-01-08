@@ -12,69 +12,85 @@ class SubjectRepository implements SubjectRepositoryInterface
 
     public function index()
     {
-        $subjects = Subject::get();
-        return view('pages.Subjects.index',compact('subjects'));
+        $subjects = Subject::select('id', 'name', 'grade_id', 'classroom_id', 'teacher_id')->get();
+        return view('pages.adminDashboard.subjects.index',compact('subjects'));
     }
 
     public function create()
     {
-        $grades = Grade::get();
-        $teachers = Teacher::get();
-        return view('pages.Subjects.create',compact('grades','teachers'));
+        $grades = Grade::select('id', 'name')->get();
+        $teachers = Teacher::select('id', 'name')->get();
+        return view('pages.adminDashboard.subjects.create',compact('grades','teachers'));
     }
-//
-//
+
+
+
     public function store($request)
     {
         try {
-            $subjects = new Subject();
-            $subjects->name = ['en' => $request->Name_en, 'ar' => $request->Name_ar];
-            $subjects->grade_id = $request->Grade_id;
-            $subjects->classroom_id = $request->Classroom_id;
-            $subjects->teacher_id = $request->teacher_id;
-            $subjects->save();
+            $validatedData = $request->validated();
+            $formattedTitle = $this->formatSubjectTitle($validatedData['name_en'], $validatedData['name_ar']);
+    
+            unset($validatedData['name_en'], $validatedData['name_ar']);
+            $validatedData['name'] = $formattedTitle;
+    
+            Subject::create($validatedData);
+    
             return redirect()->route('subjects.create')->with(['add_done' => trans('Students_trans.add_done')]);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
+    
+    private function formatSubjectTitle($nameEn, $nameAr)
+    {
+        return [
+            'en' => $nameEn,
+            'ar' => $nameAr
+        ];
+    }
+    
 
 
     public function edit($id){
 
-        $subject =Subject::findorfail($id);
+        $subject = Subject::select('id', 'name', 'grade_id', 'classroom_id', 'teacher_id')->findOrFail($id);
         $grades = Grade::get();
         $teachers = Teacher::get();
-        return view('pages.Subjects.edit',compact('subject','grades','teachers'));
+        return view('pages.adminDashboard.subjects.edit',compact('subject','grades','teachers'));
 
     }
 
     public function update($request)
     {
         try {
-            $subjects =  Subject::findorfail($request->id);
-            $subjects->name = ['en' => $request->Name_en, 'ar' => $request->Name_ar];
-            $subjects->grade_id = $request->Grade_id;
-            $subjects->classroom_id = $request->Class_id;
-            $subjects->teacher_id = $request->teacher_id;
-            $subjects->save();
+            $validatedData = $request->validated();
+            $formattedTitle = $this->formatSubjectTitle($validatedData['name_en'], $validatedData['name_ar']);
+
+            $subject = Subject::findOrFail($request->id);
+            unset($validatedData['name_en'], $validatedData['name_ar']);
+            $validatedData['name'] = $formattedTitle;
+
+            $subject->update($validatedData);
+
             return redirect()->route('subjects.index')->with(['edit_done' => trans('Students_trans.edit_done')]);
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);
         }
     }
 
+
+
     public function destroy($request)
     {
         try {
-            Subject::destroy($request->id);
+            $subject = Subject::findOrFail($request->id);
+            $subject->delete();
+            
             return redirect()->route('subjects.index')->with(['delete_done' => trans('Students_trans.delete_done')]);
-        }
-
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
 }

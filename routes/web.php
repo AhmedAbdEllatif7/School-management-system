@@ -225,25 +225,27 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-        ###################################### Attendance ########################
+        ############################# Begin Attendance ########################
+
         Route::resource('attendance', AttendanceController::class);
 
-        Route::controller(AttendanceController::class)->group(function () {
-                Route::post('edit_student_presence/{id}' , 'editStudentPresence')->name('editStudentPresence');
-            });
+        ############################# End Attendance ########################
 
 
 
 
-        ###################################### Subjects ##########################
-        Route::controller(SubjectController::class)->group(function () {
-            Route::resource('subjects',SubjectController::class);
-        });
+
+        ####################### Begin Subjects ##########################
+
+        Route::resource('subjects', SubjectController::class);
+
+        ####################### End Subjects ##########################
 
 
-        ###################################### LibraryRepository ###################
+        ############################ LibraryRepository ###################
+        Route::resource('libraries', LibraryController::class);
+
         Route::controller(LibraryController::class)->group(function () {
-            Route::resource('libraries',LibraryController::class);
             Route::get('download_libraries/{filename}' , 'downloadFile')->name('downloadFileName');
             Route::get('view_libraries/{filename}' , 'viewFile')->name('viewFileName');
 

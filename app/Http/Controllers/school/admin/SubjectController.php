@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SubjectRequest;
 use App\Models\Subject;
 use App\Repositories\Interefaces\SubjectRepositoryInterface;
 use Illuminate\Http\Request;
@@ -30,42 +31,25 @@ class SubjectController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(SubjectRequest $request)
     {
         return $this->subject->store($request);
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    // public function show(Subject $subject)
-    // {
-    //     return $this->subject->show();
 
-    // }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
         return $this->subject->edit($id);
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request)
+    public function update(SubjectRequest $request)
     {
         return $this->subject->update($request);
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request)
     {
         return $this->subject->destroy($request);

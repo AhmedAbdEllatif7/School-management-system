@@ -4,12 +4,12 @@
             {{ trans('Students_trans.attendance') }}
         @stop
         @section('PageTitle')
-            {{ trans('Students_trans.attendance') }}
+            {{ trans('Sections_trans.title_page') }}:{{ trans('Students_trans.attendance') }}
         @stop
         <!-- breadcrumb -->
     @endsection
     @section('content')
-        <!-- row -->    {{ trans('Sections_trans.title_page') }}:{{ trans('Students_trans.attendance') }}
+        <!-- row -->    
         <div class="row">
             <div class="col-md-12 mb-30">
                 <div class="card card-statistics h-100">
