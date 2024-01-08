@@ -302,7 +302,7 @@ preloader -->
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @forelse(\App\Models\Fees_invoice::latest()->take(10)->get() as $section)
+                                            @forelse(\App\Models\InvoiceFee::latest()->take(10)->get() as $section)
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
                                                     <td>{{$section->invoice_date}}</td>

@@ -22,7 +22,7 @@ class ProcessingFeesRequest extends FormRequest
                 'integer',
                 Rule::exists('students', 'id'), // Check if the student_id exists in the students table
             ],
-            'amount' => 'required',
+            'Debit' => 'required',
             'description' => 'nullable|string',
         ];
     }

@@ -13,7 +13,7 @@ class ProcessingFee extends Model
 
     public $timestamps = true;
 
-    protected $guarded=[];
+    protected $fillable = ['date', 'student_id', 'amount', 'description']; 
 
     public function student()
     {

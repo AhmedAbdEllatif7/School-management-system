@@ -47,30 +47,30 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
-                                           data-page-length="50"
-                                           style="text-align: center">
+                                        data-page-length="50"
+                                        style="text-align: center">
                                         <thead>
                                         <tr class="alert-success">
                                             <th>#</th>
                                             <th>{{trans('Students_trans.Name')}}</th>
                                             <th>{{trans('Students_trans.Amount')}}</th>
-                                            <th>{{trans('Students_trans.statement')}}</th>
+                                            <th>{{trans('Students_trans.description')}}</th>
                                             <th>{{trans('Students_trans.Processes')}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($payment_students as $payment_student)
+                                        @foreach($studentPayments as $studentPayment)
                                             <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{$payment_student->student->name}}</td>
-                                            <td>{{ number_format($payment_student->amount, 2) }}</td>
-                                            <td>{{$payment_student->description}}</td>
+                                            <td>{{$studentPayment->student->name}}</td>
+                                            <td>{{ number_format($studentPayment->amount, 2) }}</td>
+                                            <td>{{$studentPayment->description}}</td>
                                                 <td>
-                                                    <a href="{{route('payments_student.edit' , $payment_student->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#Delete_receipt{{$payment_student->id}}" ><i class="fa fa-trash"></i></button>
+                                                    <a href="{{route('student-payments.edit' , $studentPayment->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#Delete_receipt{{$studentPayment->id}}" ><i class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>
-                                        @include('pages.Payment.Delete')
+                                        @include('pages.adminDashboard.payments.delete')
                                         @endforeach
                                     </table>
                                 </div>

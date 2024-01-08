@@ -10,7 +10,7 @@ use App\Http\Controllers\school\admin\FullCalenderController;
 use App\Http\Controllers\school\admin\GradeController;
 use App\Http\Controllers\school\admin\GraduationController;
 use App\Http\Controllers\school\admin\LibraryController;
-use App\Http\Controllers\school\admin\PaymentStudentController;
+use App\Http\Controllers\school\admin\StudentPaymentController;
 use App\Http\Controllers\school\admin\ProcessingFeesController;
 use App\Http\Controllers\school\admin\PromotionController;
 use App\Http\Controllers\school\admin\ReceiptController;
@@ -67,9 +67,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
         ###################################### Begin Grade ###########################
 
-        Route::resource('grades',GradeController::class);
+        Route::resource('grades', GradeController::class);
 
-        Route::delete('delete-selected-grades' ,  [GradeController::class ,'deleteSelectedGrades'])->name('delete.selected.grades');
+        Route::delete('delete-selected-grades' ,  [GradeController::class, 'deleteSelectedGrades'])->name('delete.selected.grades');
 
         ###################################### End Grade ###########################
 
@@ -77,7 +77,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
         ###################################### Begin Classroom ###########################
 
-        Route::resource('classrooms',ClassroomController::class);
+        Route::resource('classrooms', ClassroomController::class);
 
         Route::controller(ClassroomController::class)->group(function () {
             // Additional routes
@@ -102,7 +102,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
         ###################################### Begin Parent ###########################
 
-        Route::resource('parents',ParentController::class);
+        Route::resource('parents', ParentController::class);
 
         ###################################### End Parent ###########################
 
@@ -216,10 +216,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-        ###################################### ProccessingFees ####################
-        Route::controller(PaymentStudentController::class)->group(function () {
-            Route::resource('payments_student',PaymentStudentController::class);
-        });
+        ###################################### Begin Student Payment ####################
+
+        Route::resource('student-payments', StudentPaymentController::class);
+
+        ###################################### End Student Payment ####################
 
 
 

@@ -226,6 +226,7 @@ return [
     'edit_fee' => 'Edit fee',
     'description' => 'Description',
     'debit' => 'Debit',
+    'create_payment' => 'Create payment',
 
 
 

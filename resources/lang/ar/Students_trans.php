@@ -231,6 +231,7 @@ return [
     'edit_fee' => 'تعديل الرسوم',
     'description' => 'الوصف',
     'debit' => 'الدين',
+    'create_payment' => 'إنشاء عملية دفع',
 
 
 ];

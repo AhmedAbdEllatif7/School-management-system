@@ -44,6 +44,7 @@ class ProcessingFeesRepository implements ProcessingFeesRepositoryInterface
         try {
             $validatedData = $request->validated();
             $validatedData['date'] = date('Y-m-d');
+            $validatedData['amount'] = $validatedData['Debit'];
 
             $processingFee = $this->createProcessingFee($validatedData);
 
@@ -66,7 +67,7 @@ class ProcessingFeesRepository implements ProcessingFeesRepositoryInterface
     {
         $students_accounts = new StudentAccount();
         $students_accounts->date = date('Y-m-d');
-        $students_accounts->type = 'ProcessingFee';
+        $students_accounts->type = 'processingFee';
         $students_accounts->student_id = $studentId;
         $students_accounts->processing_id = $processingFeeId;
         $students_accounts->Debit = 0.00;
@@ -91,7 +92,8 @@ class ProcessingFeesRepository implements ProcessingFeesRepositoryInterface
         try {
             $validatedData = $request->validated();
             $validatedData['date'] = date('Y-m-d');
-    
+            $validatedData['amount'] = $validatedData['Debit'];
+
             $processingFee = $this->updateProcessingFee($request->id, $validatedData);
             $this->updateStudentAccount($processingFee->id, $request->student_id, $validatedData);
     
@@ -114,7 +116,7 @@ class ProcessingFeesRepository implements ProcessingFeesRepositoryInterface
     {
         $studentsAccount = StudentAccount::where('processing_id', $processingFeeId)->firstOrFail();
         $studentsAccount->date = date('Y-m-d');
-        $studentsAccount->type = 'ProcessingFee';
+        $studentsAccount->type = 'processingFee';
         $studentsAccount->student_id = $studentId;
         $studentsAccount->processing_id = $processingFeeId;
         $studentsAccount->Debit = 0.00;

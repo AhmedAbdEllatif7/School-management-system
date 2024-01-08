@@ -39,7 +39,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>{{trans('Students_trans.Amount')}} : <span class="text-danger">*</span></label>
-                                        <input  class="form-control" name="amount" value="{{$processingFee->amount}}" type="number" required>
+                                        <input  class="form-control" name="Debit" value="{{$processingFee->amount}}" type="number" required>
                                         <input  type="hidden" name="student_id" value="{{$processingFee->student->id}}" class="form-control">
                                         <input  type="hidden" name="id"  value="{{$processingFee->id}}" class="form-control">
                                     </div>

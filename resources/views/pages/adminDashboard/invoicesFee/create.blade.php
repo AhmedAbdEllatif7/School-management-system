@@ -4,7 +4,7 @@
         {{ trans('students_trans.add_invoice_fee') }}
     @stop
     @section('PageTitle')
-    {{ trans('students_trans.add_invoice_fee') }} / {{$student->name}}
+        {{ trans('students_trans.add_invoice_fee') }} : &nbsp;<span style="color: red">{{$student->name}}</span>
     @stop
     @endsection
     @section('content')

@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Interefaces;
 
-interface PaymentStudentRepositoryInterface
+interface StudentPaymentRepositoryInterface
 {
     public function index();
 

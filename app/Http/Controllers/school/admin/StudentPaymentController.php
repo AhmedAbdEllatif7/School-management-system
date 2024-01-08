@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\school\admin;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\Interefaces\PaymentStudentRepositoryInterface;
+use App\Http\Requests\PaymentRequest;
+use App\Repositories\Interefaces\StudentPaymentRepositoryInterface;
 use Illuminate\Http\Request;
 
-class PaymentStudentController extends Controller
+class StudentPaymentController extends Controller
 {
 
     protected $payment;
-    public function __construct(PaymentStudentRepositoryInterface $payment)
+    public function __construct(StudentPaymentRepositoryInterface $payment)
     {
         $this->payment = $payment;
     }
@@ -20,12 +21,7 @@ class PaymentStudentController extends Controller
     }
 
 
-    public function create()
-    {
-
-    }
-
-    public function store(Request $request)
+    public function store(PaymentRequest $request)
     {
         return $this->payment->store($request);
 
@@ -44,7 +40,7 @@ class PaymentStudentController extends Controller
 
     }
 
-    public function update(Request $request)
+    public function update(PaymentRequest $request)
     {
         return $this->payment->update($request);
 
