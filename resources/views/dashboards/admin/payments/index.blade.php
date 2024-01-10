@@ -70,7 +70,7 @@
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#Delete_receipt{{$studentPayment->id}}" ><i class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>
-                                        @include('pages.adminDashboard.payments.delete')
+                                        @include('dashboards.admin.payments.delete')
                                         @endforeach
                                     </table>
                                 </div>

@@ -50,7 +50,7 @@
                                         <p class="text-muted mb-0">
                                             <input type="text" name="name_ar"
                                                     value="{{ $information->getTranslation('name', 'ar') }}"
-                                                    class="form-control">
+                                                    class="form-control" required>
                                         </p>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                         <p class="text-muted mb-0">
                                             <input type="text" name="name_en"
                                                     value="{{ $information->getTranslation('name', 'en') }}"
-                                                    class="form-control">
+                                                    class="form-control" required>
                                         </p>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                             <input type="password" id="password" class="form-control" name="password">
                                         </p><br><br>
                                         <input type="checkbox" class="form-check-input" onclick="myFunction()"
-                                                id="exampleCheck1">
+                                                id="exampleCheck1" required>
                                         <label class="form-check-label" for="exampleCheck1">{{trans('main_trans.show_password')}}</label>
                                     </div>
                                 </div>

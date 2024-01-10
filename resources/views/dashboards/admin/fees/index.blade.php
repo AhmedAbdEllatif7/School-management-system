@@ -68,7 +68,7 @@
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#Delete_Fee{{ $fee->id }}" title="{{ trans('students_trans.Delete') }}"><i class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>
-                                        @include('pages.adminDashboard.fees..delete')
+                                        @include('dashboards.admin.fees.delete')
                                         @endforeach
                                     </table>
                                 </div>

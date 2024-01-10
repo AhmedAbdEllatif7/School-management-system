@@ -38,7 +38,5 @@ class ProfileController extends Controller
             $student->update($validatedData);
         }
         return redirect()->back()->with(['edit_done' => trans('Students_trans.edit_done')]);
-
-
     }
 }

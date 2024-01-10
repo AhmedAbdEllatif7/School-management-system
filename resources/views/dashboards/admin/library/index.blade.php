@@ -70,7 +70,7 @@
                                                     </td>
                                                 </tr>
 
-                                            @include('pages.adminDashboard.library.destroy')
+                                            @include('dashboards.admin.library.destroy')
                                             @endforeach
                                         </table>
                                     </div>

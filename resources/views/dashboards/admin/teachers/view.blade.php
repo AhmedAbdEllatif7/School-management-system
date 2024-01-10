@@ -159,7 +159,7 @@
 
                                                     </td>
                                                 </tr>
-                                                @include('pages.adminDashboard.teachers.deletePhoto')
+                                                @include('dashboards.admin.teachers.deletePhoto')
                                             @endforeach
                                             </tbody>
                                         </table>

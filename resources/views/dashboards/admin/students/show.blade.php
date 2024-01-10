@@ -167,7 +167,7 @@
                                                         </button>
                                                     </td>
                                                 </tr>
-                                                @include('pages.adminDashboard.students.deletePhoto')
+                                                @include('dashboards.admin.students.deletePhoto')
                                             @endforeach
                                             </tbody>
                                         </table>

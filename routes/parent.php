@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\school\parent\StudentController;
-use App\Models\Student;
+use App\Http\Controllers\Dashboards\Parent\ParentController;
+use App\Http\Controllers\Dashboards\Parent\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -16,28 +16,33 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
 */
 
-//==============================Translate all pages============================
+###################################### Translate all pages ######################################
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:parent']
     ], function () {
 
-    //==============================dashboard============================
-    Route::get('/parent/dashboard', function () {
-        $sons = Student::where('parent_id',auth()->user()->id)->get();
-        return view('pages.parents.dashboard',compact('sons'));
-    });
+    ###################################### dashboard ######################################
 
 
     ###################################### Student ###########################
-    Route::controller(StudentController::class)->group(function () {
-        Route::resource('parent-dashboard',StudentController::class);
-        Route::get('parent-dashboard-attendance' ,  'getAttendance')->name('get.attendance');
-        Route::get('parent-dashboard-filter', 'filterAttendances')->name('filter.attendances');
-        Route::get('parent-dashboard-fees', 'fees')->name('fee.parent');
-        Route::get('parent-dashboard-sons-receipt/{id}', 'receiptStudent')->name('sons.receipt');
+
+    Route::controller(ParentController::class)->group(function () {
+        Route::get('/parent/dashboard', 'dashboard')->name('parent.dashboard');
+        Route::get('parent/sons', 'getSons')->name('sons.index');
+        Route::get('parent/sons/exams/result/{son_id}', 'viewExamsResult')->name('view.exam.result');
+        Route::get('parent/sons/attendance', 'getAttendance')->name('get.attendance');
+        Route::get('parent/reports/search', 'reportSearch')->name('reports.attendances');
+        Route::get('parent/sons/fees', 'getSonsFees')->name('sons.fees');
+        Route::get('parent/sons/receipt/{id}', 'getSonsReceipt')->name('sons.receipt');
         Route::get('parent-dashboard-profile', 'profile')->name('parent.profile');
+    });
+
+
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('parent/profile', 'index')->name('parent.profile');
+        Route::post('parent/profile/{id}', 'update')->name('parent.profile.update');
 
     });
 

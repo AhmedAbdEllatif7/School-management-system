@@ -90,8 +90,8 @@
                                                 <td>{{$promotion->toClassroom->name}}</td>
                                                 <td>{{$promotion->toSection->name}}</td>
                                             </tr>
-                                        @include('pages.adminDashboard.promotion.revertAll')
-                                        @include('pages.adminDashboard.promotion.revertSelected')
+                                        @include('dashboards.admin.promotion.revertAll')
+                                        @include('dashboards.admin.promotion.revertSelected')
                                         @endforeach
                                     </table>
                                 </div>

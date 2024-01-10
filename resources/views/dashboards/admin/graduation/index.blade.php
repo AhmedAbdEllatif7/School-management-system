@@ -72,8 +72,8 @@
                                                     <td>{{$student->classroom->name}}</td>
                                                     <td>{{$student->section->name}}</td>
                                                     </tr>
-                                                @include('pages.adminDashboard.graduation.restoreSelected')
-                                                @include('pages.adminDashboard.graduation.deleteSelected')
+                                                @include('dashboards.admin.graduation.restoreSelected')
+                                                @include('dashboards.admin.graduation.deleteSelected')
                                                 @endforeach
                                         </table>
                                     </div>

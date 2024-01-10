@@ -50,10 +50,6 @@ class RepoServiceProvider extends ServiceProvider
             \App\Repositories\AdminDashboard\LibraryRepository::class
         );
         
-        // $this->app->bind(
-        //     \App\Repositories\Interefaces\AdminDashboard\ParentStudentRepositoryInterface::class,
-        //     \App\Repositories\AdminDashboard\ParentStudentRepository::class
-        // );
         
         $this->app->bind(
             \App\Repositories\Interefaces\AdminDashboard\StudentPaymentRepositoryInterface::class,
@@ -70,15 +66,6 @@ class RepoServiceProvider extends ServiceProvider
             \App\Repositories\AdminDashboard\PromotionRepository::class
         );
         
-        // $this->app->bind(
-        //     \App\Repositories\Interefaces\AdminDashboard\QuestionRepositoryInterface::class,
-        //     \App\Repositories\AdminDashboard\QuestionRepository::class
-        // );
-        
-        // $this->app->bind(
-        //     \App\Repositories\Interefaces\AdminDashboard\QuizRepositoryInterface::class,
-        //     \App\Repositories\AdminDashboard\QuizRepository::class
-        // );
         
         $this->app->bind(
             \App\Repositories\Interefaces\AdminDashboard\ReceiptStudentRepositoryInterface::class,
@@ -125,6 +112,14 @@ class RepoServiceProvider extends ServiceProvider
         $this->app->bind(
             \App\Repositories\Interefaces\StudentDashboard\StudentRepositoryInterface::class,
             \App\Repositories\StudentDashboard\StudentRepository::class
+        );
+
+        
+
+
+        $this->app->bind(
+            \App\Repositories\Interefaces\ParentDashboard\ParentRepositoryInterface::class,
+            \App\Repositories\ParentDashboard\ParentRepository::class
         );
 
         

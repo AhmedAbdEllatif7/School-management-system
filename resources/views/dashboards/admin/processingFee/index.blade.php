@@ -67,7 +67,7 @@
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#Delete_receipt{{$processingFee->id}}" ><i class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>
-                                        @include('pages.adminDashboard.processingFee.delete')
+                                        @include('dashboards.admin.processingFee.delete')
                                         @endforeach
                                     </table>
                                 </div>

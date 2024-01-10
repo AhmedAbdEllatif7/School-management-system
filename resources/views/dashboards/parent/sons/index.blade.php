@@ -35,8 +35,8 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="datatable" class="table  table-hover table-sm table-bordered p-0"
-                                           data-page-length="50"
-                                           style="text-align: center">
+                                        data-page-length="50"
+                                        style="text-align: center">
                                         <thead>
                                         <tr>
                                             <th>#</th>
@@ -50,22 +50,22 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($students as $student)
+                                        @foreach($sons as $son)
                                             <tr>
                                                 <td>{{ $loop->index+1 }}</td>
-                                                <td>{{$student->name}}</td>
-                                                <td>{{$student->email}}</td>
-                                                <td>{{$student->gender->name}}</td>
-                                                <td>{{$student->grade->name}}</td>
-                                                <td>{{$student->classroom->name}}</td>
-                                                <td>{{$student->section->name}}</td>
+                                                <td>{{$son->name}}</td>
+                                                <td>{{$son->email}}</td>
+                                                <td>{{$son->gender->name}}</td>
+                                                <td>{{$son->grade->name}}</td>
+                                                <td>{{$son->classroom->name}}</td>
+                                                <td>{{$son->section->name}}</td>
                                                 <td>
                                                     <div class="dropdown show">
                                                         <a class="btn btn-success btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                             {{trans('main_trans.processes')}}
                                                         </a>
                                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                            <a class="dropdown-item" href="{{route('parent-dashboard.show',$student->id)}}"><i style="color: #ffc107" class="far fa-eye "></i>&nbsp;{{trans('main_trans.view_exam_results')}}</a>
+                                                            <a class="dropdown-item" href="{{route('view.exam.result',$son->id)}}"><i style="color: #ffc107" class="far fa-eye "></i>&nbsp;{{trans('main_trans.view_exam_results')}}</a>
                                                         </div>
                                                     </div>
                                                 </td>

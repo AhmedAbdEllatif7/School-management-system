@@ -2,7 +2,7 @@
     <ul class="nav navbar-nav side-menu" id="sidebarnav">
         <!-- menu item Dashboard-->
         <li>
-            <a href="{{url('/parent/dashboard')}}">
+            <a href="{{route('parent.dashboard')}}">
                 <div class="pull-left"><i class="ti-home"></i><span
                         class="right-nav-text">{{trans('main_trans.parent_dashboard')}}</span>
                 </div>
@@ -14,7 +14,7 @@
 
         <!-- الابناء-->
         <li>
-            <a href="{{route('parent-dashboard.index')}}"><i class="fas fa-user-graduate"></i><span
+            <a href="{{route('sons.index')}}"><i class="fas fa-user-graduate"></i><span
                     class="right-nav-text">{{trans('main_trans.sons')}}</span></a>
         </li>
 
@@ -27,7 +27,7 @@
 
         <!-- تقرير المالية-->
         <li>
-            <a href="{{route('fee.parent')}}"><i class='far fa-money-bill-alt' style='font-size:14px'></i>
+            <a href="{{route('sons.fees')}}"><i class='far fa-money-bill-alt' style='font-size:14px'></i>
                 <span
                     class="right-nav-text">{{ trans('main_trans.financial_report') }}</span></a>
         </li>
