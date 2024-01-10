@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 use App\Models\Blood;
 use App\Models\Classroom;
 use App\Models\Gender;
@@ -11,7 +11,7 @@ use App\Models\Parentt;
 use App\Models\Section;
 use App\Models\Student;
 use App\Observers\StudentObserver;
-use app\Repositories\Interefaces\AdminDashboard\StudentRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\StudentRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 

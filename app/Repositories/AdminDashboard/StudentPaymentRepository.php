@@ -1,12 +1,12 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Models\FoundAccount;
 use App\Models\StudentPayment;
 use App\Models\Student;
 use App\Models\StudentAccount;
-use app\Repositories\Interefaces\AdminDashboard\StudentPaymentRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\StudentPaymentRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 

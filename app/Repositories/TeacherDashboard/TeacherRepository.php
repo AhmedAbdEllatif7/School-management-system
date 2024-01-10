@@ -1,14 +1,15 @@
 <?php
 
-namespace app\Repositories\TeacherDashboard;
+namespace App\Repositories\TeacherDashboard;
 
-use app\Repositories\Interefaces\TeacherDashboard\TeacherRepositoryInterface;
+use App\Repositories\Interefaces\TeacherDashboard\TeacherRepositoryInterface;
 use App\Models\Attendance;
 use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Section;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\Degree;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -144,7 +145,23 @@ class TeacherRepository implements TeacherRepositoryInterface {
     
         return view('dashboards.teacher.attendance.reports', compact('searchResult', 'students'));
     }
-    
+
+
+
+    public function examedStudents($quiz_id)
+    {
+        $degrees = Degree::where('quiz_id', $quiz_id)->get();
+        return view('dashboards.teacher.quizzes.examedStudents', compact('degrees'));
+    }
+
+
+
+    public function repeatExam($request)
+    {
+        Degree::where('student_id', $request->student_id)->where('quiz_id', $request->quiz_id)->delete();
+        return redirect()->back();
+    }
+        
 
     // for ajax
     public function ajaxGetClassrooms($id)

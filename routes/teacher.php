@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Dashborads\Teacher\ProfileController;
-use App\Http\Controllers\Dashborads\Teacher\QuestionsController;
-use App\Http\Controllers\Dashborads\Teacher\QuizController;
-use App\Http\Controllers\Dashborads\Teacher\TeacherController;
+use App\Http\Controllers\Dashboards\Teacher\ProfileController;
+use App\Http\Controllers\Dashboards\Teacher\QuestionsController;
+use App\Http\Controllers\Dashboards\Teacher\QuizController;
+use App\Http\Controllers\Dashboards\Teacher\TeacherController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -30,6 +30,8 @@ Route::group(
         Route::post('/teacher/attendance', 'storeAttendance')->name('attendance.store');
         Route::get('/teacher/reports', 'getReports')->name('reports.index');
         Route::get('/teacher/reports/search', 'reportSearch')->name('reports.search');
+        Route::get('/teacher/examed-stuudents/{quiz_id}', 'examedStudents')->name('students.examed');
+        Route::post('/teacher/repeat-exam', 'repeatExam')->name('students.exam.repeat');
         
         //for ajax
         Route::get('teacher/get-classrooms/{id}' ,  'ajaxGetClassrooms');

@@ -70,11 +70,11 @@
                                                                 data-target="#delete_exam{{ $quizze->id }}" title="{{trans('main_trans.delete')}}"><i
                                                                 class="fa fa-trash"></i></button>
 
-                                                        <a href="{{route('quizzes.show',$quizze->id)}}"
+                                                        <a href="{{route('quizzes.show', $quizze->id)}}"
                                                         class="btn btn-warning btn-sm" title="{{trans('main_trans.view_questions')}}" role="button" aria-pressed="true"><i
                                                                 class="fa fa-eye"></i></a>
 
-                                                        <a href="{{url('students_that_exammed',$quizze->id)}}"
+                                                        <a href="{{route('students.examed', $quizze->id)}}"
                                                         class="btn btn-primary btn-sm" title="{{trans('main_trans.view_examed_students')}}" role="button" aria-pressed="true"><i
                                                                 class="fa fa-street-view"></i></a>
 

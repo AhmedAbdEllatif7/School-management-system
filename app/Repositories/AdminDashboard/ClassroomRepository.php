@@ -1,10 +1,10 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Models\Classroom;
 use App\Models\Grade;
-use app\Repositories\Interefaces\AdminDashboard\ClassroomRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\ClassroomRepositoryInterface;
 
 class ClassroomRepository implements ClassroomRepositoryInterface {
 

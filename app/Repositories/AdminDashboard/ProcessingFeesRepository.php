@@ -1,11 +1,11 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Models\ProcessingFee;
 use App\Models\Student;
 use App\Models\StudentAccount;
-use app\Repositories\Interefaces\AdminDashboard\ProcessingFeesRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\ProcessingFeesRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 class ProcessingFeesRepository implements ProcessingFeesRepositoryInterface

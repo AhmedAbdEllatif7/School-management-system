@@ -1,13 +1,13 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Promotion;
 use App\Models\Section;
 use App\Models\Student;
-use app\Repositories\Interefaces\AdminDashboard\PromotionRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\PromotionRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 class PromotionRepository implements PromotionRepositoryInterface

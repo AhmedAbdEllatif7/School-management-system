@@ -1,12 +1,12 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Models\FoundAccount;
 use App\Models\Receipt;
 use App\Models\Student;
 use App\Models\StudentAccount;
-use app\Repositories\Interefaces\AdminDashboard\ReceiptStudentRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\ReceiptStudentRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 class ReceiptStudentRepository implements ReceiptStudentRepositoryInterface {

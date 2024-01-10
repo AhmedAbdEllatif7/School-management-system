@@ -15,14 +15,14 @@
 
         <!-- الامتحانات-->
         <li>
-            <a href="{{route('student_exams.index')}}"><i class="fas fa-book-open"></i><span
+            <a href="{{route('student.exams.show')}}"><i class="fas fa-book-open"></i><span
                     class="right-nav-text">{{trans('main_trans.quizzes')}}</span></a>
         </li>
 
 
         <!-- Settings-->
         <li>
-            <a href="{{route('student_profile.index')}}"><i class="fas fa-id-card-alt"></i><span
+            <a href="{{route('student.profile')}}"><i class="fas fa-id-card-alt"></i><span
                     class="right-nav-text">{{trans('main_trans.profile')}}</span></a>
         </li>
 

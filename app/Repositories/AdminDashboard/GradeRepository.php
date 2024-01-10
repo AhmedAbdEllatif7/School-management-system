@@ -1,9 +1,9 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Models\Grade;
-use app\Repositories\Interefaces\AdminDashboard\GradeRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\GradeRepositoryInterface;
 
 class GradeRepository implements GradeRepositoryInterface
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Models\Grade;
 use App\Models\Subject;
 use App\Models\Teacher;
-use app\Repositories\Interefaces\AdminDashboard\SubjectRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\SubjectRepositoryInterface;
 
 class SubjectRepository implements SubjectRepositoryInterface
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Models\Setting;
-use app\Repositories\Interefaces\AdminDashboard\SettingsRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\SettingsRepositoryInterface;
 use App\Traits\AttachFilesTrait;
 
 class SettingsRepository implements SettingsRepositoryInterface

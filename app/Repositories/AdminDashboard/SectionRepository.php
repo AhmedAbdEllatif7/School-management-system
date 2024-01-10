@@ -1,12 +1,12 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Section;
 use App\Models\Teacher;
-use app\Repositories\Interefaces\AdminDashboard\SectionRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\SectionRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 class SectionRepository implements SectionRepositoryInterface

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Repositories\Interefaces\TeacherDashboard;
+namespace App\Repositories\Interefaces\TeacherDashboard;
 
 interface TeacherRepositoryInterface {
 
@@ -19,6 +19,10 @@ interface TeacherRepositoryInterface {
     public function getTeacherStudents();
 
     public function reportSearch($request);
+
+    public function examedStudents($quiz_id);
+
+    public function repeatExam($request);
     
     // for ajax
     public function ajaxGetClassrooms($id);

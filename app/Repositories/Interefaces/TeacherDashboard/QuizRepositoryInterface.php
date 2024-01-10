@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Repositories\Interefaces\TeacherDashboard;
+namespace App\Repositories\Interefaces\TeacherDashboard;
 
 interface QuizRepositoryInterface {
 

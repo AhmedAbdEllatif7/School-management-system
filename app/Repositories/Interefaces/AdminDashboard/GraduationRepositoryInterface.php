@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\Repositories\Interefaces\AdminDashboard;
+namespace App\Repositories\Interefaces\AdminDashboard;
 
 interface GraduationRepositoryInterface{
 

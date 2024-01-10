@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Repositories\Interefaces\AdminDashboard;
+namespace App\Repositories\Interefaces\AdminDashboard;
 
 interface ReceiptStudentRepositoryInterface{
     public function index();

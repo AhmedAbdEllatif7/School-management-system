@@ -1,12 +1,12 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Models\Attendance;
 use App\Models\Grade;
 use App\Models\Student;
 use App\Models\Teacher;
-use app\Repositories\Interefaces\AdminDashboard\AttendanceRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\AttendanceRepositoryInterface;
 
 class AttendanceRepository implements AttendanceRepositoryInterface
 {

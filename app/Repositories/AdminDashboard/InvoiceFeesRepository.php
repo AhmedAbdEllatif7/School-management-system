@@ -1,12 +1,12 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Models\Fee;
 use App\Models\InvoiceFee;
 use App\Models\Student;
 use App\Models\StudentAccount;
-use app\Repositories\Interefaces\AdminDashboard\InvoiceFeesRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\InvoiceFeesRepositoryInterface;
 use Illuminate\Support\Facades\DB;
 
 class InvoiceFeesRepository implements InvoiceFeesRepositoryInterface

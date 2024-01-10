@@ -1,12 +1,12 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 use App\Models\Gender;
 use App\Models\Image;
 use App\Models\Specialization;
 use App\Models\Teacher;
 use App\Observers\TeacherObserver;
-use app\Repositories\Interefaces\AdminDashboard\TeacherRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\TeacherRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;

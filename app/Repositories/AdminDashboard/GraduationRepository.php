@@ -1,13 +1,13 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Events\GraduationStudentDeleting;
 use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Section;
 use App\Models\Student;
-use app\Repositories\Interefaces\AdminDashboard\GraduationRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\GraduationRepositoryInterface;
 
 class GraduationRepository implements GraduationRepositoryInterface
 {

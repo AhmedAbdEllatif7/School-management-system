@@ -1,11 +1,11 @@
 <?php
 
-namespace app\Repositories\AdminDashboard;
+namespace App\Repositories\AdminDashboard;
 
 use App\Traits\AttachFilesTrait;
 use App\Models\Grade;
 use App\Models\Library;
-use app\Repositories\Interefaces\AdminDashboard\LibraryRepositoryInterface;
+use App\Repositories\Interefaces\AdminDashboard\LibraryRepositoryInterface;
 use Illuminate\Support\Facades\File;
 
 class LibraryRepository implements LibraryRepositoryInterface

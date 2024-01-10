@@ -227,7 +227,8 @@ return [
     'description' => 'Description',
     'debit' => 'Debit',
     'create_payment' => 'Create payment',
-
+    'do_quiz' => 'Do quiz',
+    'do_not_reload_page' => "Please do not reload the page after entering the test - if done so, the test will be automatically canceled.",
 
 
 ];

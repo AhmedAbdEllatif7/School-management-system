@@ -68,7 +68,7 @@
                         @endif
 
                         @if(auth()->guard('student')->check())
-                            <a href="{{route('student_profile.index')}}" class="dropdown-item">
+                            <a href="{{route('student.profile')}}" class="dropdown-item">
                             <i class="fas fa-id-card-alt" style="color: #0d95e8;font-size: 15px"></i>
                                 {{trans('main_trans.profile')}}</a>
 

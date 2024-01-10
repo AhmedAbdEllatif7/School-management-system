@@ -1,8 +1,8 @@
 <?php
 
-namespace app\Repositories\TeacherDashboard;
+namespace App\Repositories\TeacherDashboard;
 
-use app\Repositories\Interefaces\TeacherDashboard\QuizRepositoryInterface;
+use App\Repositories\Interefaces\TeacherDashboard\QuizRepositoryInterface;
 use App\Models\Degree;
 use App\Models\Grade;
 use App\Models\Question;

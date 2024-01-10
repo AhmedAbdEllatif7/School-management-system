@@ -16,7 +16,7 @@ class TeacherProfileRequest extends FormRequest
         return [
             'name_ar' => 'required|string',
             'name_en' => 'required|string',
-            'password' => 'nullable|min:8',
+            'password' => 'required|min:8',
         ];
     }
 }

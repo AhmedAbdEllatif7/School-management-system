@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\school\admin\ExamController;
-use App\Http\Controllers\school\student\ProfileController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Dashboards\Student\ProfileController;
+use App\Http\Controllers\Dashboards\Student\StudentController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -18,28 +17,25 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 
-//==============================Translate all pages============================
+######################### Translate all pages #########################
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:student']
     ], function () {
 
-    //==============================dashboard============================
-    Route::get('/student/dashboard', function () {
-        $student = \App\Models\Student::where('id' , Auth::user()->id)->first();
-        $subjects = \App\Models\Subject::where('grade_id' , $student->grade_id)->where('classroom_id' , $student->classroom_id)->get();
-        return view('pages.Students.dashboard' , compact('subjects' , 'student'));
+    ######################### dashboard y##############################
+    Route::controller(StudentController::class)->group(function ()
+    {
+        Route::get('/student/dashboard', 'index')->name('students.index');
+        Route::get('/student/exams/', 'getExams')->name('student.exams.show');
+        Route::get('/student/questions/{quiz_id}', 'getQuestions')->name('student.questions.show');
+        
     });
 
-    Route::controller(ExamController::class)->group(function () {
-        Route::resource('student_exams',ExamController::class);
-    });
+
 
     Route::controller(ProfileController::class)->group(function () {
-        Route::resource('student_profile',ProfileController::class);
-    });
-
-
-
+        Route::get('/student/profile', 'getProfile')->name('student.profile');
+        Route::post('/student/update-profile/{id}', 'updateProfile')->name('student.profile.update');    });
     });

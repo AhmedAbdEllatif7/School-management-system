@@ -64,6 +64,6 @@ class Quiz extends Model
 
     public function questions()
     {
-        return $this->hasMany('App\Models\Question' , 'quizze_id');
+        return $this->hasMany('App\Models\Question' , 'quizz_id');
     }
 }

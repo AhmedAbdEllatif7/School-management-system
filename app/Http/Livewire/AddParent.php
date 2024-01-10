@@ -8,7 +8,6 @@ use App\Models\ParentAttachment;
 use App\Models\Parentt;
 use App\Models\Religion;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 class AddParent extends Component
