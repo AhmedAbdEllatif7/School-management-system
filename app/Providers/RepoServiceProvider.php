@@ -74,120 +74,111 @@ class RepoServiceProvider extends ServiceProvider
      */
     public function register():void
     {
+
         $this->app->bind(
-            \App\Repositories\Interefaces\TeacherDashboard\QuestionsRepositoryInterface::class,
-            \App\Repositories\TeacherDashboard\QuestionsRepository::class
+            \app\Repositories\Interefaces\AdminDashboard\GradeRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\GradeRepository::class
         );
         
         $this->app->bind(
-            \App\Repositories\Interefaces\GradeRepositoryInterface::class,
-            \App\Repositories\GradeRepository::class
+            \app\Repositories\Interefaces\AdminDashboard\SectionRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\SectionRepository::class
         );
         
         $this->app->bind(
-            \App\Repositories\Interefaces\SectionRepositoryInterface::class,
-            \App\Repositories\SectionRepository::class
+            \app\Repositories\Interefaces\AdminDashboard\AttendanceRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\AttendanceRepository::class
         );
         
         $this->app->bind(
-            \App\Repositories\Interefaces\AttendanceRepositoryInterface::class,
-            \App\Repositories\AttendanceRepository::class
+            \app\Repositories\Interefaces\AdminDashboard\InvoiceFeesRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\InvoiceFeesRepository::class
         );
         
         $this->app->bind(
-            \App\Repositories\Interefaces\InvoiceFeesRepositoryInterface::class,
-            \App\Repositories\InvoiceFeesRepository::class
+            \app\Repositories\Interefaces\AdminDashboard\FeesRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\FeesRepository::class
         );
         
         $this->app->bind(
-            \App\Repositories\Interefaces\FeesRepositoryInterface::class,
-            \App\Repositories\FeesRepository::class
+            \app\Repositories\Interefaces\AdminDashboard\GraduationRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\GraduationRepository::class
         );
         
         $this->app->bind(
-            \App\Repositories\Interefaces\GraduationRepositoryInterface::class,
-            \App\Repositories\GraduationRepository::class
-        );
-        
-        $this->app->bind(
-            \App\Repositories\Interefaces\LibraryRepositoryInterface::class,
-            \App\Repositories\LibraryRepository::class
-        );
-        
-        $this->app->bind(
-            \App\Repositories\Interefaces\ParentStudentRepositoryInterface::class,
-            \App\Repositories\ParentStudentRepository::class
-        );
-        
-        $this->app->bind(
-            \App\Repositories\Interefaces\StudentPaymentRepositoryInterface::class,
-            \App\Repositories\StudentPaymentRepository::class
-        );
-        
-        $this->app->bind(
-            \App\Repositories\Interefaces\ProcessingFeesRepositoryInterface::class,
-            \App\Repositories\ProcessingFeesRepository::class
-        );
-        
-        $this->app->bind(
-            \App\Repositories\Interefaces\PromotionRepositoryInterface::class,
-            \App\Repositories\PromotionRepository::class
+            \app\Repositories\Interefaces\AdminDashboard\LibraryRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\LibraryRepository::class
         );
         
         // $this->app->bind(
-        //     \App\Repositories\Interefaces\QuestionRepositoryInterface::class,
-        //     \App\Repositories\QuestionRepository::class
+        //     \app\Repositories\Interefaces\AdminDashboard\ParentStudentRepositoryInterface::class,
+        //     \app\Repositories\AdminDashboard\ParentStudentRepository::class
+        // );
+        
+        $this->app->bind(
+            \app\Repositories\Interefaces\AdminDashboard\StudentPaymentRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\StudentPaymentRepository::class
+        );
+        
+        $this->app->bind(
+            \app\Repositories\Interefaces\AdminDashboard\ProcessingFeesRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\ProcessingFeesRepository::class
+        );
+        
+        $this->app->bind(
+            \app\Repositories\Interefaces\AdminDashboard\PromotionRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\PromotionRepository::class
+        );
+        
+        // $this->app->bind(
+        //     \app\Repositories\Interefaces\AdminDashboard\QuestionRepositoryInterface::class,
+        //     \app\Repositories\AdminDashboard\QuestionRepository::class
         // );
         
         // $this->app->bind(
-        //     \App\Repositories\Interefaces\QuizRepositoryInterface::class,
-        //     \App\Repositories\QuizRepository::class
+        //     \app\Repositories\Interefaces\AdminDashboard\QuizRepositoryInterface::class,
+        //     \app\Repositories\AdminDashboard\QuizRepository::class
         // );
         
         $this->app->bind(
-            \App\Repositories\Interefaces\ReceiptStudentRepositoryInterface::class,
-            \App\Repositories\ReceiptStudentRepository::class
+            \app\Repositories\Interefaces\AdminDashboard\ReceiptStudentRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\ReceiptStudentRepository::class
         );
         
         $this->app->bind(
-            \App\Repositories\Interefaces\SettingsRepositoryInterface::class,
-            \App\Repositories\SettingsRepository::class
-        );
-        
-        $this->app->bind(
-            \App\Repositories\Interefaces\StudenntAccountRepositoryInterface::class,
-            \App\Repositories\StudentAccountRepository::class
-        );
-        
-        $this->app->bind(
-            \App\Repositories\Interefaces\StudentRepositoryInterface::class,
-            \App\Repositories\StudentRepository::class
-        );
-        
-        $this->app->bind(
-            \App\Repositories\Interefaces\SubjectRepositoryInterface::class,
-            \App\Repositories\SubjectRepository::class
-        );
-        
-        $this->app->bind(
-            \App\Repositories\Interefaces\TeacherRepositoryInterface::class,
-            \App\Repositories\TeacherRepository::class
+            \app\Repositories\Interefaces\AdminDashboard\SettingsRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\SettingsRepository::class
         );
 
         $this->app->bind(
-            \App\Repositories\Interefaces\TeacherDashboard\TeacherRepositoryInterface::class,
-            \App\Repositories\TeacherDashboard\TeacherRepository::class
+            \app\Repositories\Interefaces\AdminDashboard\StudentRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\StudentRepository::class
+        );
+        
+        $this->app->bind(
+            \app\Repositories\Interefaces\AdminDashboard\SubjectRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\SubjectRepository::class
+        );
+        
+        $this->app->bind(
+            \app\Repositories\Interefaces\AdminDashboard\TeacherRepositoryInterface::class,
+            \app\Repositories\AdminDashboard\TeacherRepository::class
+        );
+
+        $this->app->bind(
+            \app\Repositories\Interefaces\TeacherDashboard\TeacherRepositoryInterface::class,
+            \app\Repositories\TeacherDashboard\TeacherRepository::class
         );
 
 
         $this->app->bind(
-            \App\Repositories\Interefaces\TeacherDashboard\QuizRepositoryInterface::class,
-            \App\Repositories\TeacherDashboard\QuizRepository::class
+            \app\Repositories\Interefaces\TeacherDashboard\QuizRepositoryInterface::class,
+            \app\Repositories\TeacherDashboard\QuizRepository::class
         );
 
         $this->app->bind(
-            \App\Repositories\Interefaces\TeacherDashboard\QuestionsRepositoryInterface::class,
-            \App\Repositories\TeacherDashboard\QuestionsRepository::class
+            \app\Repositories\Interefaces\TeacherDashboard\QuestionsRepositoryInterface::class,
+            \app\Repositories\TeacherDashboard\QuestionsRepository::class
         );
 
         

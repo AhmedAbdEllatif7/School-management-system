@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\Interefaces\TeacherDashboard;
+namespace app\Repositories\Interefaces\TeacherDashboard;
 
 interface QuestionsRepositoryInterface {
 

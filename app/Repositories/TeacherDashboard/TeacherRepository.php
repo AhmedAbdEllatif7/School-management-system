@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\TeacherDashboard;
+namespace app\Repositories\TeacherDashboard;
 
-use App\Repositories\Interefaces\TeacherDashboard\TeacherRepositoryInterface;
+use app\Repositories\Interefaces\TeacherDashboard\TeacherRepositoryInterface;
 use App\Models\Attendance;
 use App\Models\Classroom;
 use App\Models\Grade;

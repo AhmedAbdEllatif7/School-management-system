@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repositories\TeacherDashboard;
+namespace app\Repositories\TeacherDashboard;
 
-use App\Repositories\Interefaces\TeacherDashboard\QuestionsRepositoryInterface;
+use app\Repositories\Interefaces\TeacherDashboard\QuestionsRepositoryInterface;
 use App\Models\Question;
 class QuestionsRepository implements QuestionsRepositoryInterface {
 
