@@ -15,7 +15,7 @@ class SettingsRepository implements SettingsRepositoryInterface
 
         $settings = Setting::all()->pluck('value', 'key')->toArray();
 
-        return view('pages.adminDashboard.settings.index', compact('settings'));
+        return view('dashboards.admin.settings.index', compact('settings'));
     }
 
     

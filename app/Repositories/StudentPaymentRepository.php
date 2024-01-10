@@ -16,7 +16,7 @@ class StudentPaymentRepository implements StudentPaymentRepositoryInterface
     public function index()
     {
         $studentPayments = StudentPayment::select('id', 'student_id', 'amount', 'description')->get();
-        return view('pages.adminDashboard.payments.index',compact('studentPayments'));
+        return view('dashboards.admin.payments.index',compact('studentPayments'));
     }
 
 
@@ -24,14 +24,14 @@ class StudentPaymentRepository implements StudentPaymentRepositoryInterface
     public function show($id)
     {
         $student = Student::select('id', 'name')->findorfail($id);
-        return view('pages.adminDashboard.payments.create',compact('student'));
+        return view('dashboards.admin.payments.create',compact('student'));
     }
 
 
     public function edit($id)
     {
         $studentPayment = StudentPayment::findorfail($id);
-        return view('pages.adminDashboard.payments.edit',compact('studentPayment'));
+        return view('dashboards.admin.payments.edit',compact('studentPayment'));
     }
 
 

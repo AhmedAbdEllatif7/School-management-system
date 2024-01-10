@@ -16,7 +16,7 @@ class PromotionRepository implements PromotionRepositoryInterface
     public function index()
     {
         $grades = Grade::all();
-        return view('pages.adminDashboard.promotion.index' , compact('grades'));
+        return view('dashboards.admin.promotion.index' , compact('grades'));
     }
 
 
@@ -24,7 +24,7 @@ class PromotionRepository implements PromotionRepositoryInterface
     public function create()
     {
         $promotions = promotion::all();
-        return view('pages.adminDashboard.promotion.management',compact('promotions'));
+        return view('dashboards.admin.promotion.management',compact('promotions'));
     }
 
 

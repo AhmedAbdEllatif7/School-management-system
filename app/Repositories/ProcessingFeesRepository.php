@@ -14,7 +14,7 @@ class ProcessingFeesRepository implements ProcessingFeesRepositoryInterface
     public function index()
     {
         $processingFees = ProcessingFee::select('id', 'date', 'student_id', 'amount', 'description')->get();
-        return view('pages.adminDashboard.processingFee.index',compact('processingFees'));
+        return view('dashboards.admin.processingFee.index',compact('processingFees'));
     }
 
 
@@ -22,7 +22,7 @@ class ProcessingFeesRepository implements ProcessingFeesRepositoryInterface
     public function show($id)
     {
         $student = Student::select('id', 'name')->findorfail($id);
-        return view('pages.adminDashboard.processingFee.create',compact('student'));
+        return view('dashboards.admin.processingFee.create',compact('student'));
     }
 
 
@@ -30,7 +30,7 @@ class ProcessingFeesRepository implements ProcessingFeesRepositoryInterface
     public function edit($id)
     {
         $processingFee = ProcessingFee::findorfail($id);
-        return view('pages.adminDashboard.processingFee.edit',compact('processingFee'));
+        return view('dashboards.admin.processingFee.edit',compact('processingFee'));
     }
 
 

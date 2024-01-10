@@ -26,30 +26,33 @@ class ParentSeeder extends Seeder
             // Add more names as needed
         ];
 
-        foreach ($names as $index => $name) {
-            $my_parents = new Parentt();
-            $my_parents->email = 'samir.gamal77_' . $index . '@yahoo.com'; // Modify the email to make it unique
-            $my_parents->password = Hash::make('12345678');
-            $my_parents->Name_Father = $name;
-            $my_parents->National_ID_Father = '1234567810';
-            $my_parents->Passport_ID_Father = '1234567810';
-            $my_parents->Phone_Father = '1234567810';
-            $my_parents->Job_Father = ['en' => 'programmer', 'ar' => 'مبرمج'];
-            $my_parents->Nationality_Father_id = Nationality::all()->unique()->random()->id;
-            $my_parents->Blood_Type_Father_id = Blood::all()->unique()->random()->id;
-            $my_parents->Religion_Father_id = Religion::all()->unique()->random()->id;
-            $my_parents->Address_Father = 'القاهرة';
-            $my_parents->Name_Mother = $name;
-            $my_parents->National_ID_Mother = '1234567810';
-            $my_parents->Passport_ID_Mother = '1234567810';
-            $my_parents->Phone_Mother = '1234567810';
-            $my_parents->Job_Mother = ['en' => 'Teacher', 'ar' => 'معلمة'];
-            $my_parents->Nationality_Mother_id = Nationality::all()->unique()->random()->id;
-            $my_parents->Blood_Type_Mother_id = Blood::all()->unique()->random()->id;
-            $my_parents->Religion_Mother_id = Religion::all()->unique()->random()->id;
-            $my_parents->Address_Mother = 'القاهرة';
-            $my_parents->save();
-        }
+        // ... existing code
+
+foreach ($names as $index => $name) {
+    $my_parents = new Parentt();
+    $my_parents->email = 'samir.gamal77_' . $index . '@yahoo.com'; // Modify the email to make it unique
+    $my_parents->password = Hash::make('12345678');
+    $my_parents->father_name = $name; // Assuming the 'en' key holds English names
+    $my_parents->father_national_id = '1234567810';
+    $my_parents->father_passport_id = '1234567810';
+    $my_parents->father_phone = '1234567810';
+    $my_parents->father_job = 'programmer'; // Assuming it's a string field
+    $my_parents->father_nationality = Nationality::all()->unique()->random()->id;
+    $my_parents->father_blood_type = Blood::all()->unique()->random()->id;
+    $my_parents->father_religion = Religion::all()->unique()->random()->id;
+    $my_parents->father_address = 'القاهرة';
+    $my_parents->mother_name = $name['en']; // Assuming the 'en' key holds English names
+    $my_parents->mother_national_id = '1234567810';
+    $my_parents->mother_passport_id = '1234567810';
+    $my_parents->mother_phone = '1234567810';
+    $my_parents->mother_job = 'Teacher'; // Assuming it's a string field
+    $my_parents->mother_nationality = Nationality::all()->unique()->random()->id;
+    $my_parents->mother_blood_type = Blood::all()->unique()->random()->id;
+    $my_parents->mother_religion = Religion::all()->unique()->random()->id;
+    $my_parents->mother_address = 'القاهرة';
+    $my_parents->save();
+}
+
     }
 
 

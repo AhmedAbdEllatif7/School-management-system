@@ -16,8 +16,14 @@ class Quiz extends Model
 
     protected $table = 'quizzes';
 
-    public $timestamps = true;
-
+    protected $fillable = [
+        'name',
+        'subject_id',
+        'grade_id',
+        'classroom_id',
+        'section_id',
+        'teacher_id',
+    ];
     protected $guarded=[];
 
     public function teacher()

@@ -14,7 +14,7 @@ class GraduationRepository implements GraduationRepositoryInterface
     public function index()
     {
         $students = Student::onlyTrashed()->get();
-        return view('pages.adminDashboard.graduation.index', compact('students'));
+        return view('dashboards.admin.graduation.index', compact('students'));
     }
 
 
@@ -25,7 +25,7 @@ class GraduationRepository implements GraduationRepositoryInterface
         $students = Student::all();
         $classrooms = Classroom::all();
         $sections = Section::all();
-        return view('pages.adminDashboard.graduation.create', compact(['grades', 'students', 'classrooms', 'sections']));
+        return view('dashboards.admin.graduation.create', compact(['grades', 'students', 'classrooms', 'sections']));
     }
 
 

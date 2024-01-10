@@ -11,16 +11,14 @@ use App\Models\Parentt;
 use App\Models\Section;
 use App\Models\Student;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class StudentSeeder extends Seeder
-{
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+{public function run(): void
     {
-        \Illuminate\Support\Facades\DB::table('students')->delete();
+
+        // DB::table('students')->delete();
 
         $genders = Gender::all();
 
@@ -37,20 +35,20 @@ class StudentSeeder extends Seeder
         ];
 
         foreach ($names as $name) {
-            $students = new Student();
-            $students->name = $name;
-            $students->email = $name['en'] . '@yahoo.com';
-            $students->password = Hash::make('12345678');
-            $students->gender_id = $genders->random()->id;
-            $students->nationalitie_id = Nationality::all()->unique()->random()->id;
-            $students->blood_id = Blood::all()->unique()->random()->id;
-            $students->date_birth = date('1995-01-01');
-            $students->grade_id = Grade::all()->unique()->random()->id;
-            $students->classroom_id = Classroom::all()->unique()->random()->id;
-            $students->section_id = Section::all()->unique()->random()->id;
-            $students->parent_id = Parentt::all()->unique()->random()->id;
-            $students->academic_year = '2021';
-            $students->save();
+            $student = new Student();
+            $student->name = $name;
+            $student->email = strtolower(str_replace(' ', '_', $name['en'])) . '@gmail.com';
+            $student->password = Hash::make('12345678');
+            $student->gender_id = $genders->random()->id;
+            $student->nationalitie_id = Nationality::all()->random()->id;
+            $student->blood_id = Blood::all()->random()->id;
+            $student->date_birth = '1995-01-01'; // Modify this to your desired date format
+            $student->grade_id = Grade::all()->random()->id;
+            $student->classroom_id = Classroom::all()->random()->id;
+            $student->section_id = Section::all()->random()->id;
+            $student->parent_id = Parentt::all()->random()->id;
+            $student->academic_year = '2021';
+            $student->save();
         }
     }
     }

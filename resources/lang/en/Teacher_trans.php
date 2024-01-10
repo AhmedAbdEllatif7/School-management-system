@@ -47,4 +47,5 @@ return [
     'view' => 'View',
     'photo_deleted' => 'Photo deleted successfully',
     'not_found' => 'Not found',
+    'search' => 'Search',
 ];

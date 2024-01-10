@@ -13,7 +13,7 @@ class ClassroomRepository implements ClassroomRepositoryInterface {
     {
         $classrooms = Classroom::all();
         $grades = Grade::all();
-        return view('pages.adminDashboard.classrooms.index',compact(['classrooms','grades']));
+        return view('dashboards.admin.classrooms.index',compact(['classrooms','grades']));
     }
 
 

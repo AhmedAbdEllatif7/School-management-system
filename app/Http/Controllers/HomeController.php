@@ -13,17 +13,9 @@ class HomeController extends Controller
         return view('auth.selection');
     }
 
-
-    public function studentDashboard()
-    {
-        return view('pages.Students.dashboard');
-    }
-
-
-
     public function adminDashboard()
     {
-        return view('adminDashboard');
+        return view('dashboards.admin.dashboard');
     }
 
 

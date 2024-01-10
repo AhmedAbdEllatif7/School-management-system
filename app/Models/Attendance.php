@@ -13,7 +13,15 @@ class Attendance extends Model
 
     public $timestamps = true;
 
-    protected $guarded=[];
+    protected $fillable = [
+        'student_id',
+        'grade_id',
+        'classroom_id',
+        'section_id',
+        'teacher_id',
+        'attendance_date',
+        'attendance_status',
+    ];
 
     public function students()
     {

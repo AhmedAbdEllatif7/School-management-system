@@ -269,6 +269,11 @@ return [
     'view_book' => 'عرض الكتاب',
     'edit_book' => 'تعديل الكتاب',
     'delete_book' => 'حذف الكتاب',
+    'attendance' => 'الغياب',
+    'subject' => 'المادة',
+    'view_questions' => 'عرض الأسئلة',
+    'view_examed_students' => 'عرض الطلاب المختبرين',
+    'edit' => 'تعديل',
 
 ];
 

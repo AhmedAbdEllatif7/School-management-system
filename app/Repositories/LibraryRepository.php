@@ -15,13 +15,13 @@ class LibraryRepository implements LibraryRepositoryInterface
     public function index()
     {
         $books = Library::select('id', 'title', 'file_name', 'grade_id', 'classroom_id', 'section_id')->get();
-        return view('pages.adminDashboard.library.index',compact('books'));
+        return view('dashboards.admin.library.index',compact('books'));
     }
 
     public function create()
     {
         $grades = Grade::select('id', 'name')->get();
-        return view('pages.adminDashboard.library.create',compact('grades'));
+        return view('dashboards.admin.library.create',compact('grades'));
     }
 
 
@@ -61,7 +61,7 @@ class LibraryRepository implements LibraryRepositoryInterface
     {
         $grades =Grade::select('id', 'name')->get();
         $book = library::findorFail($id);
-        return view('pages.adminDashboard.library.edit',compact('book','grades'));
+        return view('dashboards.admin.library.edit',compact('book','grades'));
     }
 
 

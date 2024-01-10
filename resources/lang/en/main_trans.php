@@ -171,7 +171,7 @@ return [
     'name' => 'Name',
     'list_sections' => 'Section List',
     'profile' => 'Profile',
-    'report' => 'Report',
+    'reports' => 'Reports',
     'attendance_absence' => 'Attendance and Absence Report',
     'examination_report' => 'Examination Report',
     'attendance_report' => 'Attendance report',
@@ -271,5 +271,11 @@ return [
     'view_book' => 'view book',
     'edit_book' => 'edit book',
     'delete_book' => 'delete book',
+    'attendance' => 'Attendance',
+    'subject' => 'Subject',
+    'view_questions' => 'View questions',
+    'view_examed_students' => 'View Examed Students',
+    'edit' => 'Edit',
+
 ];
 

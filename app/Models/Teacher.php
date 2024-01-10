@@ -13,10 +13,10 @@ class Teacher extends Authenticatable
     use HasFactory;
     use HasTranslations;
     public $translatable = ['name'];
-    protected $fillable = ['name' , 'email' , 'password' , 'gender_id' , 'specialization_id' , 'joining_date' , 'address'];
+    protected $fillable = ['name' , 'email' , 'password' , 'gender_id' , 'specialization_id' , 'joining_date' , 'address', 'created_at', 'updated_at'];
     protected $table  = 'teachers';
 
-
+    public $timestamps = true;
 
     protected $casts = [
         'password' => 'hashed',
@@ -35,7 +35,7 @@ class Teacher extends Authenticatable
     }
 
     // علاقة المعلمين مع الاقسام
-    public function Sections()
+    public function sections()
     {
         return $this->belongsToMany('App\Models\Section','teacher_section');
     }

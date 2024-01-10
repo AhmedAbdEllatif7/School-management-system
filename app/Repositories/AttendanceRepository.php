@@ -4,12 +4,10 @@ namespace App\Repositories;
 
 use App\Models\Attendance;
 use App\Models\Grade;
-use App\Models\Section;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Repositories\Interefaces\AttendanceRepositoryInterface;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\ValidationException as ValidationValidationException;
+
 
 class AttendanceRepository implements AttendanceRepositoryInterface
 {
@@ -19,7 +17,7 @@ class AttendanceRepository implements AttendanceRepositoryInterface
     {
         $sectionsOfGrade = Grade::with(['sections'])->get();
         $grades = Grade::select('id', 'name')->get();
-        return view('pages.adminDashboard.attendance.index', compact('sectionsOfGrade', 'grades'));
+        return view('dashboards.admin.attendance.index', compact('sectionsOfGrade', 'grades'));
     }
 
 
@@ -28,7 +26,7 @@ class AttendanceRepository implements AttendanceRepositoryInterface
     {
         $students = Student::with('attendance')->where('section_id', $id)->get();
         $teachers = Teacher::select('id', 'name')->get();
-        return view('pages.adminDashboard.attendance.studentAttendance', compact('students', 'teachers'));
+        return view('dashboards.admin.attendance.studentAttendance', compact('students', 'teachers'));
     }
 
 

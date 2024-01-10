@@ -11,14 +11,14 @@ class FeesRepository implements FeesRepositoryInterface
     public function index()
     {
         $fees = Fee::select('title', 'id', 'amount', 'grade_id', 'classroom_id', 'description', 'year')->get();
-        return view('pages.adminDashboard.fees.index' , compact('fees'));
+        return view('dashboards.admin.fees.index' , compact('fees'));
     }
 
 
     public function create()
     {
         $grades = Grade::select('id', 'name')->get();
-        return view('pages.adminDashboard.fees.create' , compact('grades'));
+        return view('dashboards.admin.fees.create' , compact('grades'));
     }
 
 
@@ -52,7 +52,7 @@ class FeesRepository implements FeesRepositoryInterface
     public function edit($fee)
     {
         $grades = Grade::select('id', 'name')->get();
-        return view('pages.adminDashboard.fees.edit' , compact(['grades' , 'fee']));
+        return view('dashboards.admin.fees.edit' , compact(['grades' , 'fee']));
     }
 
 

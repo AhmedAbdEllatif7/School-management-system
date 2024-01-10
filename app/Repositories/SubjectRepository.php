@@ -13,14 +13,14 @@ class SubjectRepository implements SubjectRepositoryInterface
     public function index()
     {
         $subjects = Subject::select('id', 'name', 'grade_id', 'classroom_id', 'teacher_id')->get();
-        return view('pages.adminDashboard.subjects.index',compact('subjects'));
+        return view('dashboards.admin.subjects.index',compact('subjects'));
     }
 
     public function create()
     {
         $grades = Grade::select('id', 'name')->get();
         $teachers = Teacher::select('id', 'name')->get();
-        return view('pages.adminDashboard.subjects.create',compact('grades','teachers'));
+        return view('dashboards.admin.subjects.create',compact('grades','teachers'));
     }
 
 
@@ -57,7 +57,7 @@ class SubjectRepository implements SubjectRepositoryInterface
         $subject = Subject::select('id', 'name', 'grade_id', 'classroom_id', 'teacher_id')->findOrFail($id);
         $grades = Grade::get();
         $teachers = Teacher::get();
-        return view('pages.adminDashboard.subjects.edit',compact('subject','grades','teachers'));
+        return view('dashboards.admin.subjects.edit',compact('subject','grades','teachers'));
 
     }
 

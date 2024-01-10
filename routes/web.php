@@ -2,24 +2,24 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\school\admin\AttendanceController;
-use App\Http\Controllers\school\admin\ClassroomController;
-use App\Http\Controllers\school\admin\FeesController;
-use App\Http\Controllers\school\admin\InvoiceFeesController;
-use App\Http\Controllers\school\admin\FullCalenderController;
-use App\Http\Controllers\school\admin\GradeController;
-use App\Http\Controllers\school\admin\GraduationController;
-use App\Http\Controllers\school\admin\LibraryController;
-use App\Http\Controllers\school\admin\StudentPaymentController;
-use App\Http\Controllers\school\admin\ProcessingFeesController;
-use App\Http\Controllers\school\admin\PromotionController;
-use App\Http\Controllers\school\admin\ReceiptController;
-use App\Http\Controllers\school\admin\SectionController;
-use App\Http\Controllers\school\admin\SettingController;
-use App\Http\Controllers\school\admin\SubjectController;
-use App\Http\Controllers\school\admin\ParentController;
-use App\Http\Controllers\school\admin\StudentController;
-use App\Http\Controllers\school\admin\TeacherController;
+use App\Http\Controllers\Dashborads\Admin\AttendanceController;
+use App\Http\Controllers\Dashborads\Admin\ClassroomController;
+use App\Http\Controllers\Dashborads\Admin\FeesController;
+use App\Http\Controllers\Dashborads\Admin\InvoiceFeesController;
+// use App\Http\Controllers\Dashborads\Admin\FullCalenderController;
+use App\Http\Controllers\Dashborads\Admin\GradeController;
+use App\Http\Controllers\Dashborads\Admin\GraduationController;
+use App\Http\Controllers\Dashborads\Admin\LibraryController;
+use App\Http\Controllers\Dashborads\Admin\StudentPaymentController;
+use App\Http\Controllers\Dashborads\Admin\ProcessingFeesController;
+use App\Http\Controllers\Dashborads\Admin\PromotionController;
+use App\Http\Controllers\Dashborads\Admin\ReceiptController;
+use App\Http\Controllers\Dashborads\Admin\SectionController;
+use App\Http\Controllers\Dashborads\Admin\SettingController;
+use App\Http\Controllers\Dashborads\Admin\SubjectController;
+use App\Http\Controllers\Dashborads\Admin\ParentController;
+use App\Http\Controllers\Dashborads\Admin\StudentController;
+use App\Http\Controllers\Dashborads\Admin\TeacherController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -62,14 +62,14 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
         //Admin Dashboard
-        Route::get('admin/dashboard',[HomeController::class , 'adminDashboard'])->name('admin.dashboard');
+        Route::get('admin/dashboard', [HomeController::class , 'adminDashboard'])->name('admin.dashboard');
 
 
         ###################################### Begin Grade ###########################
 
         Route::resource('grades', GradeController::class);
 
-        Route::delete('delete-selected-grades' ,  [GradeController::class, 'deleteSelectedGrades'])->name('delete.selected.grades');
+        Route::delete('delete-selected-grades', [GradeController::class, 'deleteSelectedGrades'])->name('delete.selected.grades');
 
         ###################################### End Grade ###########################
 
@@ -264,11 +264,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 
-        ###################################### Calendar ##############################
+        // ###################################### Calendar ##############################
 
-        Route::get('fullcalender', [FullCalenderController::class, 'index']);
+        // Route::get('fullcalender', [FullCalenderController::class, 'index']);
 
-        Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
+        // Route::post('fullcalenderAjax', [FullCalenderController::class, 'ajax']);
 
 
 });

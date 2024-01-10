@@ -73,7 +73,7 @@
                                 {{trans('main_trans.profile')}}</a>
 
                         @elseif(auth()->guard('teacher')->check())
-                            <a href="{{route('profile.show')}}" class="dropdown-item">
+                            <a href="{{route('teacher.profile.index')}}" class="dropdown-item">
                                 <i class="fas fa-id-card-alt" style="color: #0d95e8;font-size: 15px"></i>
                                 {{trans('main_trans.profile')}}</a>
 

@@ -16,19 +16,19 @@ class ReceiptStudentRepository implements ReceiptStudentRepositoryInterface {
     {
         $studentReceipts = Receipt::select('id', 'student_id', 'debit', 'description')->get();
 
-        return view('pages.adminDashboard.receipts.index',compact('studentReceipts'));
+        return view('dashboards.admin.receipts.index',compact('studentReceipts'));
     }
 
     public function show($id)
     {
         $student = Student::select('id', 'name')->findorfail($id);
-        return view('pages.adminDashboard.receipts.create' , compact('student'));
+        return view('dashboards.admin.receipts.create' , compact('student'));
     }
 
     public function edit($id)
     {
         $receipt_student = Receipt::findorfail($id);
-        return view('pages.adminDashboard.receipts.edit',compact('receipt_student'));
+        return view('dashboards.admin.receipts.edit',compact('receipt_student'));
     }
 
     

@@ -74,46 +74,123 @@ class RepoServiceProvider extends ServiceProvider
      */
     public function register():void
     {
-        $this->app->bind(TeacherRepositoryInterface::class , TeacherRepository::class);
-
-        $this->app->bind(StudentRepositoryInterface::class , StudentRepository::class);
-
-        $this->app->bind(PromotionRepositoryInterface::class , PromotionRepository::class);
-
-        $this->app->bind(GraduationRepositoryInterface::class , GraduationRepository::class);
-
-        $this->app->bind(FeesRepositoryInterface::class , FeesRepository::class);
-
-        $this->app->bind(StudenntAccountRepositoryInterface::class , StudentAccountRepository::class);
-
-        $this->app->bind(InvoiceFeesRepositoryInterface::class , InvoiceFeesRepository::class);
-
-        $this->app->bind(ReceiptStudentRepositoryInterface::class , ReceiptStudentRepository::class);
-
-        $this->app->bind(ProcessingFeesRepositoryInterface::class , ProcessingFeesRepository::class);
-
-        $this->app->bind(StudentPaymentRepositoryInterface::class , StudentPaymentRepository::class);
-
-        $this->app->bind(AttendanceRepositoryInterface::class , AttendanceRepository::class);
-
-        $this->app->bind(SubjectRepositoryInterface::class , SubjectRepository::class);
+        $this->app->bind(
+            \App\Repositories\Interefaces\TeacherDashboard\QuestionsRepositoryInterface::class,
+            \App\Repositories\TeacherDashboard\QuestionsRepository::class
+        );
         
-        // $this->app->bind(QuizRepositoryInterface::class , QuizRepository::class);
+        $this->app->bind(
+            \App\Repositories\Interefaces\GradeRepositoryInterface::class,
+            \App\Repositories\GradeRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\SectionRepositoryInterface::class,
+            \App\Repositories\SectionRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\AttendanceRepositoryInterface::class,
+            \App\Repositories\AttendanceRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\InvoiceFeesRepositoryInterface::class,
+            \App\Repositories\InvoiceFeesRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\FeesRepositoryInterface::class,
+            \App\Repositories\FeesRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\GraduationRepositoryInterface::class,
+            \App\Repositories\GraduationRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\LibraryRepositoryInterface::class,
+            \App\Repositories\LibraryRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\ParentStudentRepositoryInterface::class,
+            \App\Repositories\ParentStudentRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\StudentPaymentRepositoryInterface::class,
+            \App\Repositories\StudentPaymentRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\ProcessingFeesRepositoryInterface::class,
+            \App\Repositories\ProcessingFeesRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\PromotionRepositoryInterface::class,
+            \App\Repositories\PromotionRepository::class
+        );
+        
+        // $this->app->bind(
+        //     \App\Repositories\Interefaces\QuestionRepositoryInterface::class,
+        //     \App\Repositories\QuestionRepository::class
+        // );
+        
+        // $this->app->bind(
+        //     \App\Repositories\Interefaces\QuizRepositoryInterface::class,
+        //     \App\Repositories\QuizRepository::class
+        // );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\ReceiptStudentRepositoryInterface::class,
+            \App\Repositories\ReceiptStudentRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\SettingsRepositoryInterface::class,
+            \App\Repositories\SettingsRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\StudenntAccountRepositoryInterface::class,
+            \App\Repositories\StudentAccountRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\StudentRepositoryInterface::class,
+            \App\Repositories\StudentRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\SubjectRepositoryInterface::class,
+            \App\Repositories\SubjectRepository::class
+        );
+        
+        $this->app->bind(
+            \App\Repositories\Interefaces\TeacherRepositoryInterface::class,
+            \App\Repositories\TeacherRepository::class
+        );
 
-        // $this->app->bind(QuestionRepositoryInterface::class , QuestionRepository::class);
+        $this->app->bind(
+            \App\Repositories\Interefaces\TeacherDashboard\TeacherRepositoryInterface::class,
+            \App\Repositories\TeacherDashboard\TeacherRepository::class
+        );
 
-        $this->app->bind(LibraryRepositoryInterface::class , LibraryRepository::class);
 
-        $this->app->bind(SettingsRepositoryInterface::class , SettingsRepository::class);
+        $this->app->bind(
+            \App\Repositories\Interefaces\TeacherDashboard\QuizRepositoryInterface::class,
+            \App\Repositories\TeacherDashboard\QuizRepository::class
+        );
 
-        $this->app->bind(ClassroomRepositoryInterface::class , ClassroomRepository::class);
+        $this->app->bind(
+            \App\Repositories\Interefaces\TeacherDashboard\QuestionsRepositoryInterface::class,
+            \App\Repositories\TeacherDashboard\QuestionsRepository::class
+        );
 
-        $this->app->bind(GradeRepositoryInterface::class , GradeRepository::class);
-
-        $this->app->bind(ParentStudentRepositoryInterface::class , ParentStudentRepository::class);
-
-        $this->app->bind(SectionRepositoryInterface::class , SectionRepository::class);
-
+        
 
 
 

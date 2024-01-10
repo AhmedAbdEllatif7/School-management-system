@@ -14,7 +14,7 @@ class InvoiceFeesRepository implements InvoiceFeesRepositoryInterface
     public function index()
     {
         $invoicesFee = InvoiceFee::select('id', 'description', 'amount', 'student_id', 'classroom_id', 'grade_id', 'fee_id')->get();
-        return view('pages.adminDashboard.invoicesFee.index',compact('invoicesFee'));
+        return view('dashboards.admin.invoicesFee.index',compact('invoicesFee'));
     }
 
 
@@ -23,7 +23,7 @@ class InvoiceFeesRepository implements InvoiceFeesRepositoryInterface
     {
         $student = Student::findOrFail($id);
         $fees = Fee::where('classroom_id' , $student->classroom_id)->get();
-        return view('pages.adminDashboard.invoicesFee.create' , compact('student' , 'fees'));
+        return view('dashboards.admin.invoicesFee.create' , compact('student' , 'fees'));
     }
 
 
@@ -79,7 +79,7 @@ class InvoiceFeesRepository implements InvoiceFeesRepositoryInterface
         {
             $invoiceFee = InvoiceFee::findOrFail($id);
             $fees = Fee::where('classroom_id' , $invoiceFee->classroom_id)->get();
-            return view('pages.adminDashboard.invoicesFee.edit', compact('invoiceFee', 'fees'));
+            return view('dashboards.admin.invoicesFee.edit', compact('invoiceFee', 'fees'));
         }
 
 

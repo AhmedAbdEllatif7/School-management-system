@@ -17,7 +17,7 @@ class Question extends Model
 
     public function quizze()
     {
-        return $this->belongsTo('App\Models\Quiz' , 'quizze_id');
+        return $this->belongsTo('App\Models\Quiz' , 'quizz_id');
     }
 
 }

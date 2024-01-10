@@ -15,7 +15,7 @@ class TeacherRepository implements TeacherRepositoryInterface {
 
     public function index(){
         $teachers = Teacher::all();
-        return view('pages.adminDashboard.teachers.index',compact('teachers'));
+        return view('dashboards.admin.teachers.index',compact('teachers'));
     }
 
 
@@ -25,7 +25,7 @@ class TeacherRepository implements TeacherRepositoryInterface {
     {
         $specializations = Specialization::all();
         $genders = Gender::all();
-        return view('pages.adminDashboard.teachers.create',compact('specializations','genders'));
+        return view('dashboards.admin.teachers.create',compact('specializations','genders'));
     }
 
 
@@ -116,7 +116,7 @@ class TeacherRepository implements TeacherRepositoryInterface {
 
     public function show($id){
         $teacher = Teacher::findOrFail($id);
-        return view('pages.adminDashboard.teachers.view' , compact('teacher'));
+        return view('dashboards.admin.teachers.view' , compact('teacher'));
     }
 
 

@@ -23,7 +23,7 @@ class StudentRepository implements StudentRepositoryInterface{
     public function index()
     {
         $students = Student::all();
-        return view('pages.adminDashboard.students.index' , compact('students'));
+        return view('dashboards.admin.students.index' , compact('students'));
     }
 
 
@@ -37,7 +37,7 @@ class StudentRepository implements StudentRepositoryInterface{
         $classes = Classroom::all();
         $parents = Parentt::all();
     
-        return view('pages.adminDashboard.students.create', compact('grades', 'genders', 'nationals', 'bloodTypes', 'classes', 'parents'));
+        return view('dashboards.admin.students.create', compact('grades', 'genders', 'nationals', 'bloodTypes', 'classes', 'parents'));
     }
     
 
@@ -82,7 +82,7 @@ class StudentRepository implements StudentRepositoryInterface{
         $bloodTypes = Blood::all();
         $classrooms = Classroom::all();
         $parents = Parentt::all();
-        return view('pages.adminDashboard.students.edit' , compact('student', 'grades', 'genders', 'nationals', 'bloodTypes', 'classrooms', 'parents'));
+        return view('dashboards.admin.students.edit' , compact('student', 'grades', 'genders', 'nationals', 'bloodTypes', 'classrooms', 'parents'));
     }
 
 
@@ -140,7 +140,7 @@ class StudentRepository implements StudentRepositoryInterface{
 
     public function show($student)
     {
-        return view('pages.adminDashboard.students.show' , compact('student'));
+        return view('dashboards.admin.students.show' , compact('student'));
     }
 
 
