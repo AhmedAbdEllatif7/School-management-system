@@ -35,6 +35,14 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 ############################################### Admin dashboard routes ##############################################################
 
+
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    ], function(){
+
+
         Route::get('/' , [HomeController::class, 'index'])->name('selection')->middleware('guest');
 
         ###################################### Begin Auth ###########################
@@ -47,6 +55,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
                 Route::get('/logout/{type}', [LoginController::class , 'logout'])->name('logout');
 
+
+            });
 
             });
 
@@ -129,11 +139,12 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
         ###################################### Begin Student ###########################
         
-        Route::resource('students' , StudentController::class);
+        Route::resource('students', StudentController::class);
 
         Route::controller(StudentController::class)->group(function () {
             // Additional routes
             Route::post('students/upload-photo' ,  'addPhotoFromDetails')->name('students.upload.photo');
+            Route::post('students' ,  'index')->name('get.students');
 
             Route::delete('student/delete-photo' ,  'deletePhotoFromDetails')->name('students.delete.photo');
 

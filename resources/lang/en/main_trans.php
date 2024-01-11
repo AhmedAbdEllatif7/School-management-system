@@ -129,6 +129,7 @@ return [
     'school_name_mokhtaser' => 'School name mokhtaser',
     'phone' => 'Phone',
     'email' => 'Email',
+    'password' => 'Password',
     'school_address' => 'School address',
     'end_of_first_term' => 'End of first term',
     'end_of_second_term'  => 'End of second term',
@@ -276,6 +277,15 @@ return [
     'view_questions' => 'View questions',
     'view_examed_students' => 'View Examed Students',
     'edit' => 'Edit',
+    'school_system' => 'School system',
+    'select_login_type' => 'Select login type',
+    'student' => 'Student',
+    'admin' => 'Admin',
+    'parent' => 'Parent',
+    'teacher' => 'Teacher',
+    'sign_in' => 'Sign in',
+    'welcome_back' => 'Welcome back',
+    
 
 ];
 

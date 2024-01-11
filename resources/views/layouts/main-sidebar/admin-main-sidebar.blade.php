@@ -72,7 +72,7 @@
                     </a>
                     <ul id="Student_information" class="collapse">
                         <li>
-                            <a href="{{route('students.index')}}">{{__('main_trans.Student List')}}</a>
+                            <a href="{{route('get.students')}}">{{__('main_trans.Student List')}}</a>
                         </li>
                         <li>
                             <a href="{{route('students.create')}}">{{trans('main_trans.add_student')}}</a>

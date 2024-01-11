@@ -21,6 +21,11 @@ class RepoServiceProvider extends ServiceProvider
         );
         
         $this->app->bind(
+            \App\Repositories\Interefaces\AdminDashboard\ClassroomRepositoryInterface::class,
+            \App\Repositories\AdminDashboard\ClassroomRepository::class
+        );
+        
+        $this->app->bind(
             \App\Repositories\Interefaces\AdminDashboard\SectionRepositoryInterface::class,
             \App\Repositories\AdminDashboard\SectionRepository::class
         );

@@ -133,6 +133,7 @@ return [
     'school_name_mokhtaser' => 'اسم المدرسة المختصر',
     'phone' => 'رقم الموبايل',
     'email' => 'البريد الألكتروني',
+    'password' => 'كلمة السر',
     'school_address' => 'عنوان المدرسة',
     'end_of_first_term' => 'نهاية الترم الأول',
     'end_of_second_term'  => 'نهاية الترم الثاني',
@@ -274,6 +275,16 @@ return [
     'view_questions' => 'عرض الأسئلة',
     'view_examed_students' => 'عرض الطلاب المختبرين',
     'edit' => 'تعديل',
+    'school_system' => 'برنامج ادارة المدارس',
+    'select_login_type' => 'حدد طريقة الدخول',
+    'student' => 'طالب',
+    'admin' => 'مسؤول',
+    'parent' => 'ولي أمر',
+    'teacher' => 'مدرس',
+    'sign_in' => 'تسجيل دخول',
+    'welcome_back' => 'مرحبا بعودتك',
+
+
 
 ];
 
