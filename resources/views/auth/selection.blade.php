@@ -14,7 +14,7 @@
         <link rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
         <!-- css -->
-        <link href="{{ URL::asset('assets/css/rtl.css') }}" rel="stylesheet">
+        <link href="{{ URL::asset('assets/css/ltr.css') }}" rel="stylesheet">
     </head>
     <body>
         <div class="wrapper">
@@ -30,7 +30,7 @@
                                 <div style="text-align: center;">
                                     <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         @if (App::getLocale() == 'ar')
-                                            {{ LaravelLocalization::getCurrentLocaleName() }}
+                                            العربية
                                             <img src="{{ URL::asset('assets/images/flags/EG.png') }}" alt="">
                                         @else
                                             {{ LaravelLocalization::getCurrentLocaleName() }}
@@ -74,7 +74,5 @@
         <!-- plugins-jquery -->
         <script src="{{ URL::asset('assets/js/plugins-jquery.js') }}"></script>
         <!-- plugin_path -->
-
-        <script src="{{ URL::asset('assets/js/custom.js') }}"></script>
     </body>
 </html>
